@@ -9,8 +9,8 @@ It is generated with [Stainless](https://www.stainless.com/).
 Because it's not published yet, clone the repo and build it:
 
 ```sh
-git clone git@github.com:stainless-sdks/wpm-mcp-server-typescript.git
-cd wpm-mcp-server-typescript
+git clone git@github.com:HGMproperties/wpm-mcp-server.git
+cd wpm-mcp-server
 ./scripts/bootstrap
 ./scripts/build
 ```
@@ -40,11 +40,7 @@ For clients with a configuration JSON, it might look something like this:
   "mcpServers": {
     "wpm_mcp_server_api": {
       "command": "node",
-      "args": [
-        "/path/to/local/wpm-mcp-server-typescript/packages/mcp-server",
-        "--client=claude",
-        "--tools=dynamic"
-      ],
+      "args": ["/path/to/local/wpm-mcp-server/packages/mcp-server", "--client=claude", "--tools=dynamic"],
       "env": {
         "WPM_MCP_SERVER_API_KEY": "My API Key"
       }
