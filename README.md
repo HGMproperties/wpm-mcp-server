@@ -1,0 +1,1 @@
+# wpm-mcp-server-typescript
