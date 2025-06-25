@@ -9,7 +9,8 @@ It is generated with [Stainless](https://www.stainless.com/).
 You can run the MCP Server directly via `npx`:
 
 ```sh
-export WPM_MCP_SERVER_API_KEY="My API Key"
+export WPM_BUILDIUM_CLIENT_ID="My Client ID"
+export WPM_BUILDIUM_CLIENT_SECRET="My Client Secret"
 npx -y wpm-mcp-server-mcp@latest
 ```
 
@@ -27,7 +28,8 @@ For clients with a configuration JSON, it might look something like this:
       "command": "npx",
       "args": ["-y", "wpm-mcp-server-mcp", "--client=claude", "--tools=dynamic"],
       "env": {
-        "WPM_MCP_SERVER_API_KEY": "My API Key"
+        "WPM_BUILDIUM_CLIENT_ID": "My Client ID",
+        "WPM_BUILDIUM_CLIENT_SECRET": "My Client Secret"
       }
     }
   }
