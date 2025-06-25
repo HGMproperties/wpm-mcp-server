@@ -1,6 +1,5 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-export * from './shared';
 export {
   Administration,
   type AdministrationRetrieveAccountResponse,
@@ -101,7 +100,6 @@ export {
   Leases,
   type Lease,
   type LeaseCosigner,
-  type LeaseRentChargePostMessage,
   type LeaseRentForPostMessage,
   type LeaseListResponse,
   type LeaseListOutstandingBalancesResponse,

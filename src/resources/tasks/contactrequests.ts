@@ -81,30 +81,32 @@ export interface ContactDetailSave {
   /**
    * Contact phone numbers.
    */
-  PhoneNumbers?: ContactDetailSavePhoneMessage | null;
+  PhoneNumbers?: ContactDetailSave.PhoneNumbers | null;
 }
 
-/**
- * Contact phone numbers.
- */
-export interface ContactDetailSavePhoneMessage {
+export namespace ContactDetailSave {
   /**
-   * Home phone number. If provided, the value must be between 10 and 20 characters,
-   * ideally formatted as `(123) 123-1234`.
+   * Contact phone numbers.
    */
-  Home?: string | null;
+  export interface PhoneNumbers {
+    /**
+     * Home phone number. If provided, the value must be between 10 and 20 characters,
+     * ideally formatted as `(123) 123-1234`.
+     */
+    Home?: string | null;
 
-  /**
-   * Mobile phone number. If provided, the value must be between 10 and 20
-   * characters, ideally formatted as `(123) 123-1234`.
-   */
-  Mobile?: string | null;
+    /**
+     * Mobile phone number. If provided, the value must be between 10 and 20
+     * characters, ideally formatted as `(123) 123-1234`.
+     */
+    Mobile?: string | null;
 
-  /**
-   * Work phone number. If provided, the value must be between 10 and 20 characters,
-   * ideally formatted as `(123) 123-1234`.
-   */
-  Work?: string | null;
+    /**
+     * Work phone number. If provided, the value must be between 10 and 20 characters,
+     * ideally formatted as `(123) 123-1234`.
+     */
+    Work?: string | null;
+  }
 }
 
 export interface ContactRequestTask {
@@ -438,7 +440,6 @@ export interface ContactrequestListParams {
 export declare namespace Contactrequests {
   export {
     type ContactDetailSave as ContactDetailSave,
-    type ContactDetailSavePhoneMessage as ContactDetailSavePhoneMessage,
     type ContactRequestTask as ContactRequestTask,
     type ContactrequestListResponse as ContactrequestListResponse,
     type ContactrequestCreateParams as ContactrequestCreateParams,

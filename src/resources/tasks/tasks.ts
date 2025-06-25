@@ -16,7 +16,6 @@ import {
 import * as ContactrequestsAPI from './contactrequests';
 import {
   ContactDetailSave,
-  ContactDetailSavePhoneMessage,
   ContactRequestTask,
   ContactrequestCreateParams,
   ContactrequestListParams,
@@ -387,7 +386,6 @@ export declare namespace Tasks {
   export {
     Contactrequests as Contactrequests,
     type ContactDetailSave as ContactDetailSave,
-    type ContactDetailSavePhoneMessage as ContactDetailSavePhoneMessage,
     type ContactRequestTask as ContactRequestTask,
     type ContactrequestListResponse as ContactrequestListResponse,
     type ContactrequestCreateParams as ContactrequestCreateParams,

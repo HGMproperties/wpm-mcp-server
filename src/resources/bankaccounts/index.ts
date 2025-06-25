@@ -66,7 +66,6 @@ export {
 } from './transactions';
 export {
   Transfers,
-  type BankAccountTransferAccountingEntitySaveMessage,
   type Transfer,
   type TransferSave,
   type TransferListResponse,
