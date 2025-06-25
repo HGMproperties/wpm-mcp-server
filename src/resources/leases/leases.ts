@@ -94,6 +94,8 @@ import {
   LeaseRentMessage,
   Rent,
   RentCreateParams,
+  RentGetSpecificRentParams,
+  RentGetSpecificRentResponse,
   RentRetrieveAllParams,
   RentRetrieveAllResponse,
   RentRetrieveParams,
@@ -1446,10 +1448,12 @@ export declare namespace Leases {
     type LeaseRentCharge as LeaseRentCharge,
     type LeaseRentMessage as LeaseRentMessage,
     type RentRetrieveResponse as RentRetrieveResponse,
+    type RentGetSpecificRentResponse as RentGetSpecificRentResponse,
     type RentRetrieveAllResponse as RentRetrieveAllResponse,
     type RentCreateParams as RentCreateParams,
     type RentRetrieveParams as RentRetrieveParams,
     type RentUpdateParams as RentUpdateParams,
+    type RentGetSpecificRentParams as RentGetSpecificRentParams,
     type RentRetrieveAllParams as RentRetrieveAllParams,
   };
 

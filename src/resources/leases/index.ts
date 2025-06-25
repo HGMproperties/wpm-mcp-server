@@ -107,10 +107,12 @@ export {
   type LeaseRentCharge,
   type LeaseRentMessage,
   type RentRetrieveResponse,
+  type RentGetSpecificRentResponse,
   type RentRetrieveAllResponse,
   type RentCreateParams,
   type RentRetrieveParams,
   type RentUpdateParams,
+  type RentGetSpecificRentParams,
   type RentRetrieveAllParams,
 } from './rent';
 export {

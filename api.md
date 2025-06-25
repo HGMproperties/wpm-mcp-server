@@ -692,6 +692,7 @@ Types:
 - <code><a href="./src/resources/leases/rent.ts">LeaseRentCharge</a></code>
 - <code><a href="./src/resources/leases/rent.ts">LeaseRentMessage</a></code>
 - <code><a href="./src/resources/leases/rent.ts">RentRetrieveResponse</a></code>
+- <code><a href="./src/resources/leases/rent.ts">RentGetSpecificRentResponse</a></code>
 - <code><a href="./src/resources/leases/rent.ts">RentRetrieveAllResponse</a></code>
 
 Methods:
@@ -699,6 +700,7 @@ Methods:
 - <code title="post /v1/leases/{leaseId}/rent">client.leases.rent.<a href="./src/resources/leases/rent.ts">create</a>(leaseID, { ...params }) -> LeaseRentMessage</code>
 - <code title="get /v1/leases/{leaseId}/rent">client.leases.rent.<a href="./src/resources/leases/rent.ts">retrieve</a>(leaseID, { ...params }) -> RentRetrieveResponse</code>
 - <code title="put /v1/leases/{leaseId}/rent/{rentId}">client.leases.rent.<a href="./src/resources/leases/rent.ts">update</a>(rentID, { ...params }) -> LeaseRentMessage</code>
+- <code title="get /v1/leases/{leaseId}/rent">client.leases.rent.<a href="./src/resources/leases/rent.ts">getSpecificRent</a>(leaseID, { ...params }) -> RentGetSpecificRentResponse</code>
 - <code title="get /v1/leases/rent">client.leases.rent.<a href="./src/resources/leases/rent.ts">retrieveAll</a>({ ...params }) -> RentRetrieveAllResponse</code>
 
 ## Rentersinsurance

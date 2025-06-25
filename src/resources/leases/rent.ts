@@ -96,6 +96,28 @@ export class Rent extends APIResource {
    *
    * @example
    * ```ts
+   * const leaseRentMessages =
+   *   await client.leases.rent.getSpecificRent(0);
+   * ```
+   */
+  getSpecificRent(
+    leaseID: number,
+    query: RentGetSpecificRentParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<RentGetSpecificRentResponse> {
+    return this._client.get(path`/v1/leases/${leaseID}/rent`, { query, ...options });
+  }
+
+  /**
+   * The rent schedule provides details (dollar amount, day of the month, etc) of the
+   * recurring charges that are applied to the lease ledger each rent cycle. A lease
+   * may have more than one rent schedule associated with it if the rent terms change
+   * within the duration of the lease.
+   *
+   * <h4>Required permission(s):</h4><span class="permissionBlock">Rentals > Lease transactions</span> - `View`
+   *
+   * @example
+   * ```ts
    * const response = await client.leases.rent.retrieveAll();
    * ```
    */
@@ -203,6 +225,8 @@ export interface LeaseRentMessage {
 }
 
 export type RentRetrieveResponse = Array<LeaseRentMessage>;
+
+export type RentGetSpecificRentResponse = Array<LeaseRentMessage>;
 
 export type RentRetrieveAllResponse = Array<RentRetrieveAllResponse.RentRetrieveAllResponseItem>;
 
@@ -423,6 +447,27 @@ export namespace RentUpdateParams {
   }
 }
 
+export interface RentGetSpecificRentParams {
+  /**
+   * `limit` indicates the maximum number of results to be returned in the response.
+   * `limit` can range between 1 and 1000 and the default is 50.
+   */
+  limit?: number;
+
+  /**
+   * `offset` indicates the position of the first record to return. The `offset` is
+   * zero-based and the default is 0.
+   */
+  offset?: number;
+
+  /**
+   * `orderby` indicates the field(s) and direction to sort the results in the
+   * response. See <a href="#section/API-Overview/Bulk-Request-Options">Bulk Request
+   * Options</a> for more information.
+   */
+  orderby?: string;
+}
+
 export interface RentRetrieveAllParams {
   /**
    * Filters results to only rents that were created after this date. The value must
@@ -483,10 +528,12 @@ export declare namespace Rent {
     type LeaseRentCharge as LeaseRentCharge,
     type LeaseRentMessage as LeaseRentMessage,
     type RentRetrieveResponse as RentRetrieveResponse,
+    type RentGetSpecificRentResponse as RentGetSpecificRentResponse,
     type RentRetrieveAllResponse as RentRetrieveAllResponse,
     type RentCreateParams as RentCreateParams,
     type RentRetrieveParams as RentRetrieveParams,
     type RentUpdateParams as RentUpdateParams,
+    type RentGetSpecificRentParams as RentGetSpecificRentParams,
     type RentRetrieveAllParams as RentRetrieveAllParams,
   };
 }
