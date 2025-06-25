@@ -21,7 +21,6 @@ export {
   Leases,
   type Lease,
   type LeaseCosigner,
-  type LeaseRentChargePostMessage,
   type LeaseRentForPostMessage,
   type LeaseListResponse,
   type LeaseListOutstandingBalancesResponse,

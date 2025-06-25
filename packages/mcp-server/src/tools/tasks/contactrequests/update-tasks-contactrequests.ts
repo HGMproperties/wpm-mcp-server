@@ -93,32 +93,29 @@ export const tool: Tool = {
             description: 'Last name of the contact.',
           },
           PhoneNumbers: {
-            $ref: '#/$defs/contact_detail_save_phone_message',
+            type: 'object',
+            description: 'Contact phone numbers.',
+            properties: {
+              Home: {
+                type: 'string',
+                description:
+                  'Home phone number. If provided, the value must be between 10 and 20 characters, ideally formatted as `(123) 123-1234`.',
+              },
+              Mobile: {
+                type: 'string',
+                description:
+                  'Mobile phone number. If provided, the value must be between 10 and 20 characters, ideally formatted as `(123) 123-1234`.',
+              },
+              Work: {
+                type: 'string',
+                description:
+                  'Work phone number. If provided, the value must be between 10 and 20 characters, ideally formatted as `(123) 123-1234`.',
+              },
+            },
+            required: [],
           },
         },
         required: ['FirstName'],
-      },
-      contact_detail_save_phone_message: {
-        type: 'object',
-        description: 'Contact phone numbers.',
-        properties: {
-          Home: {
-            type: 'string',
-            description:
-              'Home phone number. If provided, the value must be between 10 and 20 characters, ideally formatted as `(123) 123-1234`.',
-          },
-          Mobile: {
-            type: 'string',
-            description:
-              'Mobile phone number. If provided, the value must be between 10 and 20 characters, ideally formatted as `(123) 123-1234`.',
-          },
-          Work: {
-            type: 'string',
-            description:
-              'Work phone number. If provided, the value must be between 10 and 20 characters, ideally formatted as `(123) 123-1234`.',
-          },
-        },
-        required: [],
       },
     },
   },

@@ -159,7 +159,6 @@ import {
   LeaseListRenewalHistoryParams,
   LeaseListRenewalHistoryResponse,
   LeaseListResponse,
-  LeaseRentChargePostMessage,
   LeaseRentForPostMessage,
   LeaseUpdateParams,
   Leases,
@@ -989,7 +988,6 @@ export declare namespace WpmMcpServer {
     Leases as Leases,
     type Lease as Lease,
     type LeaseCosigner as LeaseCosigner,
-    type LeaseRentChargePostMessage as LeaseRentChargePostMessage,
     type LeaseRentForPostMessage as LeaseRentForPostMessage,
     type LeaseListResponse as LeaseListResponse,
     type LeaseListOutstandingBalancesResponse as LeaseListOutstandingBalancesResponse,
@@ -1156,8 +1154,4 @@ export declare namespace WpmMcpServer {
     type WorkorderUpdateParams as WorkorderUpdateParams,
     type WorkorderListParams as WorkorderListParams,
   };
-
-  export type CcPaymentsPutMessage = API.CcPaymentsPutMessage;
-  export type EftPaymentsPutMessage = API.EftPaymentsPutMessage;
-  export type OfflinePaymentsPutMessage = API.OfflinePaymentsPutMessage;
 }
