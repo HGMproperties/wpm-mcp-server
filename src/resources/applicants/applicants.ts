@@ -22,6 +22,7 @@ import {
   GroupUpdateParams,
   Groups,
 } from './groups/groups';
+import * as OwnersAPI from '../associations/owners/owners';
 import { APIPromise } from '../../core/api-promise';
 import { RequestOptions } from '../../internal/request-options';
 import { path } from '../../internal/utils/path';
@@ -233,43 +234,12 @@ export interface ApplicantCreateParams {
   /**
    * Phone numbers.
    */
-  PhoneNumbers?: ApplicantCreateParams.PhoneNumbers | null;
+  PhoneNumbers?: OwnersAPI.PhoneNumbers | null;
 
   /**
    * The rental property unit unique identifier to associate with the applicant.
    */
   UnitId?: number | null;
-}
-
-export namespace ApplicantCreateParams {
-  /**
-   * Phone numbers.
-   */
-  export interface PhoneNumbers {
-    /**
-     * Fax number. If provided, must be between 10 and 20 characters, ideally formatted
-     * as `(123) 123-1234`.
-     */
-    Fax?: string | null;
-
-    /**
-     * Home phone number. If provided, must be between 10 and 20 characters, ideally
-     * formatted as `(123) 123-1234`.
-     */
-    Home?: string | null;
-
-    /**
-     * Mobile phone number. If provided, must be between 10 and 20 characters, ideally
-     * formatted as `(123) 123-1234`.
-     */
-    Mobile?: string | null;
-
-    /**
-     * Work phone number. If provided, must be between 10 and 20 characters, ideally
-     * formatted as `(123) 123-1234`.
-     */
-    Work?: string | null;
-  }
 }
 
 export interface ApplicantUpdateParams {
@@ -291,43 +261,12 @@ export interface ApplicantUpdateParams {
   /**
    * Phone numbers.
    */
-  PhoneNumbers?: ApplicantUpdateParams.PhoneNumbers | null;
+  PhoneNumbers?: OwnersAPI.PhoneNumbers | null;
 
   /**
    * The rental property unit unique identifier to associate with the applicant.
    */
   UnitId?: number | null;
-}
-
-export namespace ApplicantUpdateParams {
-  /**
-   * Phone numbers.
-   */
-  export interface PhoneNumbers {
-    /**
-     * Fax number. If provided, must be between 10 and 20 characters, ideally formatted
-     * as `(123) 123-1234`.
-     */
-    Fax?: string | null;
-
-    /**
-     * Home phone number. If provided, must be between 10 and 20 characters, ideally
-     * formatted as `(123) 123-1234`.
-     */
-    Home?: string | null;
-
-    /**
-     * Mobile phone number. If provided, must be between 10 and 20 characters, ideally
-     * formatted as `(123) 123-1234`.
-     */
-    Mobile?: string | null;
-
-    /**
-     * Work phone number. If provided, must be between 10 and 20 characters, ideally
-     * formatted as `(123) 123-1234`.
-     */
-    Work?: string | null;
-  }
 }
 
 export interface ApplicantListParams {

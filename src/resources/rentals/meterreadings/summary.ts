@@ -1,6 +1,7 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from '../../../core/resource';
+import * as SummaryAPI from '../../associations/meterreadings/summary';
 import { APIPromise } from '../../../core/api-promise';
 import { buildHeaders } from '../../../internal/headers';
 import { RequestOptions } from '../../../internal/request-options';
@@ -24,7 +25,7 @@ export class Summary extends APIResource {
     propertyID: number,
     params: SummaryCreateParams,
     options?: RequestOptions,
-  ): APIPromise<SummaryCreateResponse> {
+  ): APIPromise<SummaryAPI.MeterReadingDetails> {
     const { metertype, readingdate, ...body } = params;
     return this._client.put(path`/v1/rentals/${propertyID}/meterreadings/summary`, {
       query: { metertype, readingdate },
@@ -42,7 +43,7 @@ export class Summary extends APIResource {
     propertyID: number,
     query: SummaryListParams,
     options?: RequestOptions,
-  ): APIPromise<SummaryListResponse> {
+  ): APIPromise<SummaryAPI.MeterReadingDetails> {
     return this._client.get(path`/v1/rentals/${propertyID}/meterreadings/summary`, { query, ...options });
   }
 
@@ -58,110 +59,6 @@ export class Summary extends APIResource {
       ...options,
       headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
-  }
-}
-
-export interface SummaryCreateResponse {
-  /**
-   * List of reading details for all units.
-   */
-  Details?: Array<SummaryCreateResponse.Detail> | null;
-
-  /**
-   * Type of meter the reading is for.
-   */
-  MeterType?: 'Unknown' | 'Electric' | 'Gas' | 'Oil' | 'Water' | 'Sewer';
-
-  /**
-   * Requested date for meter reading details. Details will be the most recent
-   * readings on or before this date.
-   */
-  ReadingDate?: string;
-}
-
-export namespace SummaryCreateResponse {
-  export interface Detail {
-    /**
-     * Unique identifier of the reading detail.
-     */
-    Id?: number;
-
-    /**
-     * Previous meter reading value.
-     */
-    PriorValue?: number;
-
-    /**
-     * Date the meter was read.
-     */
-    ReadingDate?: string;
-
-    /**
-     * Unique identifier of the unit.
-     */
-    UnitId?: number;
-
-    /**
-     * Number of the unit.
-     */
-    UnitNumber?: string | null;
-
-    /**
-     * Most recent meter reading value.
-     */
-    Value?: number;
-  }
-}
-
-export interface SummaryListResponse {
-  /**
-   * List of reading details for all units.
-   */
-  Details?: Array<SummaryListResponse.Detail> | null;
-
-  /**
-   * Type of meter the reading is for.
-   */
-  MeterType?: 'Unknown' | 'Electric' | 'Gas' | 'Oil' | 'Water' | 'Sewer';
-
-  /**
-   * Requested date for meter reading details. Details will be the most recent
-   * readings on or before this date.
-   */
-  ReadingDate?: string;
-}
-
-export namespace SummaryListResponse {
-  export interface Detail {
-    /**
-     * Unique identifier of the reading detail.
-     */
-    Id?: number;
-
-    /**
-     * Previous meter reading value.
-     */
-    PriorValue?: number;
-
-    /**
-     * Date the meter was read.
-     */
-    ReadingDate?: string;
-
-    /**
-     * Unique identifier of the unit.
-     */
-    UnitId?: number;
-
-    /**
-     * Number of the unit.
-     */
-    UnitNumber?: string | null;
-
-    /**
-     * Most recent meter reading value.
-     */
-    Value?: number;
   }
 }
 
@@ -247,8 +144,6 @@ export interface SummaryDeleteAllParams {
 
 export declare namespace Summary {
   export {
-    type SummaryCreateResponse as SummaryCreateResponse,
-    type SummaryListResponse as SummaryListResponse,
     type SummaryCreateParams as SummaryCreateParams,
     type SummaryListParams as SummaryListParams,
     type SummaryDeleteAllParams as SummaryDeleteAllParams,

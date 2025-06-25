@@ -6,7 +6,6 @@ export {
   type RentalUnitImage,
   type ImageListResponse,
   type ImageUpdateOrderResponse,
-  type ImageUploadRequestsResponse,
   type ImageRetrieveParams,
   type ImageUpdateParams,
   type ImageListParams,

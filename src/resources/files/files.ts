@@ -12,6 +12,7 @@ import {
 } from './categories';
 import * as SharingAPI from './sharing';
 import { FileSharing, Sharing, SharingUpdateParams } from './sharing';
+import * as ArchitecturalrequestsFilesAPI from '../associations/ownershipaccounts/architecturalrequests/files';
 import { APIPromise } from '../../core/api-promise';
 import { RequestOptions } from '../../internal/request-options';
 import { path } from '../../internal/utils/path';
@@ -117,7 +118,7 @@ export class Files extends APIResource {
   createUploadRequest(
     body: FileCreateUploadRequestParams,
     options?: RequestOptions,
-  ): APIPromise<FileCreateUploadRequestResponse> {
+  ): APIPromise<ArchitecturalrequestsFilesAPI.FileUploadTicket> {
     return this._client.post('/v1/files/uploadrequests', { body, ...options });
   }
 
@@ -225,23 +226,6 @@ export interface FileDownload {
 }
 
 export type FileListResponse = Array<File>;
-
-export interface FileCreateUploadRequestResponse {
-  /**
-   * AWS S3 Bucket Url.
-   */
-  BucketUrl?: string | null;
-
-  /**
-   * AWS Meta Data.
-   */
-  FormData?: { [key: string]: string | null } | null;
-
-  /**
-   * The physical file name.
-   */
-  PhysicalFileName?: string | null;
-}
 
 export interface FileUpdateParams {
   /**
@@ -387,7 +371,6 @@ export declare namespace Files {
     type File as File,
     type FileDownload as FileDownload,
     type FileListResponse as FileListResponse,
-    type FileCreateUploadRequestResponse as FileCreateUploadRequestResponse,
     type FileUpdateParams as FileUpdateParams,
     type FileListParams as FileListParams,
     type FileCreateUploadRequestParams as FileCreateUploadRequestParams,

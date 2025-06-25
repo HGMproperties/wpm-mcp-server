@@ -13,7 +13,6 @@ import {
   FileListResponse,
   FileRetrieveParams,
   FileUploadParams,
-  FileUploadResponse,
   Files,
 } from './files';
 import * as PaymentsAPI from './payments';
@@ -441,7 +440,6 @@ export declare namespace Bills {
     Files as Files,
     type BillFileMessage as BillFileMessage,
     type FileListResponse as FileListResponse,
-    type FileUploadResponse as FileUploadResponse,
     type FileRetrieveParams as FileRetrieveParams,
     type FileListParams as FileListParams,
     type FileDeleteParams as FileDeleteParams,

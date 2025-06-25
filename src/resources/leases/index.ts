@@ -16,12 +16,7 @@ export {
   type ChargeUpdateParams,
   type ChargeListParams,
 } from './charges';
-export {
-  Epaysettings,
-  type EpaysettingRetrieveResponse,
-  type EpaysettingUpdateResponse,
-  type EpaysettingUpdateParams,
-} from './epaysettings';
+export { Epaysettings, type EpaysettingUpdateParams } from './epaysettings';
 export {
   Leases,
   type Lease,

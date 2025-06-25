@@ -4,7 +4,6 @@ export {
   Files,
   type TaskHistoryFile,
   type FileListResponse,
-  type FileUploadReqResponse,
   type FileRetrieveParams,
   type FileListParams,
   type FileDeleteParams,

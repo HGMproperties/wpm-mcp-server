@@ -1,6 +1,7 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from '../../../core/resource';
+import * as ArchitecturalrequestsFilesAPI from '../../associations/ownershipaccounts/architecturalrequests/files';
 import { APIPromise } from '../../../core/api-promise';
 import { buildHeaders } from '../../../internal/headers';
 import { RequestOptions } from '../../../internal/request-options';
@@ -110,7 +111,7 @@ export class Files extends APIResource {
     checkID: number,
     params: FileUploadParams,
     options?: RequestOptions,
-  ): APIPromise<FileUploadResponse> {
+  ): APIPromise<ArchitecturalrequestsFilesAPI.FileUploadTicket> {
     const { bankAccountId, ...body } = params;
     return this._client.post(path`/v1/bankaccounts/${bankAccountId}/checks/${checkID}/files/uploadrequests`, {
       body,
@@ -152,23 +153,6 @@ export interface CheckFile {
 }
 
 export type FileListResponse = Array<CheckFile>;
-
-export interface FileUploadResponse {
-  /**
-   * AWS S3 Bucket Url.
-   */
-  BucketUrl?: string | null;
-
-  /**
-   * AWS Meta Data.
-   */
-  FormData?: { [key: string]: string | null } | null;
-
-  /**
-   * The physical file name.
-   */
-  PhysicalFileName?: string | null;
-}
 
 export interface FileRetrieveParams {
   bankAccountId: number;
@@ -225,7 +209,6 @@ export declare namespace Files {
   export {
     type CheckFile as CheckFile,
     type FileListResponse as FileListResponse,
-    type FileUploadResponse as FileUploadResponse,
     type FileRetrieveParams as FileRetrieveParams,
     type FileListParams as FileListParams,
     type FileDeleteParams as FileDeleteParams,

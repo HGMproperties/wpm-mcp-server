@@ -2,6 +2,7 @@
 
 import { APIResource } from '../../core/resource';
 import * as FilesAPI from '../files/files';
+import * as ArchitecturalrequestsFilesAPI from '../associations/ownershipaccounts/architecturalrequests/files';
 import { APIPromise } from '../../core/api-promise';
 import { buildHeaders } from '../../internal/headers';
 import { RequestOptions } from '../../internal/request-options';
@@ -142,7 +143,7 @@ export class Images extends APIResource {
     propertyID: number,
     body: ImageUploadRequestsParams,
     options?: RequestOptions,
-  ): APIPromise<ImageUploadRequestsResponse> {
+  ): APIPromise<ArchitecturalrequestsFilesAPI.FileUploadTicket> {
     return this._client.post(path`/v1/rentals/${propertyID}/images/uploadrequests`, { body, ...options });
   }
 
@@ -229,23 +230,6 @@ export interface VideoLinkRequest {
 export type ImageListResponse = Array<RentalImage>;
 
 export type ImageUpdateOrderResponse = Array<RentalImage>;
-
-export interface ImageUploadRequestsResponse {
-  /**
-   * AWS S3 Bucket Url.
-   */
-  BucketUrl?: string | null;
-
-  /**
-   * AWS Meta Data.
-   */
-  FormData?: { [key: string]: string | null } | null;
-
-  /**
-   * The physical file name.
-   */
-  PhysicalFileName?: string | null;
-}
 
 export interface ImageRetrieveParams {
   propertyId: number;
@@ -345,7 +329,6 @@ export declare namespace Images {
     type VideoLinkRequest as VideoLinkRequest,
     type ImageListResponse as ImageListResponse,
     type ImageUpdateOrderResponse as ImageUpdateOrderResponse,
-    type ImageUploadRequestsResponse as ImageUploadRequestsResponse,
     type ImageRetrieveParams as ImageRetrieveParams,
     type ImageUpdateParams as ImageUpdateParams,
     type ImageListParams as ImageListParams,

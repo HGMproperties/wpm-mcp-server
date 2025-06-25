@@ -99,6 +99,20 @@ import {
   ReversePaymentOtherBankCharge,
 } from './resources/applications/applications';
 import {
+  Address,
+  Association,
+  AssociationCreateParams,
+  AssociationListBankLockboxDataParams,
+  AssociationListBankLockboxDataResponse,
+  AssociationListParams,
+  AssociationListResponse,
+  AssociationUpdateParams,
+  Associations,
+  PropertyManager,
+  SaveAddress,
+  TaxInformation,
+} from './resources/associations/associations';
+import {
   Account,
   BankaccountCreateParams,
   BankaccountGetUndepositedFundsParams,
@@ -121,7 +135,6 @@ import { Communications } from './resources/communications/communications';
 import {
   File,
   FileCreateUploadRequestParams,
-  FileCreateUploadRequestResponse,
   FileDownload,
   FileListParams,
   FileListResponse,
@@ -889,6 +902,7 @@ export class WpmMcpServer {
   static toFile = Uploads.toFile;
 
   applications: API.Applications = new API.Applications(this);
+  associations: API.Associations = new API.Associations(this);
   files: API.Files = new API.Files(this);
   leases: API.Leases = new API.Leases(this);
   rentals: API.Rentals = new API.Rentals(this);
@@ -911,6 +925,7 @@ export class WpmMcpServer {
   workorders: API.Workorders = new API.Workorders(this);
 }
 WpmMcpServer.Applications = Applications;
+WpmMcpServer.Associations = Associations;
 WpmMcpServer.Files = Files;
 WpmMcpServer.Leases = Leases;
 WpmMcpServer.Rentals = Rentals;
@@ -945,11 +960,25 @@ export declare namespace WpmMcpServer {
   };
 
   export {
+    Associations as Associations,
+    type Address as Address,
+    type Association as Association,
+    type PropertyManager as PropertyManager,
+    type SaveAddress as SaveAddress,
+    type TaxInformation as TaxInformation,
+    type AssociationListResponse as AssociationListResponse,
+    type AssociationListBankLockboxDataResponse as AssociationListBankLockboxDataResponse,
+    type AssociationCreateParams as AssociationCreateParams,
+    type AssociationUpdateParams as AssociationUpdateParams,
+    type AssociationListParams as AssociationListParams,
+    type AssociationListBankLockboxDataParams as AssociationListBankLockboxDataParams,
+  };
+
+  export {
     Files as Files,
     type File as File,
     type FileDownload as FileDownload,
     type FileListResponse as FileListResponse,
-    type FileCreateUploadRequestResponse as FileCreateUploadRequestResponse,
     type FileUpdateParams as FileUpdateParams,
     type FileListParams as FileListParams,
     type FileCreateUploadRequestParams as FileCreateUploadRequestParams,
