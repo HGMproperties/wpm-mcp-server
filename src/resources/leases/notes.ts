@@ -1,7 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from '../../core/resource';
-import * as ArchitecturalrequestsAPI from '../associations/ownershipaccounts/architecturalrequests/architecturalrequests';
 import { APIPromise } from '../../core/api-promise';
 import { RequestOptions } from '../../internal/request-options';
 import { path } from '../../internal/utils/path';
@@ -93,12 +92,44 @@ export interface Note {
   /**
    * Last updated details.
    */
-  LastUpdatedByUser?: ArchitecturalrequestsAPI.LastUpdatedByUser | null;
+  LastUpdatedByUser?: Note.LastUpdatedByUser | null;
 
   /**
    * Note contents.
    */
   Note?: string | null;
+}
+
+export namespace Note {
+  /**
+   * Last updated details.
+   */
+  export interface LastUpdatedByUser {
+    /**
+     * User first name.
+     */
+    FirstName?: string | null;
+
+    /**
+     * A link to the user resource.
+     */
+    Href?: string | null;
+
+    /**
+     * User unique identifier.
+     */
+    Id?: number;
+
+    /**
+     * User last name.
+     */
+    LastName?: string | null;
+
+    /**
+     * The date and time the note was last updated.
+     */
+    UpdatedDateTime?: string | null;
+  }
 }
 
 export interface NotePost {

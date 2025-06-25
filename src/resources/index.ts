@@ -24,20 +24,6 @@ export {
   type ApplicationListBalancesParams,
 } from './applications/applications';
 export {
-  Associations,
-  type Address,
-  type Association,
-  type PropertyManager,
-  type SaveAddress,
-  type TaxInformation,
-  type AssociationListResponse,
-  type AssociationListBankLockboxDataResponse,
-  type AssociationCreateParams,
-  type AssociationUpdateParams,
-  type AssociationListParams,
-  type AssociationListBankLockboxDataParams,
-} from './associations/associations';
-export {
   Bankaccounts,
   type Account,
   type BankaccountListResponse,
@@ -77,6 +63,7 @@ export {
   type File,
   type FileDownload,
   type FileListResponse,
+  type FileCreateUploadRequestResponse,
   type FileUpdateParams,
   type FileListParams,
   type FileCreateUploadRequestParams,

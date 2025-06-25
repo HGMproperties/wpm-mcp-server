@@ -1,8 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from '../../core/resource';
-import * as RecurringcreditsAPI from '../associations/ownershipaccounts/recurringcredits';
-import * as RefundsAPI from '../associations/ownershipaccounts/refunds';
 import { APIPromise } from '../../core/api-promise';
 import { RequestOptions } from '../../internal/request-options';
 import { path } from '../../internal/utils/path';
@@ -103,7 +101,7 @@ export interface LeaseRecurringPayment {
    * Line items describing how the payment is to be allocated when the recurring
    * transaction is processed.
    */
-  Lines?: Array<RecurringcreditsAPI.RecurringTransactionLine> | null;
+  Lines?: Array<LeaseRecurringPayment.Line> | null;
 
   /**
    * Memo associated with the recurring payment.
@@ -123,7 +121,7 @@ export interface LeaseRecurringPayment {
   /**
    * The payer of the transaction.
    */
-  Payer?: RefundsAPI.Payee | null;
+  Payer?: LeaseRecurringPayment.Payer | null;
 
   /**
    * The method of payment for the transaction.
@@ -147,6 +145,53 @@ export interface LeaseRecurringPayment {
    * ledger on 8/5/2022, but will have transaction date of 8/10/2022.
    */
   PostDaysInAdvance?: number;
+}
+
+export namespace LeaseRecurringPayment {
+  export interface Line {
+    /**
+     * Amount of the line item.
+     */
+    Amount?: number;
+
+    /**
+     * The general ledger account unique identifier the recurring transaction is
+     * related to.
+     */
+    GLAccountId?: number;
+  }
+
+  /**
+   * The payer of the transaction.
+   */
+  export interface Payer {
+    /**
+     * A link to the resource endpoint associated with the payer.
+     */
+    Href?: string | null;
+
+    /**
+     * The payer user unique identifier.
+     */
+    Id?: number;
+
+    /**
+     * The name of the payer.
+     */
+    Name?: string | null;
+
+    /**
+     * The payer user entity type.
+     */
+    Type?:
+      | 'Tenant'
+      | 'AssociationTenant'
+      | 'AssociationOwner'
+      | 'RentalOwner'
+      | 'Vendor'
+      | 'Staff'
+      | 'Applicant';
+  }
 }
 
 export interface RecurringpaymentCreateParams {
@@ -204,7 +249,7 @@ export interface RecurringpaymentCreateParams {
    * Line items describing how the payment is to be allocated when the payment is
    * processed.
    */
-  Lines?: Array<RecurringcreditsAPI.RecurringTransactionLinePost> | null;
+  Lines?: Array<RecurringpaymentCreateParams.Line> | null;
 
   /**
    * Memo associated with the recurring payment. This value cannot exceed 65
@@ -223,6 +268,21 @@ export interface RecurringpaymentCreateParams {
    * The unique identifier of the user making the payment.
    */
   PayerUserId?: number | null;
+}
+
+export namespace RecurringpaymentCreateParams {
+  export interface Line {
+    /**
+     * Line item amount.
+     */
+    Amount: number;
+
+    /**
+     * The general ledger account identifier under which the line item amount will be
+     * recorded. The account must be a liability or income type.
+     */
+    GLAccountId: number;
+  }
 }
 
 export interface RecurringpaymentRetrieveParams {

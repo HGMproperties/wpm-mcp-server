@@ -2,7 +2,6 @@
 
 import { APIResource } from '../../core/resource';
 import * as FilesFilesAPI from '../files/files';
-import * as ArchitecturalrequestsFilesAPI from '../associations/ownershipaccounts/architecturalrequests/files';
 import { APIPromise } from '../../core/api-promise';
 import { buildHeaders } from '../../internal/headers';
 import { RequestOptions } from '../../internal/request-options';
@@ -119,11 +118,7 @@ export class Files extends APIResource {
    *
    * <h4>Required permission(s):</h4><span class="permissionBlock">Accounting > Bills</span> - `View` `Edit`
    */
-  upload(
-    billID: number,
-    body: FileUploadParams,
-    options?: RequestOptions,
-  ): APIPromise<ArchitecturalrequestsFilesAPI.FileUploadTicket> {
+  upload(billID: number, body: FileUploadParams, options?: RequestOptions): APIPromise<FileUploadResponse> {
     return this._client.post(path`/v1/bills/${billID}/files/uploadrequests`, { body, ...options });
   }
 }
@@ -161,6 +156,23 @@ export interface BillFileMessage {
 }
 
 export type FileListResponse = Array<BillFileMessage>;
+
+export interface FileUploadResponse {
+  /**
+   * AWS S3 Bucket Url.
+   */
+  BucketUrl?: string | null;
+
+  /**
+   * AWS Meta Data.
+   */
+  FormData?: { [key: string]: string | null } | null;
+
+  /**
+   * The physical file name.
+   */
+  PhysicalFileName?: string | null;
+}
 
 export interface FileRetrieveParams {
   billId: number;
@@ -206,6 +218,7 @@ export declare namespace Files {
   export {
     type BillFileMessage as BillFileMessage,
     type FileListResponse as FileListResponse,
+    type FileUploadResponse as FileUploadResponse,
     type FileRetrieveParams as FileRetrieveParams,
     type FileListParams as FileListParams,
     type FileDeleteParams as FileDeleteParams,

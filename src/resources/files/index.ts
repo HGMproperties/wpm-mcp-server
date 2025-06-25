@@ -13,6 +13,7 @@ export {
   type File,
   type FileDownload,
   type FileListResponse,
+  type FileCreateUploadRequestResponse,
   type FileUpdateParams,
   type FileListParams,
   type FileCreateUploadRequestParams,

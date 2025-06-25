@@ -68,7 +68,19 @@ export const tool: Tool = {
         description:
           'Line items describing how the credit is to be allocated when the recurring credit is processed.',
         items: {
-          $ref: '#/$defs/recurring_transaction_line_post',
+          type: 'object',
+          properties: {
+            Amount: {
+              type: 'number',
+              description: 'Line item amount.',
+            },
+            GLAccountId: {
+              type: 'integer',
+              description:
+                'The general ledger account identifier under which the line item amount will be recorded. The account must be a liability or income type.',
+            },
+          },
+          required: ['Amount', 'GLAccountId'],
         },
       },
       Memo: {
@@ -89,23 +101,6 @@ export const tool: Tool = {
         type: 'integer',
         description:
           'Indicates whether to apply a posting rule when processing the transaction that would only record the credit if a prior payment has been made.\r\n\r\n\r\n\r\nSet the field value to the <b>Rent Income</b> general ledger account identifier if the credit should only be recorded when a payment was made and applied to the <b>Rent Income</b> general ledger account.\r\n\r\n\r\n\r\nSet the field value to the <b>Accounts Receivable</b> general ledger account identifier if the credit should only be recorded when a payment was made and applied to *any* general ledger account.\r\n\r\n\r\n\r\nSet the field value to <b>null</b> to always record the credit.',
-      },
-    },
-    $defs: {
-      recurring_transaction_line_post: {
-        type: 'object',
-        properties: {
-          Amount: {
-            type: 'number',
-            description: 'Line item amount.',
-          },
-          GLAccountId: {
-            type: 'integer',
-            description:
-              'The general ledger account identifier under which the line item amount will be recorded. The account must be a liability or income type.',
-          },
-        },
-        required: ['Amount', 'GLAccountId'],
       },
     },
   },

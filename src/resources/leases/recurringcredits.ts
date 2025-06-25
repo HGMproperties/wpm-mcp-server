@@ -1,7 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from '../../core/resource';
-import * as OwnershipaccountsRecurringcreditsAPI from '../associations/ownershipaccounts/recurringcredits';
 import { APIPromise } from '../../core/api-promise';
 import { RequestOptions } from '../../internal/request-options';
 import { path } from '../../internal/utils/path';
@@ -107,7 +106,7 @@ export interface LeaseRecurringCredit {
    * Line items describing how the credit is to be allocated when the recurring
    * transaction is processed.
    */
-  Lines?: Array<OwnershipaccountsRecurringcreditsAPI.RecurringTransactionLine> | null;
+  Lines?: Array<LeaseRecurringCredit.Line> | null;
 
   /**
    * Memo associated with the recurring credit.
@@ -154,6 +153,21 @@ export interface LeaseRecurringCredit {
    * Set the field value to <b>null</b> to always record the credit.
    */
   PostingRuleGLAccountId?: number | null;
+}
+
+export namespace LeaseRecurringCredit {
+  export interface Line {
+    /**
+     * Amount of the line item.
+     */
+    Amount?: number;
+
+    /**
+     * The general ledger account unique identifier the recurring transaction is
+     * related to.
+     */
+    GLAccountId?: number;
+  }
 }
 
 export interface RecurringcreditCreateParams {
@@ -206,7 +220,7 @@ export interface RecurringcreditCreateParams {
    * Line items describing how the credit is to be allocated when the recurring
    * credit is processed.
    */
-  Lines?: Array<OwnershipaccountsRecurringcreditsAPI.RecurringTransactionLinePost> | null;
+  Lines?: Array<RecurringcreditCreateParams.Line> | null;
 
   /**
    * Memo associated with the recurring credit. This value cannot exceed 65
@@ -250,6 +264,21 @@ export interface RecurringcreditCreateParams {
    * Set the field value to <b>null</b> to always record the credit.
    */
   PostingRuleGlAccountId?: number | null;
+}
+
+export namespace RecurringcreditCreateParams {
+  export interface Line {
+    /**
+     * Line item amount.
+     */
+    Amount: number;
+
+    /**
+     * The general ledger account identifier under which the line item amount will be
+     * recorded. The account must be a liability or income type.
+     */
+    GLAccountId: number;
+  }
 }
 
 export interface RecurringcreditRetrieveParams {

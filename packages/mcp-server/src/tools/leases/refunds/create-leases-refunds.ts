@@ -26,55 +26,6 @@ export const tool: Tool = {
         type: 'integer',
       },
       Address: {
-        $ref: '#/$defs/save_address',
-      },
-      BankAccountId: {
-        type: 'integer',
-        description: 'Unique identifier of the bank account the refund is issued from.',
-      },
-      Date: {
-        type: 'string',
-        description: 'The date of the refund. The date must be formatted as YYYY-MM-DD.',
-        format: 'date',
-      },
-      Lines: {
-        type: 'array',
-        description: 'A collection of line items included in the refund. At least one line item is required.',
-        items: {
-          type: 'object',
-          properties: {
-            Amount: {
-              type: 'number',
-              description: 'Amount of the line item.',
-            },
-            GLAccountId: {
-              type: 'integer',
-              description: 'Unique identifier of the general ledger account associated with the refund.',
-            },
-          },
-          required: ['Amount', 'GLAccountId'],
-        },
-      },
-      PayeeUserIds: {
-        type: 'array',
-        description: 'Unique identifiers of the users receiving the refund.',
-        items: {
-          type: 'integer',
-        },
-      },
-      CheckNumber: {
-        type: 'string',
-        description:
-          'Check number associated with the refund, if applicable. The value cannot exceed 30 characters.',
-      },
-      Memo: {
-        type: 'string',
-        description:
-          'A brief note describing the reason for the refund. The value cannot exceed 65 characters.',
-      },
-    },
-    $defs: {
-      save_address: {
         type: 'object',
         description: 'Address.',
         properties: {
@@ -370,6 +321,50 @@ export const tool: Tool = {
           },
         },
         required: ['AddressLine1', 'Country', 'PostalCode'],
+      },
+      BankAccountId: {
+        type: 'integer',
+        description: 'Unique identifier of the bank account the refund is issued from.',
+      },
+      Date: {
+        type: 'string',
+        description: 'The date of the refund. The date must be formatted as YYYY-MM-DD.',
+        format: 'date',
+      },
+      Lines: {
+        type: 'array',
+        description: 'A collection of line items included in the refund. At least one line item is required.',
+        items: {
+          type: 'object',
+          properties: {
+            Amount: {
+              type: 'number',
+              description: 'Amount of the line item.',
+            },
+            GLAccountId: {
+              type: 'integer',
+              description: 'Unique identifier of the general ledger account associated with the refund.',
+            },
+          },
+          required: ['Amount', 'GLAccountId'],
+        },
+      },
+      PayeeUserIds: {
+        type: 'array',
+        description: 'Unique identifiers of the users receiving the refund.',
+        items: {
+          type: 'integer',
+        },
+      },
+      CheckNumber: {
+        type: 'string',
+        description:
+          'Check number associated with the refund, if applicable. The value cannot exceed 30 characters.',
+      },
+      Memo: {
+        type: 'string',
+        description:
+          'A brief note describing the reason for the refund. The value cannot exceed 65 characters.',
       },
     },
   },

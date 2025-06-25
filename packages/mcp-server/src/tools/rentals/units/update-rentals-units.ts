@@ -26,63 +26,6 @@ export const tool: Tool = {
         type: 'integer',
       },
       Address: {
-        $ref: '#/$defs/save_address',
-      },
-      UnitNumber: {
-        type: 'string',
-        description:
-          'Unit number. Must be unique within the rental property and cannot exceed 30 characters.',
-      },
-      Description: {
-        type: 'string',
-        description: 'Description of the unit. The description cannot exceed 65,535 characters.',
-      },
-      MarketRent: {
-        type: 'number',
-        description:
-          'Market rent of the unit. This value is separate from the lease rent and is typically used for rental listings.',
-      },
-      UnitBathrooms: {
-        type: 'string',
-        description: 'Number of bathrooms in the unit.',
-        enum: [
-          'NotSet',
-          'OneBath',
-          'OnePointFiveBath',
-          'TwoBath',
-          'TwoPointFiveBath',
-          'ThreeBath',
-          'FourBath',
-          'FiveBath',
-          'FivePlusBath',
-          'ThreePointFiveBath',
-          'FourPointFiveBath',
-        ],
-      },
-      UnitBedrooms: {
-        type: 'string',
-        description: 'Number of bedrooms in the unit.',
-        enum: [
-          'NotSet',
-          'Studio',
-          'OneBed',
-          'TwoBed',
-          'ThreeBed',
-          'FourBed',
-          'FiveBed',
-          'SixBed',
-          'SevenBed',
-          'EightBed',
-          'NineBedPlus',
-        ],
-      },
-      UnitSize: {
-        type: 'integer',
-        description: 'Size of the unit.',
-      },
-    },
-    $defs: {
-      save_address: {
         type: 'object',
         description: 'Address.',
         properties: {
@@ -378,6 +321,58 @@ export const tool: Tool = {
           },
         },
         required: ['AddressLine1', 'Country', 'PostalCode'],
+      },
+      UnitNumber: {
+        type: 'string',
+        description:
+          'Unit number. Must be unique within the rental property and cannot exceed 30 characters.',
+      },
+      Description: {
+        type: 'string',
+        description: 'Description of the unit. The description cannot exceed 65,535 characters.',
+      },
+      MarketRent: {
+        type: 'number',
+        description:
+          'Market rent of the unit. This value is separate from the lease rent and is typically used for rental listings.',
+      },
+      UnitBathrooms: {
+        type: 'string',
+        description: 'Number of bathrooms in the unit.',
+        enum: [
+          'NotSet',
+          'OneBath',
+          'OnePointFiveBath',
+          'TwoBath',
+          'TwoPointFiveBath',
+          'ThreeBath',
+          'FourBath',
+          'FiveBath',
+          'FivePlusBath',
+          'ThreePointFiveBath',
+          'FourPointFiveBath',
+        ],
+      },
+      UnitBedrooms: {
+        type: 'string',
+        description: 'Number of bedrooms in the unit.',
+        enum: [
+          'NotSet',
+          'Studio',
+          'OneBed',
+          'TwoBed',
+          'ThreeBed',
+          'FourBed',
+          'FiveBed',
+          'SixBed',
+          'SevenBed',
+          'EightBed',
+          'NineBedPlus',
+        ],
+      },
+      UnitSize: {
+        type: 'integer',
+        description: 'Size of the unit.',
       },
     },
   },
