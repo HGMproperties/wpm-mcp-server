@@ -2,7 +2,6 @@
 
 import { APIResource } from '../../../core/resource';
 import * as FilesAPI from '../../files/files';
-import * as ArchitecturalrequestsFilesAPI from '../../associations/ownershipaccounts/architecturalrequests/files';
 import { APIPromise } from '../../../core/api-promise';
 import { buildHeaders } from '../../../internal/headers';
 import { RequestOptions } from '../../../internal/request-options';
@@ -141,7 +140,7 @@ export class Files extends APIResource {
     taskHistoryID: number,
     params: FileUploadReqParams,
     options?: RequestOptions,
-  ): APIPromise<ArchitecturalrequestsFilesAPI.FileUploadTicket> {
+  ): APIPromise<FileUploadReqResponse> {
     const { taskId, ...body } = params;
     return this._client.post(path`/v1/tasks/${taskId}/history/${taskHistoryID}/files/uploadrequests`, {
       body,
@@ -183,6 +182,23 @@ export interface TaskHistoryFile {
 }
 
 export type FileListResponse = Array<TaskHistoryFile>;
+
+export interface FileUploadReqResponse {
+  /**
+   * AWS S3 Bucket Url.
+   */
+  BucketUrl?: string | null;
+
+  /**
+   * AWS Meta Data.
+   */
+  FormData?: { [key: string]: string | null } | null;
+
+  /**
+   * The physical file name.
+   */
+  PhysicalFileName?: string | null;
+}
 
 export interface FileRetrieveParams {
   taskId: number;
@@ -245,6 +261,7 @@ export declare namespace Files {
   export {
     type TaskHistoryFile as TaskHistoryFile,
     type FileListResponse as FileListResponse,
+    type FileUploadReqResponse as FileUploadReqResponse,
     type FileRetrieveParams as FileRetrieveParams,
     type FileListParams as FileListParams,
     type FileDeleteParams as FileDeleteParams,

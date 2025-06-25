@@ -75,7 +75,19 @@ export const tool: Tool = {
         description:
           'Line items describing how the payment is to be allocated when the payment is processed.',
         items: {
-          $ref: '#/$defs/recurring_transaction_line_post',
+          type: 'object',
+          properties: {
+            Amount: {
+              type: 'number',
+              description: 'Line item amount.',
+            },
+            GLAccountId: {
+              type: 'integer',
+              description:
+                'The general ledger account identifier under which the line item amount will be recorded. The account must be a liability or income type.',
+            },
+          },
+          required: ['Amount', 'GLAccountId'],
         },
       },
       Memo: {
@@ -90,23 +102,6 @@ export const tool: Tool = {
       PayerUserId: {
         type: 'integer',
         description: 'The unique identifier of the user making the payment.',
-      },
-    },
-    $defs: {
-      recurring_transaction_line_post: {
-        type: 'object',
-        properties: {
-          Amount: {
-            type: 'number',
-            description: 'Line item amount.',
-          },
-          GLAccountId: {
-            type: 'integer',
-            description:
-              'The general ledger account identifier under which the line item amount will be recorded. The account must be a liability or income type.',
-          },
-        },
-        required: ['Amount', 'GLAccountId'],
       },
     },
   },

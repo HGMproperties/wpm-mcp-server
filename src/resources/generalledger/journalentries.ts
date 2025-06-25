@@ -3,7 +3,6 @@
 import { APIResource } from '../../core/resource';
 import * as GlaccountsAPI from '../glaccounts';
 import * as QuickdepositsAPI from '../bankaccounts/quickdeposits';
-import * as RefundsAPI from '../associations/ownershipaccounts/refunds';
 import { APIPromise } from '../../core/api-promise';
 import { RequestOptions } from '../../internal/request-options';
 import { path } from '../../internal/utils/path';
@@ -249,7 +248,7 @@ export namespace GeneralLedgerTransaction {
     /**
      * The payer of the transaction.
      */
-    Payee?: RefundsAPI.Payee | null;
+    Payee?: PaymentDetail.Payee | null;
 
     /**
      * The payment method used for the transaction.
@@ -285,6 +284,38 @@ export namespace GeneralLedgerTransaction {
        * The date the transaction was processed.
        */
       ResultDate?: string | null;
+    }
+
+    /**
+     * The payer of the transaction.
+     */
+    export interface Payee {
+      /**
+       * A link to the resource endpoint associated with the payer.
+       */
+      Href?: string | null;
+
+      /**
+       * The payer user unique identifier.
+       */
+      Id?: number;
+
+      /**
+       * The name of the payer.
+       */
+      Name?: string | null;
+
+      /**
+       * The payer user entity type.
+       */
+      Type?:
+        | 'Tenant'
+        | 'AssociationTenant'
+        | 'AssociationOwner'
+        | 'RentalOwner'
+        | 'Vendor'
+        | 'Staff'
+        | 'Applicant';
     }
   }
 }
