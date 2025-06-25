@@ -26,70 +26,6 @@ export const tool: Tool = {
         type: 'integer',
       },
       Address: {
-        $ref: '#/$defs/save_address',
-      },
-      IsCompany: {
-        type: 'boolean',
-        description: 'Indicates whether the rental owner should be considered a company or person.',
-      },
-      PropertyIds: {
-        type: 'array',
-        description:
-          "A list of rental property ID's to associate with this rental owner. At least one property ID must be provided.",
-        items: {
-          type: 'integer',
-        },
-      },
-      AlternateEmail: {
-        type: 'string',
-        description: 'Alternate email of the rental owner.',
-      },
-      Comment: {
-        type: 'string',
-        description: 'Comments about the rental owner. The comments cannot exceed 65,535 characters.',
-      },
-      CompanyName: {
-        type: 'string',
-        description:
-          'Company name of the rental owner. Required if `IsCompany` is `true`. The value cannot exceed 127 characters.',
-      },
-      DateOfBirth: {
-        type: 'string',
-        description: 'Date of birth of the rental owner. Must be formatted as `YYYY-MM-DD`.',
-        format: 'date',
-      },
-      Email: {
-        type: 'string',
-        description: 'Email of the rental owner.',
-      },
-      FirstName: {
-        type: 'string',
-        description:
-          'First name of the rental owner. Required if `IsCompany` is `false`. The value cannot exceed 127 characters.',
-      },
-      LastName: {
-        type: 'string',
-        description:
-          'Last name of the rental owner. Required if `IsCompany` is `false`. The value cannot exceed 127 characters.',
-      },
-      ManagementAgreementEndDate: {
-        type: 'string',
-        description:
-          'End date of the management agreement with the rental owner. Must be formatted as `YYYY-MM-DD`.',
-        format: 'date',
-      },
-      ManagementAgreementStartDate: {
-        type: 'string',
-        description:
-          'Start date of the management agreement with the rental owner. Must be formatted as `YYYY-MM-DD`.',
-        format: 'date',
-      },
-      PhoneNumbers: {
-        $ref: '#/$defs/phone_numbers',
-      },
-    },
-    $defs: {
-      save_address: {
         type: 'object',
         description: 'Address.',
         properties: {
@@ -386,7 +322,63 @@ export const tool: Tool = {
         },
         required: ['AddressLine1', 'Country', 'PostalCode'],
       },
-      phone_numbers: {
+      IsCompany: {
+        type: 'boolean',
+        description: 'Indicates whether the rental owner should be considered a company or person.',
+      },
+      PropertyIds: {
+        type: 'array',
+        description:
+          "A list of rental property ID's to associate with this rental owner. At least one property ID must be provided.",
+        items: {
+          type: 'integer',
+        },
+      },
+      AlternateEmail: {
+        type: 'string',
+        description: 'Alternate email of the rental owner.',
+      },
+      Comment: {
+        type: 'string',
+        description: 'Comments about the rental owner. The comments cannot exceed 65,535 characters.',
+      },
+      CompanyName: {
+        type: 'string',
+        description:
+          'Company name of the rental owner. Required if `IsCompany` is `true`. The value cannot exceed 127 characters.',
+      },
+      DateOfBirth: {
+        type: 'string',
+        description: 'Date of birth of the rental owner. Must be formatted as `YYYY-MM-DD`.',
+        format: 'date',
+      },
+      Email: {
+        type: 'string',
+        description: 'Email of the rental owner.',
+      },
+      FirstName: {
+        type: 'string',
+        description:
+          'First name of the rental owner. Required if `IsCompany` is `false`. The value cannot exceed 127 characters.',
+      },
+      LastName: {
+        type: 'string',
+        description:
+          'Last name of the rental owner. Required if `IsCompany` is `false`. The value cannot exceed 127 characters.',
+      },
+      ManagementAgreementEndDate: {
+        type: 'string',
+        description:
+          'End date of the management agreement with the rental owner. Must be formatted as `YYYY-MM-DD`.',
+        format: 'date',
+      },
+      ManagementAgreementStartDate: {
+        type: 'string',
+        description:
+          'Start date of the management agreement with the rental owner. Must be formatted as `YYYY-MM-DD`.',
+        format: 'date',
+      },
+      PhoneNumbers: {
         type: 'object',
         description: 'Phone numbers.',
         properties: {

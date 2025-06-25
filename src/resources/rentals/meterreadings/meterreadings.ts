@@ -1,9 +1,15 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from '../../../core/resource';
-import * as MeterreadingsAPI from '../../associations/meterreadings/meterreadings';
 import * as SummaryAPI from './summary';
-import { Summary, SummaryCreateParams, SummaryDeleteAllParams, SummaryListParams } from './summary';
+import {
+  Summary,
+  SummaryCreateParams,
+  SummaryCreateResponse,
+  SummaryDeleteAllParams,
+  SummaryListParams,
+  SummaryListResponse,
+} from './summary';
 import { APIPromise } from '../../../core/api-promise';
 import { RequestOptions } from '../../../internal/request-options';
 import { path } from '../../../internal/utils/path';
@@ -25,7 +31,38 @@ export class Meterreadings extends APIResource {
   }
 }
 
-export type MeterreadingListResponse = Array<MeterreadingsAPI.MeterReading>;
+export type MeterreadingListResponse = Array<MeterreadingListResponse.MeterreadingListResponseItem>;
+
+export namespace MeterreadingListResponse {
+  export interface MeterreadingListResponseItem {
+    /**
+     * Indicates if charges were created for the meter reading.
+     */
+    ChargesCreated?: boolean;
+
+    /**
+     * Date the meter reading was recorded.
+     */
+    ReadingDate?: string;
+
+    /**
+     * Meter type for the meter reading.
+     */
+    ResponseMeterType?: 'Unknown' | 'Electric' | 'Gas' | 'Oil' | 'Water' | 'Sewer';
+
+    /**
+     * The amount used between the prior reading and this reading, calculated by
+     * subtracting prior value from value. Usage will be the basis used when charging
+     * tenants for a reading.
+     */
+    Usage?: number;
+
+    /**
+     * Total value across all units for the meter reading.
+     */
+    Value?: number;
+  }
+}
 
 export interface MeterreadingListParams {
   /**
@@ -77,6 +114,8 @@ export declare namespace Meterreadings {
 
   export {
     Summary as Summary,
+    type SummaryCreateResponse as SummaryCreateResponse,
+    type SummaryListResponse as SummaryListResponse,
     type SummaryCreateParams as SummaryCreateParams,
     type SummaryListParams as SummaryListParams,
     type SummaryDeleteAllParams as SummaryDeleteAllParams,

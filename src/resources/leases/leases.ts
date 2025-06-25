@@ -3,7 +3,6 @@
 import { APIResource } from '../../core/resource';
 import * as UsersAPI from '../users';
 import * as ApplicationsAPI from '../applications/applications';
-import * as AssociationsAPI from '../associations/associations';
 import * as ApplieddepositsAPI from './applieddeposits';
 import { ApplieddepositCreateParams, ApplieddepositUpdateParams, Applieddeposits } from './applieddeposits';
 import * as ChargesAPI from './charges';
@@ -19,7 +18,12 @@ import {
   LeaseChargeLine,
 } from './charges';
 import * as EpaysettingsAPI from './epaysettings';
-import { EpaysettingUpdateParams, Epaysettings } from './epaysettings';
+import {
+  EpaysettingRetrieveResponse,
+  EpaysettingUpdateParams,
+  EpaysettingUpdateResponse,
+  Epaysettings,
+} from './epaysettings';
 import * as MoveoutsAPI from './moveouts';
 import {
   LeaseMoveOutData,
@@ -118,7 +122,6 @@ import {
   TransactionRetrieveParams,
   Transactions,
 } from './transactions';
-import * as OwnersAPI from '../associations/owners/owners';
 import * as TenantsAPI from './tenants/tenants';
 import {
   RentalTenantPut,
@@ -509,12 +512,12 @@ export namespace Lease {
     /**
      * Address.
      */
-    Address?: AssociationsAPI.Address | null;
+    Address?: Cosigner.Address | null;
 
     /**
      * Address.
      */
-    AlternateAddress?: AssociationsAPI.Address | null;
+    AlternateAddress?: Cosigner.AlternateAddress | null;
 
     /**
      * Alternate Email for the cosigner.
@@ -557,6 +560,602 @@ export namespace Lease {
     PhoneNumbers?: Array<UsersAPI.PhoneNumber> | null;
   }
 
+  export namespace Cosigner {
+    /**
+     * Address.
+     */
+    export interface Address {
+      /**
+       * Address line 1 (e.g., street, PO Box, or company name).
+       */
+      AddressLine1?: string | null;
+
+      /**
+       * Address line 2 (e.g., apartment, suite, unit, or building).
+       */
+      AddressLine2?: string | null;
+
+      /**
+       * Address line 3
+       */
+      AddressLine3?: string | null;
+
+      /**
+       * City, district, suburb, town, or village.
+       */
+      City?: string | null;
+
+      /**
+       * Country.
+       */
+      Country?:
+        | 'Afghanistan'
+        | 'Akrotiri'
+        | 'Albania'
+        | 'Algeria'
+        | 'AmericanSamoa'
+        | 'Andorra'
+        | 'Angola'
+        | 'Anguilla'
+        | 'Antarctica'
+        | 'AntiguaandBarbuda'
+        | 'Argentina'
+        | 'Armenia'
+        | 'Aruba'
+        | 'AshmoreandCartierIslands'
+        | 'Australia'
+        | 'Austria'
+        | 'Azerbaijan'
+        | 'Bahamas'
+        | 'Bahrain'
+        | 'Bangladesh'
+        | 'Barbados'
+        | 'BassasdaIndia'
+        | 'Belarus'
+        | 'Belgium'
+        | 'Belize'
+        | 'Benin'
+        | 'Bermuda'
+        | 'Bhutan'
+        | 'Bolivia'
+        | 'BosniaandHerzegovina'
+        | 'Botswana'
+        | 'BouvetIsland'
+        | 'Brazil'
+        | 'BritishIndianOceanTerritory'
+        | 'BritishVirginIslands'
+        | 'Brunei'
+        | 'Bulgaria'
+        | 'BurkinaFaso'
+        | 'Burma'
+        | 'Burundi'
+        | 'Cambodia'
+        | 'Cameroon'
+        | 'Canada'
+        | 'CapeVerde'
+        | 'CaymanIslands'
+        | 'CentralAfricanRepublic'
+        | 'Chad'
+        | 'Chile'
+        | 'China'
+        | 'ChristmasIsland'
+        | 'ClippertonIsland'
+        | 'CocosIslands'
+        | 'Colombia'
+        | 'Comoros'
+        | 'DemocraticRepublicOfTheCongo'
+        | 'RepublicOfTheCongo'
+        | 'CookIslands'
+        | 'CoralSeaIslands'
+        | 'CostaRica'
+        | 'CotedIvoire'
+        | 'Croatia'
+        | 'Cuba'
+        | 'Cyprus'
+        | 'CzechRepublic'
+        | 'Denmark'
+        | 'Dhekelia'
+        | 'Djibouti'
+        | 'Dominica'
+        | 'DominicanRepublic'
+        | 'Ecuador'
+        | 'Egypt'
+        | 'ElSalvador'
+        | 'EquatorialGuinea'
+        | 'Eritrea'
+        | 'Estonia'
+        | 'Ethiopia'
+        | 'EuropaIsland'
+        | 'FalklandIslands'
+        | 'FaroeIslands'
+        | 'Fiji'
+        | 'Finland'
+        | 'France'
+        | 'FrenchGuiana'
+        | 'FrenchPolynesia'
+        | 'FrenchSouthernandAntarcticLands'
+        | 'Gabon'
+        | 'Gambia'
+        | 'GazaStrip'
+        | 'Georgia'
+        | 'Germany'
+        | 'Ghana'
+        | 'Gibraltar'
+        | 'GloriosoIslands'
+        | 'Greece'
+        | 'Greenland'
+        | 'Grenada'
+        | 'Guadeloupe'
+        | 'Guam'
+        | 'Guatemala'
+        | 'Guernsey'
+        | 'Guinea'
+        | 'GuineaBissau'
+        | 'Guyana'
+        | 'Haiti'
+        | 'HeardIslandandMcDonaldIslands'
+        | 'VaticanCity'
+        | 'Honduras'
+        | 'HongKong'
+        | 'Hungary'
+        | 'Iceland'
+        | 'India'
+        | 'Indonesia'
+        | 'Iran'
+        | 'Iraq'
+        | 'Ireland'
+        | 'IsleofMan'
+        | 'Israel'
+        | 'Italy'
+        | 'Jamaica'
+        | 'JanMayen'
+        | 'Japan'
+        | 'Jersey'
+        | 'Jordan'
+        | 'JuandeNovaIsland'
+        | 'Kazakhstan'
+        | 'Kenya'
+        | 'Kiribati'
+        | 'NorthKorea'
+        | 'SouthKorea'
+        | 'Kuwait'
+        | 'Kyrgyzstan'
+        | 'Laos'
+        | 'Latvia'
+        | 'Lebanon'
+        | 'Lesotho'
+        | 'Liberia'
+        | 'Libya'
+        | 'Liechtenstein'
+        | 'Lithuania'
+        | 'Luxembourg'
+        | 'Macau'
+        | 'Macedonia'
+        | 'Madagascar'
+        | 'Malawi'
+        | 'Malaysia'
+        | 'Maldives'
+        | 'Mali'
+        | 'Malta'
+        | 'MarshallIslands'
+        | 'Martinique'
+        | 'Mauritania'
+        | 'Mauritius'
+        | 'Mayotte'
+        | 'Mexico'
+        | 'Micronesia'
+        | 'Moldova'
+        | 'Monaco'
+        | 'Mongolia'
+        | 'Montserrat'
+        | 'Morocco'
+        | 'Mozambique'
+        | 'Namibia'
+        | 'Nauru'
+        | 'NavassaIsland'
+        | 'Nepal'
+        | 'Netherlands'
+        | 'NetherlandsAntilles'
+        | 'NewCaledonia'
+        | 'NewZealand'
+        | 'Nicaragua'
+        | 'Niger'
+        | 'Nigeria'
+        | 'Niue'
+        | 'NorfolkIsland'
+        | 'NorthernMarianaIslands'
+        | 'Norway'
+        | 'Oman'
+        | 'Pakistan'
+        | 'Palau'
+        | 'Panama'
+        | 'PapuaNewGuinea'
+        | 'ParacelIslands'
+        | 'Paraguay'
+        | 'Peru'
+        | 'Philippines'
+        | 'PitcairnIslands'
+        | 'Poland'
+        | 'Portugal'
+        | 'PuertoRico'
+        | 'Qatar'
+        | 'Reunion'
+        | 'Romania'
+        | 'Russia'
+        | 'Rwanda'
+        | 'SaintHelena'
+        | 'SaintKittsandNevis'
+        | 'SaintLucia'
+        | 'SaintPierreandMiquelon'
+        | 'SaintVincentandtheGrenadines'
+        | 'Samoa'
+        | 'SanMarino'
+        | 'SaoTomeandPrincipe'
+        | 'SaudiArabia'
+        | 'Senegal'
+        | 'SerbiaandMontenegro'
+        | 'Seychelles'
+        | 'SierraLeone'
+        | 'Singapore'
+        | 'Slovakia'
+        | 'Slovenia'
+        | 'SolomonIslands'
+        | 'Somalia'
+        | 'SouthAfrica'
+        | 'SouthGeorgiaandtheSouthSandwichIslands'
+        | 'Spain'
+        | 'SpratlyIslands'
+        | 'SriLanka'
+        | 'Sudan'
+        | 'Suriname'
+        | 'Svalbard'
+        | 'Swaziland'
+        | 'Sweden'
+        | 'Switzerland'
+        | 'Syria'
+        | 'Taiwan'
+        | 'Tajikistan'
+        | 'Tanzania'
+        | 'Thailand'
+        | 'TimorLeste'
+        | 'Togo'
+        | 'Tokelau'
+        | 'Tonga'
+        | 'TrinidadandTobago'
+        | 'TromelinIsland'
+        | 'Tunisia'
+        | 'Turkey'
+        | 'Turkmenistan'
+        | 'TurksandCaicosIslands'
+        | 'Tuvalu'
+        | 'Uganda'
+        | 'Ukraine'
+        | 'UnitedArabEmirates'
+        | 'UnitedKingdom'
+        | 'UnitedStates'
+        | 'Uruguay'
+        | 'Uzbekistan'
+        | 'Vanuatu'
+        | 'Venezuela'
+        | 'Vietnam'
+        | 'VirginIslands'
+        | 'WakeIsland'
+        | 'WallisandFutuna'
+        | 'WestBank'
+        | 'WesternSahara'
+        | 'Yemen'
+        | 'Zambia'
+        | 'Zimbabwe';
+
+      /**
+       * ZIP or postal code.
+       */
+      PostalCode?: string | null;
+
+      /**
+       * State, county, province, or region.
+       */
+      State?: string | null;
+    }
+
+    /**
+     * Address.
+     */
+    export interface AlternateAddress {
+      /**
+       * Address line 1 (e.g., street, PO Box, or company name).
+       */
+      AddressLine1?: string | null;
+
+      /**
+       * Address line 2 (e.g., apartment, suite, unit, or building).
+       */
+      AddressLine2?: string | null;
+
+      /**
+       * Address line 3
+       */
+      AddressLine3?: string | null;
+
+      /**
+       * City, district, suburb, town, or village.
+       */
+      City?: string | null;
+
+      /**
+       * Country.
+       */
+      Country?:
+        | 'Afghanistan'
+        | 'Akrotiri'
+        | 'Albania'
+        | 'Algeria'
+        | 'AmericanSamoa'
+        | 'Andorra'
+        | 'Angola'
+        | 'Anguilla'
+        | 'Antarctica'
+        | 'AntiguaandBarbuda'
+        | 'Argentina'
+        | 'Armenia'
+        | 'Aruba'
+        | 'AshmoreandCartierIslands'
+        | 'Australia'
+        | 'Austria'
+        | 'Azerbaijan'
+        | 'Bahamas'
+        | 'Bahrain'
+        | 'Bangladesh'
+        | 'Barbados'
+        | 'BassasdaIndia'
+        | 'Belarus'
+        | 'Belgium'
+        | 'Belize'
+        | 'Benin'
+        | 'Bermuda'
+        | 'Bhutan'
+        | 'Bolivia'
+        | 'BosniaandHerzegovina'
+        | 'Botswana'
+        | 'BouvetIsland'
+        | 'Brazil'
+        | 'BritishIndianOceanTerritory'
+        | 'BritishVirginIslands'
+        | 'Brunei'
+        | 'Bulgaria'
+        | 'BurkinaFaso'
+        | 'Burma'
+        | 'Burundi'
+        | 'Cambodia'
+        | 'Cameroon'
+        | 'Canada'
+        | 'CapeVerde'
+        | 'CaymanIslands'
+        | 'CentralAfricanRepublic'
+        | 'Chad'
+        | 'Chile'
+        | 'China'
+        | 'ChristmasIsland'
+        | 'ClippertonIsland'
+        | 'CocosIslands'
+        | 'Colombia'
+        | 'Comoros'
+        | 'DemocraticRepublicOfTheCongo'
+        | 'RepublicOfTheCongo'
+        | 'CookIslands'
+        | 'CoralSeaIslands'
+        | 'CostaRica'
+        | 'CotedIvoire'
+        | 'Croatia'
+        | 'Cuba'
+        | 'Cyprus'
+        | 'CzechRepublic'
+        | 'Denmark'
+        | 'Dhekelia'
+        | 'Djibouti'
+        | 'Dominica'
+        | 'DominicanRepublic'
+        | 'Ecuador'
+        | 'Egypt'
+        | 'ElSalvador'
+        | 'EquatorialGuinea'
+        | 'Eritrea'
+        | 'Estonia'
+        | 'Ethiopia'
+        | 'EuropaIsland'
+        | 'FalklandIslands'
+        | 'FaroeIslands'
+        | 'Fiji'
+        | 'Finland'
+        | 'France'
+        | 'FrenchGuiana'
+        | 'FrenchPolynesia'
+        | 'FrenchSouthernandAntarcticLands'
+        | 'Gabon'
+        | 'Gambia'
+        | 'GazaStrip'
+        | 'Georgia'
+        | 'Germany'
+        | 'Ghana'
+        | 'Gibraltar'
+        | 'GloriosoIslands'
+        | 'Greece'
+        | 'Greenland'
+        | 'Grenada'
+        | 'Guadeloupe'
+        | 'Guam'
+        | 'Guatemala'
+        | 'Guernsey'
+        | 'Guinea'
+        | 'GuineaBissau'
+        | 'Guyana'
+        | 'Haiti'
+        | 'HeardIslandandMcDonaldIslands'
+        | 'VaticanCity'
+        | 'Honduras'
+        | 'HongKong'
+        | 'Hungary'
+        | 'Iceland'
+        | 'India'
+        | 'Indonesia'
+        | 'Iran'
+        | 'Iraq'
+        | 'Ireland'
+        | 'IsleofMan'
+        | 'Israel'
+        | 'Italy'
+        | 'Jamaica'
+        | 'JanMayen'
+        | 'Japan'
+        | 'Jersey'
+        | 'Jordan'
+        | 'JuandeNovaIsland'
+        | 'Kazakhstan'
+        | 'Kenya'
+        | 'Kiribati'
+        | 'NorthKorea'
+        | 'SouthKorea'
+        | 'Kuwait'
+        | 'Kyrgyzstan'
+        | 'Laos'
+        | 'Latvia'
+        | 'Lebanon'
+        | 'Lesotho'
+        | 'Liberia'
+        | 'Libya'
+        | 'Liechtenstein'
+        | 'Lithuania'
+        | 'Luxembourg'
+        | 'Macau'
+        | 'Macedonia'
+        | 'Madagascar'
+        | 'Malawi'
+        | 'Malaysia'
+        | 'Maldives'
+        | 'Mali'
+        | 'Malta'
+        | 'MarshallIslands'
+        | 'Martinique'
+        | 'Mauritania'
+        | 'Mauritius'
+        | 'Mayotte'
+        | 'Mexico'
+        | 'Micronesia'
+        | 'Moldova'
+        | 'Monaco'
+        | 'Mongolia'
+        | 'Montserrat'
+        | 'Morocco'
+        | 'Mozambique'
+        | 'Namibia'
+        | 'Nauru'
+        | 'NavassaIsland'
+        | 'Nepal'
+        | 'Netherlands'
+        | 'NetherlandsAntilles'
+        | 'NewCaledonia'
+        | 'NewZealand'
+        | 'Nicaragua'
+        | 'Niger'
+        | 'Nigeria'
+        | 'Niue'
+        | 'NorfolkIsland'
+        | 'NorthernMarianaIslands'
+        | 'Norway'
+        | 'Oman'
+        | 'Pakistan'
+        | 'Palau'
+        | 'Panama'
+        | 'PapuaNewGuinea'
+        | 'ParacelIslands'
+        | 'Paraguay'
+        | 'Peru'
+        | 'Philippines'
+        | 'PitcairnIslands'
+        | 'Poland'
+        | 'Portugal'
+        | 'PuertoRico'
+        | 'Qatar'
+        | 'Reunion'
+        | 'Romania'
+        | 'Russia'
+        | 'Rwanda'
+        | 'SaintHelena'
+        | 'SaintKittsandNevis'
+        | 'SaintLucia'
+        | 'SaintPierreandMiquelon'
+        | 'SaintVincentandtheGrenadines'
+        | 'Samoa'
+        | 'SanMarino'
+        | 'SaoTomeandPrincipe'
+        | 'SaudiArabia'
+        | 'Senegal'
+        | 'SerbiaandMontenegro'
+        | 'Seychelles'
+        | 'SierraLeone'
+        | 'Singapore'
+        | 'Slovakia'
+        | 'Slovenia'
+        | 'SolomonIslands'
+        | 'Somalia'
+        | 'SouthAfrica'
+        | 'SouthGeorgiaandtheSouthSandwichIslands'
+        | 'Spain'
+        | 'SpratlyIslands'
+        | 'SriLanka'
+        | 'Sudan'
+        | 'Suriname'
+        | 'Svalbard'
+        | 'Swaziland'
+        | 'Sweden'
+        | 'Switzerland'
+        | 'Syria'
+        | 'Taiwan'
+        | 'Tajikistan'
+        | 'Tanzania'
+        | 'Thailand'
+        | 'TimorLeste'
+        | 'Togo'
+        | 'Tokelau'
+        | 'Tonga'
+        | 'TrinidadandTobago'
+        | 'TromelinIsland'
+        | 'Tunisia'
+        | 'Turkey'
+        | 'Turkmenistan'
+        | 'TurksandCaicosIslands'
+        | 'Tuvalu'
+        | 'Uganda'
+        | 'Ukraine'
+        | 'UnitedArabEmirates'
+        | 'UnitedKingdom'
+        | 'UnitedStates'
+        | 'Uruguay'
+        | 'Uzbekistan'
+        | 'Vanuatu'
+        | 'Venezuela'
+        | 'Vietnam'
+        | 'VirginIslands'
+        | 'WakeIsland'
+        | 'WallisandFutuna'
+        | 'WestBank'
+        | 'WesternSahara'
+        | 'Yemen'
+        | 'Zambia'
+        | 'Zimbabwe';
+
+      /**
+       * ZIP or postal code.
+       */
+      PostalCode?: string | null;
+
+      /**
+       * State, county, province, or region.
+       */
+      State?: string | null;
+    }
+  }
+
   export interface Tenant {
     /**
      * Tenant unique identifier.
@@ -592,12 +1191,12 @@ export interface LeaseCosigner {
   /**
    * Address.
    */
-  Address?: AssociationsAPI.SaveAddress | null;
+  Address?: LeaseCosigner.Address | null;
 
   /**
    * Address.
    */
-  AlternateAddress?: AssociationsAPI.SaveAddress | null;
+  AlternateAddress?: LeaseCosigner.AlternateAddress | null;
 
   /**
    * Alternate Email for the cosigner.
@@ -619,7 +1218,644 @@ export interface LeaseCosigner {
   /**
    * Phone numbers.
    */
-  PhoneNumbers?: OwnersAPI.PhoneNumbers | null;
+  PhoneNumbers?: LeaseCosigner.PhoneNumbers | null;
+}
+
+export namespace LeaseCosigner {
+  /**
+   * Address.
+   */
+  export interface Address {
+    /**
+     * Address line 1 (e.g., street, PO Box, or company name). This value cannot exceed
+     * 100 characters.
+     */
+    AddressLine1: string;
+
+    /**
+     * Country. Must be a valid `Country` enumeration value.
+     */
+    Country:
+      | 'Afghanistan'
+      | 'Akrotiri'
+      | 'Albania'
+      | 'Algeria'
+      | 'AmericanSamoa'
+      | 'Andorra'
+      | 'Angola'
+      | 'Anguilla'
+      | 'Antarctica'
+      | 'AntiguaandBarbuda'
+      | 'Argentina'
+      | 'Armenia'
+      | 'Aruba'
+      | 'AshmoreandCartierIslands'
+      | 'Australia'
+      | 'Austria'
+      | 'Azerbaijan'
+      | 'Bahamas'
+      | 'Bahrain'
+      | 'Bangladesh'
+      | 'Barbados'
+      | 'BassasdaIndia'
+      | 'Belarus'
+      | 'Belgium'
+      | 'Belize'
+      | 'Benin'
+      | 'Bermuda'
+      | 'Bhutan'
+      | 'Bolivia'
+      | 'BosniaandHerzegovina'
+      | 'Botswana'
+      | 'BouvetIsland'
+      | 'Brazil'
+      | 'BritishIndianOceanTerritory'
+      | 'BritishVirginIslands'
+      | 'Brunei'
+      | 'Bulgaria'
+      | 'BurkinaFaso'
+      | 'Burma'
+      | 'Burundi'
+      | 'Cambodia'
+      | 'Cameroon'
+      | 'Canada'
+      | 'CapeVerde'
+      | 'CaymanIslands'
+      | 'CentralAfricanRepublic'
+      | 'Chad'
+      | 'Chile'
+      | 'China'
+      | 'ChristmasIsland'
+      | 'ClippertonIsland'
+      | 'CocosIslands'
+      | 'Colombia'
+      | 'Comoros'
+      | 'DemocraticRepublicOfTheCongo'
+      | 'RepublicOfTheCongo'
+      | 'CookIslands'
+      | 'CoralSeaIslands'
+      | 'CostaRica'
+      | 'CotedIvoire'
+      | 'Croatia'
+      | 'Cuba'
+      | 'Cyprus'
+      | 'CzechRepublic'
+      | 'Denmark'
+      | 'Dhekelia'
+      | 'Djibouti'
+      | 'Dominica'
+      | 'DominicanRepublic'
+      | 'Ecuador'
+      | 'Egypt'
+      | 'ElSalvador'
+      | 'EquatorialGuinea'
+      | 'Eritrea'
+      | 'Estonia'
+      | 'Ethiopia'
+      | 'EuropaIsland'
+      | 'FalklandIslands'
+      | 'FaroeIslands'
+      | 'Fiji'
+      | 'Finland'
+      | 'France'
+      | 'FrenchGuiana'
+      | 'FrenchPolynesia'
+      | 'FrenchSouthernandAntarcticLands'
+      | 'Gabon'
+      | 'Gambia'
+      | 'GazaStrip'
+      | 'Georgia'
+      | 'Germany'
+      | 'Ghana'
+      | 'Gibraltar'
+      | 'GloriosoIslands'
+      | 'Greece'
+      | 'Greenland'
+      | 'Grenada'
+      | 'Guadeloupe'
+      | 'Guam'
+      | 'Guatemala'
+      | 'Guernsey'
+      | 'Guinea'
+      | 'GuineaBissau'
+      | 'Guyana'
+      | 'Haiti'
+      | 'HeardIslandandMcDonaldIslands'
+      | 'VaticanCity'
+      | 'Honduras'
+      | 'HongKong'
+      | 'Hungary'
+      | 'Iceland'
+      | 'India'
+      | 'Indonesia'
+      | 'Iran'
+      | 'Iraq'
+      | 'Ireland'
+      | 'IsleofMan'
+      | 'Israel'
+      | 'Italy'
+      | 'Jamaica'
+      | 'JanMayen'
+      | 'Japan'
+      | 'Jersey'
+      | 'Jordan'
+      | 'JuandeNovaIsland'
+      | 'Kazakhstan'
+      | 'Kenya'
+      | 'Kiribati'
+      | 'NorthKorea'
+      | 'SouthKorea'
+      | 'Kuwait'
+      | 'Kyrgyzstan'
+      | 'Laos'
+      | 'Latvia'
+      | 'Lebanon'
+      | 'Lesotho'
+      | 'Liberia'
+      | 'Libya'
+      | 'Liechtenstein'
+      | 'Lithuania'
+      | 'Luxembourg'
+      | 'Macau'
+      | 'Macedonia'
+      | 'Madagascar'
+      | 'Malawi'
+      | 'Malaysia'
+      | 'Maldives'
+      | 'Mali'
+      | 'Malta'
+      | 'MarshallIslands'
+      | 'Martinique'
+      | 'Mauritania'
+      | 'Mauritius'
+      | 'Mayotte'
+      | 'Mexico'
+      | 'Micronesia'
+      | 'Moldova'
+      | 'Monaco'
+      | 'Mongolia'
+      | 'Montserrat'
+      | 'Morocco'
+      | 'Mozambique'
+      | 'Namibia'
+      | 'Nauru'
+      | 'NavassaIsland'
+      | 'Nepal'
+      | 'Netherlands'
+      | 'NetherlandsAntilles'
+      | 'NewCaledonia'
+      | 'NewZealand'
+      | 'Nicaragua'
+      | 'Niger'
+      | 'Nigeria'
+      | 'Niue'
+      | 'NorfolkIsland'
+      | 'NorthernMarianaIslands'
+      | 'Norway'
+      | 'Oman'
+      | 'Pakistan'
+      | 'Palau'
+      | 'Panama'
+      | 'PapuaNewGuinea'
+      | 'ParacelIslands'
+      | 'Paraguay'
+      | 'Peru'
+      | 'Philippines'
+      | 'PitcairnIslands'
+      | 'Poland'
+      | 'Portugal'
+      | 'PuertoRico'
+      | 'Qatar'
+      | 'Reunion'
+      | 'Romania'
+      | 'Russia'
+      | 'Rwanda'
+      | 'SaintHelena'
+      | 'SaintKittsandNevis'
+      | 'SaintLucia'
+      | 'SaintPierreandMiquelon'
+      | 'SaintVincentandtheGrenadines'
+      | 'Samoa'
+      | 'SanMarino'
+      | 'SaoTomeandPrincipe'
+      | 'SaudiArabia'
+      | 'Senegal'
+      | 'SerbiaandMontenegro'
+      | 'Seychelles'
+      | 'SierraLeone'
+      | 'Singapore'
+      | 'Slovakia'
+      | 'Slovenia'
+      | 'SolomonIslands'
+      | 'Somalia'
+      | 'SouthAfrica'
+      | 'SouthGeorgiaandtheSouthSandwichIslands'
+      | 'Spain'
+      | 'SpratlyIslands'
+      | 'SriLanka'
+      | 'Sudan'
+      | 'Suriname'
+      | 'Svalbard'
+      | 'Swaziland'
+      | 'Sweden'
+      | 'Switzerland'
+      | 'Syria'
+      | 'Taiwan'
+      | 'Tajikistan'
+      | 'Tanzania'
+      | 'Thailand'
+      | 'TimorLeste'
+      | 'Togo'
+      | 'Tokelau'
+      | 'Tonga'
+      | 'TrinidadandTobago'
+      | 'TromelinIsland'
+      | 'Tunisia'
+      | 'Turkey'
+      | 'Turkmenistan'
+      | 'TurksandCaicosIslands'
+      | 'Tuvalu'
+      | 'Uganda'
+      | 'Ukraine'
+      | 'UnitedArabEmirates'
+      | 'UnitedKingdom'
+      | 'UnitedStates'
+      | 'Uruguay'
+      | 'Uzbekistan'
+      | 'Vanuatu'
+      | 'Venezuela'
+      | 'Vietnam'
+      | 'VirginIslands'
+      | 'WakeIsland'
+      | 'WallisandFutuna'
+      | 'WestBank'
+      | 'WesternSahara'
+      | 'Yemen'
+      | 'Zambia'
+      | 'Zimbabwe';
+
+    /**
+     * ZIP or postal code.
+     */
+    PostalCode: string;
+
+    /**
+     * Address line 2 (e.g., apartment, suite, unit, or building). This value cannot
+     * exceed 100 characters.
+     */
+    AddressLine2?: string | null;
+
+    /**
+     * Address line 3. This value cannot exceed 100 characters.
+     */
+    AddressLine3?: string | null;
+
+    /**
+     * City, district, suburb, town, or village. This value cannot exceed 100
+     * characters.
+     */
+    City?: string | null;
+
+    /**
+     * State, county, province, or region. When `Country` is set to `UnitedStates` this
+     * value must be a valid state name or abbreviation. If the value is `Canada` this
+     * value must be a valid Canadian province. For all other countries this field is
+     * optional and not validated.
+     */
+    State?: string | null;
+  }
+
+  /**
+   * Address.
+   */
+  export interface AlternateAddress {
+    /**
+     * Address line 1 (e.g., street, PO Box, or company name). This value cannot exceed
+     * 100 characters.
+     */
+    AddressLine1: string;
+
+    /**
+     * Country. Must be a valid `Country` enumeration value.
+     */
+    Country:
+      | 'Afghanistan'
+      | 'Akrotiri'
+      | 'Albania'
+      | 'Algeria'
+      | 'AmericanSamoa'
+      | 'Andorra'
+      | 'Angola'
+      | 'Anguilla'
+      | 'Antarctica'
+      | 'AntiguaandBarbuda'
+      | 'Argentina'
+      | 'Armenia'
+      | 'Aruba'
+      | 'AshmoreandCartierIslands'
+      | 'Australia'
+      | 'Austria'
+      | 'Azerbaijan'
+      | 'Bahamas'
+      | 'Bahrain'
+      | 'Bangladesh'
+      | 'Barbados'
+      | 'BassasdaIndia'
+      | 'Belarus'
+      | 'Belgium'
+      | 'Belize'
+      | 'Benin'
+      | 'Bermuda'
+      | 'Bhutan'
+      | 'Bolivia'
+      | 'BosniaandHerzegovina'
+      | 'Botswana'
+      | 'BouvetIsland'
+      | 'Brazil'
+      | 'BritishIndianOceanTerritory'
+      | 'BritishVirginIslands'
+      | 'Brunei'
+      | 'Bulgaria'
+      | 'BurkinaFaso'
+      | 'Burma'
+      | 'Burundi'
+      | 'Cambodia'
+      | 'Cameroon'
+      | 'Canada'
+      | 'CapeVerde'
+      | 'CaymanIslands'
+      | 'CentralAfricanRepublic'
+      | 'Chad'
+      | 'Chile'
+      | 'China'
+      | 'ChristmasIsland'
+      | 'ClippertonIsland'
+      | 'CocosIslands'
+      | 'Colombia'
+      | 'Comoros'
+      | 'DemocraticRepublicOfTheCongo'
+      | 'RepublicOfTheCongo'
+      | 'CookIslands'
+      | 'CoralSeaIslands'
+      | 'CostaRica'
+      | 'CotedIvoire'
+      | 'Croatia'
+      | 'Cuba'
+      | 'Cyprus'
+      | 'CzechRepublic'
+      | 'Denmark'
+      | 'Dhekelia'
+      | 'Djibouti'
+      | 'Dominica'
+      | 'DominicanRepublic'
+      | 'Ecuador'
+      | 'Egypt'
+      | 'ElSalvador'
+      | 'EquatorialGuinea'
+      | 'Eritrea'
+      | 'Estonia'
+      | 'Ethiopia'
+      | 'EuropaIsland'
+      | 'FalklandIslands'
+      | 'FaroeIslands'
+      | 'Fiji'
+      | 'Finland'
+      | 'France'
+      | 'FrenchGuiana'
+      | 'FrenchPolynesia'
+      | 'FrenchSouthernandAntarcticLands'
+      | 'Gabon'
+      | 'Gambia'
+      | 'GazaStrip'
+      | 'Georgia'
+      | 'Germany'
+      | 'Ghana'
+      | 'Gibraltar'
+      | 'GloriosoIslands'
+      | 'Greece'
+      | 'Greenland'
+      | 'Grenada'
+      | 'Guadeloupe'
+      | 'Guam'
+      | 'Guatemala'
+      | 'Guernsey'
+      | 'Guinea'
+      | 'GuineaBissau'
+      | 'Guyana'
+      | 'Haiti'
+      | 'HeardIslandandMcDonaldIslands'
+      | 'VaticanCity'
+      | 'Honduras'
+      | 'HongKong'
+      | 'Hungary'
+      | 'Iceland'
+      | 'India'
+      | 'Indonesia'
+      | 'Iran'
+      | 'Iraq'
+      | 'Ireland'
+      | 'IsleofMan'
+      | 'Israel'
+      | 'Italy'
+      | 'Jamaica'
+      | 'JanMayen'
+      | 'Japan'
+      | 'Jersey'
+      | 'Jordan'
+      | 'JuandeNovaIsland'
+      | 'Kazakhstan'
+      | 'Kenya'
+      | 'Kiribati'
+      | 'NorthKorea'
+      | 'SouthKorea'
+      | 'Kuwait'
+      | 'Kyrgyzstan'
+      | 'Laos'
+      | 'Latvia'
+      | 'Lebanon'
+      | 'Lesotho'
+      | 'Liberia'
+      | 'Libya'
+      | 'Liechtenstein'
+      | 'Lithuania'
+      | 'Luxembourg'
+      | 'Macau'
+      | 'Macedonia'
+      | 'Madagascar'
+      | 'Malawi'
+      | 'Malaysia'
+      | 'Maldives'
+      | 'Mali'
+      | 'Malta'
+      | 'MarshallIslands'
+      | 'Martinique'
+      | 'Mauritania'
+      | 'Mauritius'
+      | 'Mayotte'
+      | 'Mexico'
+      | 'Micronesia'
+      | 'Moldova'
+      | 'Monaco'
+      | 'Mongolia'
+      | 'Montserrat'
+      | 'Morocco'
+      | 'Mozambique'
+      | 'Namibia'
+      | 'Nauru'
+      | 'NavassaIsland'
+      | 'Nepal'
+      | 'Netherlands'
+      | 'NetherlandsAntilles'
+      | 'NewCaledonia'
+      | 'NewZealand'
+      | 'Nicaragua'
+      | 'Niger'
+      | 'Nigeria'
+      | 'Niue'
+      | 'NorfolkIsland'
+      | 'NorthernMarianaIslands'
+      | 'Norway'
+      | 'Oman'
+      | 'Pakistan'
+      | 'Palau'
+      | 'Panama'
+      | 'PapuaNewGuinea'
+      | 'ParacelIslands'
+      | 'Paraguay'
+      | 'Peru'
+      | 'Philippines'
+      | 'PitcairnIslands'
+      | 'Poland'
+      | 'Portugal'
+      | 'PuertoRico'
+      | 'Qatar'
+      | 'Reunion'
+      | 'Romania'
+      | 'Russia'
+      | 'Rwanda'
+      | 'SaintHelena'
+      | 'SaintKittsandNevis'
+      | 'SaintLucia'
+      | 'SaintPierreandMiquelon'
+      | 'SaintVincentandtheGrenadines'
+      | 'Samoa'
+      | 'SanMarino'
+      | 'SaoTomeandPrincipe'
+      | 'SaudiArabia'
+      | 'Senegal'
+      | 'SerbiaandMontenegro'
+      | 'Seychelles'
+      | 'SierraLeone'
+      | 'Singapore'
+      | 'Slovakia'
+      | 'Slovenia'
+      | 'SolomonIslands'
+      | 'Somalia'
+      | 'SouthAfrica'
+      | 'SouthGeorgiaandtheSouthSandwichIslands'
+      | 'Spain'
+      | 'SpratlyIslands'
+      | 'SriLanka'
+      | 'Sudan'
+      | 'Suriname'
+      | 'Svalbard'
+      | 'Swaziland'
+      | 'Sweden'
+      | 'Switzerland'
+      | 'Syria'
+      | 'Taiwan'
+      | 'Tajikistan'
+      | 'Tanzania'
+      | 'Thailand'
+      | 'TimorLeste'
+      | 'Togo'
+      | 'Tokelau'
+      | 'Tonga'
+      | 'TrinidadandTobago'
+      | 'TromelinIsland'
+      | 'Tunisia'
+      | 'Turkey'
+      | 'Turkmenistan'
+      | 'TurksandCaicosIslands'
+      | 'Tuvalu'
+      | 'Uganda'
+      | 'Ukraine'
+      | 'UnitedArabEmirates'
+      | 'UnitedKingdom'
+      | 'UnitedStates'
+      | 'Uruguay'
+      | 'Uzbekistan'
+      | 'Vanuatu'
+      | 'Venezuela'
+      | 'Vietnam'
+      | 'VirginIslands'
+      | 'WakeIsland'
+      | 'WallisandFutuna'
+      | 'WestBank'
+      | 'WesternSahara'
+      | 'Yemen'
+      | 'Zambia'
+      | 'Zimbabwe';
+
+    /**
+     * ZIP or postal code.
+     */
+    PostalCode: string;
+
+    /**
+     * Address line 2 (e.g., apartment, suite, unit, or building). This value cannot
+     * exceed 100 characters.
+     */
+    AddressLine2?: string | null;
+
+    /**
+     * Address line 3. This value cannot exceed 100 characters.
+     */
+    AddressLine3?: string | null;
+
+    /**
+     * City, district, suburb, town, or village. This value cannot exceed 100
+     * characters.
+     */
+    City?: string | null;
+
+    /**
+     * State, county, province, or region. When `Country` is set to `UnitedStates` this
+     * value must be a valid state name or abbreviation. If the value is `Canada` this
+     * value must be a valid Canadian province. For all other countries this field is
+     * optional and not validated.
+     */
+    State?: string | null;
+  }
+
+  /**
+   * Phone numbers.
+   */
+  export interface PhoneNumbers {
+    /**
+     * Fax number. If provided, must be between 10 and 20 characters, ideally formatted
+     * as `(123) 123-1234`.
+     */
+    Fax?: string | null;
+
+    /**
+     * Home phone number. If provided, must be between 10 and 20 characters, ideally
+     * formatted as `(123) 123-1234`.
+     */
+    Home?: string | null;
+
+    /**
+     * Mobile phone number. If provided, must be between 10 and 20 characters, ideally
+     * formatted as `(123) 123-1234`.
+     */
+    Mobile?: string | null;
+
+    /**
+     * Work phone number. If provided, must be between 10 and 20 characters, ideally
+     * formatted as `(123) 123-1234`.
+     */
+    Work?: string | null;
+  }
 }
 
 /**
@@ -1413,7 +2649,12 @@ export declare namespace Leases {
     type RecurringtransactionListAllParams as RecurringtransactionListAllParams,
   };
 
-  export { Epaysettings as Epaysettings, type EpaysettingUpdateParams as EpaysettingUpdateParams };
+  export {
+    Epaysettings as Epaysettings,
+    type EpaysettingRetrieveResponse as EpaysettingRetrieveResponse,
+    type EpaysettingUpdateResponse as EpaysettingUpdateResponse,
+    type EpaysettingUpdateParams as EpaysettingUpdateParams,
+  };
 
   export {
     Partialpaymentsettings as Partialpaymentsettings,

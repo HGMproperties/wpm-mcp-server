@@ -40,15 +40,6 @@ export const tool: Tool = {
         description: 'The email address of the applicant.',
       },
       PhoneNumbers: {
-        $ref: '#/$defs/phone_numbers',
-      },
-      UnitId: {
-        type: 'integer',
-        description: 'The rental property unit unique identifier to associate with the applicant.',
-      },
-    },
-    $defs: {
-      phone_numbers: {
         type: 'object',
         description: 'Phone numbers.',
         properties: {
@@ -74,6 +65,10 @@ export const tool: Tool = {
           },
         },
         required: [],
+      },
+      UnitId: {
+        type: 'integer',
+        description: 'The rental property unit unique identifier to associate with the applicant.',
       },
     },
   },

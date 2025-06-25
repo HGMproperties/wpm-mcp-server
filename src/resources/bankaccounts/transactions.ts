@@ -2,7 +2,6 @@
 
 import { APIResource } from '../../core/resource';
 import * as QuickdepositsAPI from './quickdeposits';
-import * as RefundsAPI from '../associations/ownershipaccounts/refunds';
 import { APIPromise } from '../../core/api-promise';
 import { RequestOptions } from '../../internal/request-options';
 import { path } from '../../internal/utils/path';
@@ -81,7 +80,7 @@ export interface BankAccountTransaction {
   /**
    * The entity that received the payment.
    */
-  PaidTo?: Array<RefundsAPI.Payee> | null;
+  PaidTo?: Array<BankAccountTransaction.PaidTo> | null;
 
   /**
    * Indicates the reconciliation status of the transaction.
@@ -132,6 +131,38 @@ export namespace BankAccountTransaction {
      * Amount of the line item.
      */
     Amount?: number;
+  }
+
+  /**
+   * The payer of the transaction.
+   */
+  export interface PaidTo {
+    /**
+     * A link to the resource endpoint associated with the payer.
+     */
+    Href?: string | null;
+
+    /**
+     * The payer user unique identifier.
+     */
+    Id?: number;
+
+    /**
+     * The name of the payer.
+     */
+    Name?: string | null;
+
+    /**
+     * The payer user entity type.
+     */
+    Type?:
+      | 'Tenant'
+      | 'AssociationTenant'
+      | 'AssociationOwner'
+      | 'RentalOwner'
+      | 'Vendor'
+      | 'Staff'
+      | 'Applicant';
   }
 }
 

@@ -15,6 +15,7 @@ export {
   Files,
   type CheckFile,
   type FileListResponse,
+  type FileUploadResponse,
   type FileRetrieveParams,
   type FileListParams,
   type FileDeleteParams,

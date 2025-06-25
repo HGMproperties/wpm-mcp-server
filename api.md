@@ -62,404 +62,6 @@ Methods:
 - <code title="post /v1/applications/{applicationId}/refunds">client.applications.refunds.<a href="./src/resources/applications/refunds.ts">create</a>(applicationID, { ...params }) -> Refund</code>
 - <code title="get /v1/applications/{applicationId}/refunds/{transactionId}">client.applications.refunds.<a href="./src/resources/applications/refunds.ts">retrieve</a>(transactionID, { ...params }) -> Refund</code>
 
-# Associations
-
-Types:
-
-- <code><a href="./src/resources/associations/associations.ts">Address</a></code>
-- <code><a href="./src/resources/associations/associations.ts">Association</a></code>
-- <code><a href="./src/resources/associations/associations.ts">PropertyManager</a></code>
-- <code><a href="./src/resources/associations/associations.ts">SaveAddress</a></code>
-- <code><a href="./src/resources/associations/associations.ts">TaxInformation</a></code>
-- <code><a href="./src/resources/associations/associations.ts">AssociationListResponse</a></code>
-- <code><a href="./src/resources/associations/associations.ts">AssociationListBankLockboxDataResponse</a></code>
-
-Methods:
-
-- <code title="post /v1/associations">client.associations.<a href="./src/resources/associations/associations.ts">create</a>({ ...params }) -> Association</code>
-- <code title="get /v1/associations/{associationId}">client.associations.<a href="./src/resources/associations/associations.ts">retrieve</a>(associationID) -> Association</code>
-- <code title="put /v1/associations/{associationId}">client.associations.<a href="./src/resources/associations/associations.ts">update</a>(associationID, { ...params }) -> Association</code>
-- <code title="get /v1/associations">client.associations.<a href="./src/resources/associations/associations.ts">list</a>({ ...params }) -> AssociationListResponse</code>
-- <code title="post /v1/associations/{associationId}/inactivationrequest">client.associations.<a href="./src/resources/associations/associations.ts">inactivate</a>(associationID) -> void</code>
-- <code title="get /v1/associations/banklockboxdata">client.associations.<a href="./src/resources/associations/associations.ts">listBankLockboxData</a>({ ...params }) -> AssociationListBankLockboxDataResponse</code>
-- <code title="post /v1/associations/{associationId}/reactivationrequest">client.associations.<a href="./src/resources/associations/associations.ts">reactivate</a>(associationID) -> void</code>
-
-## Ownershipaccounts
-
-Types:
-
-- <code><a href="./src/resources/associations/ownershipaccounts/ownershipaccounts.ts">AssociationOwnershipAccount</a></code>
-- <code><a href="./src/resources/associations/ownershipaccounts/ownershipaccounts.ts">OwnershipaccountListResponse</a></code>
-- <code><a href="./src/resources/associations/ownershipaccounts/ownershipaccounts.ts">OwnershipaccountGetBalancesResponse</a></code>
-
-Methods:
-
-- <code title="post /v1/associations/ownershipaccounts">client.associations.ownershipaccounts.<a href="./src/resources/associations/ownershipaccounts/ownershipaccounts.ts">create</a>({ ...params }) -> AssociationOwnershipAccount</code>
-- <code title="get /v1/associations/ownershipaccounts/{ownershipAccountId}">client.associations.ownershipaccounts.<a href="./src/resources/associations/ownershipaccounts/ownershipaccounts.ts">retrieve</a>(ownershipAccountID) -> AssociationOwnershipAccount</code>
-- <code title="put /v1/associations/ownershipaccounts/{ownershipAccountId}">client.associations.ownershipaccounts.<a href="./src/resources/associations/ownershipaccounts/ownershipaccounts.ts">update</a>(ownershipAccountID, { ...params }) -> AssociationOwnershipAccount</code>
-- <code title="get /v1/associations/ownershipaccounts">client.associations.ownershipaccounts.<a href="./src/resources/associations/ownershipaccounts/ownershipaccounts.ts">list</a>({ ...params }) -> OwnershipaccountListResponse</code>
-- <code title="post /v1/associations/ownershipaccounts/{ownershipAccountId}/autoallocatedpayments">client.associations.ownershipaccounts.<a href="./src/resources/associations/ownershipaccounts/ownershipaccounts.ts">autoPayments</a>(ownershipAccountID, { ...params }) -> OwnershipAccountTransaction</code>
-- <code title="post /v1/associations/ownershipaccounts/{ownershipAccountId}/credits">client.associations.ownershipaccounts.<a href="./src/resources/associations/ownershipaccounts/ownershipaccounts.ts">credits</a>(ownershipAccountID, { ...params }) -> OwnershipAccountTransaction</code>
-- <code title="get /v1/associations/ownershipaccounts/outstandingbalances">client.associations.ownershipaccounts.<a href="./src/resources/associations/ownershipaccounts/ownershipaccounts.ts">getBalances</a>({ ...params }) -> OwnershipaccountGetBalancesResponse</code>
-
-### Transactions
-
-Types:
-
-- <code><a href="./src/resources/associations/ownershipaccounts/transactions.ts">OwnershipAccountTransaction</a></code>
-- <code><a href="./src/resources/associations/ownershipaccounts/transactions.ts">TransactionListResponse</a></code>
-
-Methods:
-
-- <code title="get /v1/associations/ownershipaccounts/{ownershipAccountId}/transactions/{transactionId}">client.associations.ownershipaccounts.transactions.<a href="./src/resources/associations/ownershipaccounts/transactions.ts">retrieve</a>(transactionID, { ...params }) -> OwnershipAccountTransaction</code>
-- <code title="get /v1/associations/ownershipaccounts/{ownershipAccountId}/transactions">client.associations.ownershipaccounts.transactions.<a href="./src/resources/associations/ownershipaccounts/transactions.ts">list</a>(ownershipAccountID, { ...params }) -> TransactionListResponse</code>
-
-### Architecturalrequests
-
-Types:
-
-- <code><a href="./src/resources/associations/ownershipaccounts/architecturalrequests/architecturalrequests.ts">AssociationArchitecturalRequest</a></code>
-- <code><a href="./src/resources/associations/ownershipaccounts/architecturalrequests/architecturalrequests.ts">CreatedByUser</a></code>
-- <code><a href="./src/resources/associations/ownershipaccounts/architecturalrequests/architecturalrequests.ts">LastUpdatedByUser</a></code>
-- <code><a href="./src/resources/associations/ownershipaccounts/architecturalrequests/architecturalrequests.ts">ArchitecturalrequestListResponse</a></code>
-
-Methods:
-
-- <code title="post /v1/associations/ownershipaccounts/architecturalrequests">client.associations.ownershipaccounts.architecturalrequests.<a href="./src/resources/associations/ownershipaccounts/architecturalrequests/architecturalrequests.ts">create</a>({ ...params }) -> AssociationArchitecturalRequest</code>
-- <code title="get /v1/associations/ownershipaccounts/architecturalrequests/{architecturalRequestId}">client.associations.ownershipaccounts.architecturalrequests.<a href="./src/resources/associations/ownershipaccounts/architecturalrequests/architecturalrequests.ts">retrieve</a>(architecturalRequestID) -> AssociationArchitecturalRequest</code>
-- <code title="get /v1/associations/ownershipaccounts/architecturalrequests">client.associations.ownershipaccounts.architecturalrequests.<a href="./src/resources/associations/ownershipaccounts/architecturalrequests/architecturalrequests.ts">list</a>({ ...params }) -> ArchitecturalrequestListResponse</code>
-
-#### Files
-
-Types:
-
-- <code><a href="./src/resources/associations/ownershipaccounts/architecturalrequests/files.ts">AssociationArchitecturalRequestFile</a></code>
-- <code><a href="./src/resources/associations/ownershipaccounts/architecturalrequests/files.ts">FileName</a></code>
-- <code><a href="./src/resources/associations/ownershipaccounts/architecturalrequests/files.ts">FileUploadTicket</a></code>
-
-Methods:
-
-- <code title="get /v1/associations/ownershipaccounts/architecturalrequests/{architecturalRequestId}/files/{fileId}">client.associations.ownershipaccounts.architecturalrequests.files.<a href="./src/resources/associations/ownershipaccounts/architecturalrequests/files.ts">retrieve</a>(fileID, { ...params }) -> AssociationArchitecturalRequestFile</code>
-- <code title="get /v1/associations/ownershipaccounts/architecturalrequests/{architecturalRequestId}/files">client.associations.ownershipaccounts.architecturalrequests.files.<a href="./src/resources/associations/ownershipaccounts/architecturalrequests/files.ts">list</a>(architecturalRequestID, { ...params }) -> AssociationArchitecturalRequestFile</code>
-- <code title="post /v1/associations/ownershipaccounts/architecturalrequests/{architecturalRequestId}/files/{fileId}/downloadrequests">client.associations.ownershipaccounts.architecturalrequests.files.<a href="./src/resources/associations/ownershipaccounts/architecturalrequests/files.ts">downloadRequests</a>(fileID, { ...params }) -> FileDownload</code>
-- <code title="post /v1/associations/ownershipaccounts/architecturalrequests/{architecturalRequestId}/files/uploadrequests">client.associations.ownershipaccounts.architecturalrequests.files.<a href="./src/resources/associations/ownershipaccounts/architecturalrequests/files.ts">uploadRequests</a>(architecturalRequestID, { ...params }) -> FileUploadTicket</code>
-
-### Charges
-
-Types:
-
-- <code><a href="./src/resources/associations/ownershipaccounts/charges.ts">OwnershipAccountLedgerCharge</a></code>
-- <code><a href="./src/resources/associations/ownershipaccounts/charges.ts">ChargeListResponse</a></code>
-
-Methods:
-
-- <code title="post /v1/associations/ownershipaccounts/{ownershipAccountId}/charges">client.associations.ownershipaccounts.charges.<a href="./src/resources/associations/ownershipaccounts/charges.ts">create</a>(ownershipAccountID, { ...params }) -> OwnershipAccountTransaction</code>
-- <code title="get /v1/associations/ownershipaccounts/{ownershipAccountId}/charges/{chargeId}">client.associations.ownershipaccounts.charges.<a href="./src/resources/associations/ownershipaccounts/charges.ts">retrieve</a>(chargeID, { ...params }) -> OwnershipAccountLedgerCharge</code>
-- <code title="put /v1/associations/ownershipaccounts/{ownershipAccountId}/charges/{chargeId}">client.associations.ownershipaccounts.charges.<a href="./src/resources/associations/ownershipaccounts/charges.ts">update</a>(chargeID, { ...params }) -> OwnershipAccountTransaction</code>
-- <code title="get /v1/associations/ownershipaccounts/{ownershipAccountId}/charges">client.associations.ownershipaccounts.charges.<a href="./src/resources/associations/ownershipaccounts/charges.ts">list</a>(ownershipAccountID, { ...params }) -> ChargeListResponse</code>
-
-### Payments
-
-Types:
-
-- <code><a href="./src/resources/associations/ownershipaccounts/payments.ts">OwnershipAccountLedgerPaymentLineSave</a></code>
-
-Methods:
-
-- <code title="post /v1/associations/ownershipaccounts/{ownershipAccountId}/payments">client.associations.ownershipaccounts.payments.<a href="./src/resources/associations/ownershipaccounts/payments.ts">create</a>(ownershipAccountID, { ...params }) -> OwnershipAccountTransaction</code>
-- <code title="put /v1/associations/ownershipaccounts/{ownershipAccountId}/payments/{paymentId}">client.associations.ownershipaccounts.payments.<a href="./src/resources/associations/ownershipaccounts/payments.ts">update</a>(paymentID, { ...params }) -> OwnershipAccountTransaction</code>
-
-### Refunds
-
-Types:
-
-- <code><a href="./src/resources/associations/ownershipaccounts/refunds.ts">OwnershipAccountRefund</a></code>
-- <code><a href="./src/resources/associations/ownershipaccounts/refunds.ts">Payee</a></code>
-
-Methods:
-
-- <code title="post /v1/associations/ownershipaccounts/{ownershipAccountId}/refunds">client.associations.ownershipaccounts.refunds.<a href="./src/resources/associations/ownershipaccounts/refunds.ts">create</a>(ownershipAccountID, { ...params }) -> OwnershipAccountRefund</code>
-- <code title="get /v1/associations/ownershipaccounts/{ownershipAccountId}/refunds/{refundId}">client.associations.ownershipaccounts.refunds.<a href="./src/resources/associations/ownershipaccounts/refunds.ts">retrieve</a>(refundID, { ...params }) -> OwnershipAccountRefund</code>
-
-### Applieddeposits
-
-Methods:
-
-- <code title="post /v1/associations/ownershipaccounts/{ownershipAccountId}/applieddeposits">client.associations.ownershipaccounts.applieddeposits.<a href="./src/resources/associations/ownershipaccounts/applieddeposits.ts">create</a>(ownershipAccountID, { ...params }) -> OwnershipAccountTransaction</code>
-- <code title="put /v1/associations/ownershipaccounts/{ownershipAccountId}/applieddeposits/{depositId}">client.associations.ownershipaccounts.applieddeposits.<a href="./src/resources/associations/ownershipaccounts/applieddeposits.ts">update</a>(depositID, { ...params }) -> OwnershipAccountTransaction</code>
-
-### Recurringtransactions
-
-Types:
-
-- <code><a href="./src/resources/associations/ownershipaccounts/recurringtransactions.ts">RecurringTransaction</a></code>
-- <code><a href="./src/resources/associations/ownershipaccounts/recurringtransactions.ts">RecurringtransactionListResponse</a></code>
-
-Methods:
-
-- <code title="get /v1/associations/ownershipaccounts/{ownershipAccountId}/recurringtransactions">client.associations.ownershipaccounts.recurringtransactions.<a href="./src/resources/associations/ownershipaccounts/recurringtransactions.ts">list</a>(ownershipAccountID, { ...params }) -> RecurringtransactionListResponse</code>
-
-### Notes
-
-Types:
-
-- <code><a href="./src/resources/associations/ownershipaccounts/notes.ts">NoteListResponse</a></code>
-
-Methods:
-
-- <code title="post /v1/associations/ownershipaccounts/{ownershipAccountId}/notes">client.associations.ownershipaccounts.notes.<a href="./src/resources/associations/ownershipaccounts/notes.ts">create</a>(ownershipAccountID, { ...params }) -> Note</code>
-- <code title="get /v1/associations/ownershipaccounts/{ownershipAccountId}/notes/{noteId}">client.associations.ownershipaccounts.notes.<a href="./src/resources/associations/ownershipaccounts/notes.ts">retrieve</a>(noteID, { ...params }) -> Note</code>
-- <code title="put /v1/associations/ownershipaccounts/{ownershipAccountId}/notes/{noteId}">client.associations.ownershipaccounts.notes.<a href="./src/resources/associations/ownershipaccounts/notes.ts">update</a>(noteID, { ...params }) -> Note</code>
-- <code title="get /v1/associations/ownershipaccounts/{ownershipAccountId}/notes">client.associations.ownershipaccounts.notes.<a href="./src/resources/associations/ownershipaccounts/notes.ts">list</a>(ownershipAccountID, { ...params }) -> NoteListResponse</code>
-
-### Partialpaymentsettings
-
-Methods:
-
-- <code title="get /v1/associations/ownershipaccounts/{ownershipAccountId}/partialpaymentsettings">client.associations.ownershipaccounts.partialpaymentsettings.<a href="./src/resources/associations/ownershipaccounts/partialpaymentsettings.ts">list</a>(ownershipAccountID) -> PartialPaymentSettingsMessage</code>
-- <code title="patch /v1/associations/ownershipaccounts/{ownershipAccountId}/partialpaymentsettings">client.associations.ownershipaccounts.partialpaymentsettings.<a href="./src/resources/associations/ownershipaccounts/partialpaymentsettings.ts">patchAll</a>(ownershipAccountID, { ...params }) -> PartialPaymentSettingsMessage</code>
-
-### Recurringcharges
-
-Types:
-
-- <code><a href="./src/resources/associations/ownershipaccounts/recurringcharges.ts">ChargeRecurringTransaction</a></code>
-- <code><a href="./src/resources/associations/ownershipaccounts/recurringcharges.ts">OwnershipAccountChargeRecurringTransaction</a></code>
-
-Methods:
-
-- <code title="post /v1/associations/ownershipaccounts/{ownershipAccountId}/recurringcharges">client.associations.ownershipaccounts.recurringcharges.<a href="./src/resources/associations/ownershipaccounts/recurringcharges.ts">create</a>(ownershipAccountID, { ...params }) -> OwnershipAccountChargeRecurringTransaction</code>
-- <code title="get /v1/associations/ownershipaccounts/{ownershipAccountId}/recurringcharges/{transactionId}">client.associations.ownershipaccounts.recurringcharges.<a href="./src/resources/associations/ownershipaccounts/recurringcharges.ts">retrieve</a>(transactionID, { ...params }) -> OwnershipAccountChargeRecurringTransaction</code>
-
-### Recurringcredits
-
-Types:
-
-- <code><a href="./src/resources/associations/ownershipaccounts/recurringcredits.ts">CreditRecurringTransaction</a></code>
-- <code><a href="./src/resources/associations/ownershipaccounts/recurringcredits.ts">OwnershipAccountRecurringCredit</a></code>
-- <code><a href="./src/resources/associations/ownershipaccounts/recurringcredits.ts">RecurringTransactionLine</a></code>
-- <code><a href="./src/resources/associations/ownershipaccounts/recurringcredits.ts">RecurringTransactionLinePost</a></code>
-
-Methods:
-
-- <code title="post /v1/associations/ownershipaccounts/{ownershipAccountId}/recurringcredits">client.associations.ownershipaccounts.recurringcredits.<a href="./src/resources/associations/ownershipaccounts/recurringcredits.ts">create</a>(ownershipAccountID, { ...params }) -> OwnershipAccountRecurringCredit</code>
-- <code title="get /v1/associations/ownershipaccounts/{ownershipAccountId}/recurringcredits/{transactionId}">client.associations.ownershipaccounts.recurringcredits.<a href="./src/resources/associations/ownershipaccounts/recurringcredits.ts">retrieve</a>(transactionID, { ...params }) -> OwnershipAccountRecurringCredit</code>
-
-### Recurringpayments
-
-Types:
-
-- <code><a href="./src/resources/associations/ownershipaccounts/recurringpayments.ts">OwnershipAccountRecurringPayment</a></code>
-- <code><a href="./src/resources/associations/ownershipaccounts/recurringpayments.ts">PaymentRecurringTransaction</a></code>
-
-Methods:
-
-- <code title="post /v1/associations/ownershipaccounts/{ownershipAccountId}/recurringpayments">client.associations.ownershipaccounts.recurringpayments.<a href="./src/resources/associations/ownershipaccounts/recurringpayments.ts">create</a>(ownershipAccountID, { ...params }) -> OwnershipAccountRecurringPayment</code>
-- <code title="get /v1/associations/ownershipaccounts/{ownershipAccountId}/recurringpayments/{paymentId}">client.associations.ownershipaccounts.recurringpayments.<a href="./src/resources/associations/ownershipaccounts/recurringpayments.ts">retrieve</a>(paymentID, { ...params }) -> OwnershipAccountRecurringPayment</code>
-
-## Units
-
-Types:
-
-- <code><a href="./src/resources/associations/units/units.ts">AssociationUnit</a></code>
-- <code><a href="./src/resources/associations/units/units.ts">UnitListResponse</a></code>
-
-Methods:
-
-- <code title="post /v1/associations/units">client.associations.units.<a href="./src/resources/associations/units/units.ts">create</a>({ ...params }) -> AssociationUnit</code>
-- <code title="get /v1/associations/units/{unitId}">client.associations.units.<a href="./src/resources/associations/units/units.ts">retrieve</a>(unitID) -> AssociationUnit</code>
-- <code title="put /v1/associations/units/{unitId}">client.associations.units.<a href="./src/resources/associations/units/units.ts">update</a>(unitID, { ...params }) -> AssociationUnit</code>
-- <code title="get /v1/associations/units">client.associations.units.<a href="./src/resources/associations/units/units.ts">list</a>({ ...params }) -> UnitListResponse</code>
-
-### Notes
-
-Types:
-
-- <code><a href="./src/resources/associations/units/notes.ts">NoteListResponse</a></code>
-
-Methods:
-
-- <code title="post /v1/associations/units/{unitId}/notes">client.associations.units.notes.<a href="./src/resources/associations/units/notes.ts">create</a>(unitID, { ...params }) -> Note</code>
-- <code title="get /v1/associations/units/{unitId}/notes/{noteId}">client.associations.units.notes.<a href="./src/resources/associations/units/notes.ts">retrieve</a>(noteID, { ...params }) -> Note</code>
-- <code title="put /v1/associations/units/{unitId}/notes/{noteId}">client.associations.units.notes.<a href="./src/resources/associations/units/notes.ts">update</a>(noteID, { ...params }) -> Note</code>
-- <code title="get /v1/associations/units/{unitId}/notes">client.associations.units.notes.<a href="./src/resources/associations/units/notes.ts">list</a>(unitID, { ...params }) -> NoteListResponse</code>
-
-## Owners
-
-Types:
-
-- <code><a href="./src/resources/associations/owners/owners.ts">AssociationOwner</a></code>
-- <code><a href="./src/resources/associations/owners/owners.ts">AssociationOwnerBoardTerm</a></code>
-- <code><a href="./src/resources/associations/owners/owners.ts">EmergencyContact</a></code>
-- <code><a href="./src/resources/associations/owners/owners.ts">PhoneNumbers</a></code>
-- <code><a href="./src/resources/associations/owners/owners.ts">SaveEmergencyContact</a></code>
-- <code><a href="./src/resources/associations/owners/owners.ts">OwnerListResponse</a></code>
-
-Methods:
-
-- <code title="post /v1/associations/owners">client.associations.owners.<a href="./src/resources/associations/owners/owners.ts">create</a>({ ...params }) -> AssociationOwner</code>
-- <code title="get /v1/associations/owners/{ownerId}">client.associations.owners.<a href="./src/resources/associations/owners/owners.ts">retrieve</a>(ownerID) -> AssociationOwner</code>
-- <code title="put /v1/associations/owners/{ownerId}">client.associations.owners.<a href="./src/resources/associations/owners/owners.ts">update</a>(ownerID, { ...params }) -> AssociationOwner</code>
-- <code title="get /v1/associations/owners">client.associations.owners.<a href="./src/resources/associations/owners/owners.ts">list</a>({ ...params }) -> OwnerListResponse</code>
-
-### Notes
-
-Types:
-
-- <code><a href="./src/resources/associations/owners/notes.ts">NoteListResponse</a></code>
-
-Methods:
-
-- <code title="post /v1/associations/owners/{ownerId}/notes">client.associations.owners.notes.<a href="./src/resources/associations/owners/notes.ts">create</a>(ownerID, { ...params }) -> Note</code>
-- <code title="get /v1/associations/owners/{ownerId}/notes/{noteId}">client.associations.owners.notes.<a href="./src/resources/associations/owners/notes.ts">retrieve</a>(noteID, { ...params }) -> Note</code>
-- <code title="put /v1/associations/owners/{ownerId}/notes/{noteId}">client.associations.owners.notes.<a href="./src/resources/associations/owners/notes.ts">update</a>(noteID, { ...params }) -> Note</code>
-- <code title="get /v1/associations/owners/{ownerId}/notes">client.associations.owners.notes.<a href="./src/resources/associations/owners/notes.ts">list</a>(ownerID, { ...params }) -> NoteListResponse</code>
-
-### Units
-
-Types:
-
-- <code><a href="./src/resources/associations/owners/units.ts">AssociationOwnerUnitOccupancyStatus</a></code>
-- <code><a href="./src/resources/associations/owners/units.ts">UnitListResponse</a></code>
-
-Methods:
-
-- <code title="get /v1/associations/owners/{ownerId}/units/{unitId}">client.associations.owners.units.<a href="./src/resources/associations/owners/units.ts">retrieve</a>(unitID, { ...params }) -> AssociationOwnerUnitOccupancyStatus</code>
-- <code title="put /v1/associations/owners/{ownerId}/units/{unitId}">client.associations.owners.units.<a href="./src/resources/associations/owners/units.ts">update</a>(unitID, { ...params }) -> AssociationOwnerUnitOccupancyStatus</code>
-- <code title="get /v1/associations/owners/{ownerId}/units">client.associations.owners.units.<a href="./src/resources/associations/owners/units.ts">list</a>(ownerID, { ...params }) -> UnitListResponse</code>
-
-## Tenants
-
-Types:
-
-- <code><a href="./src/resources/associations/tenants/tenants.ts">AssociationTenant</a></code>
-- <code><a href="./src/resources/associations/tenants/tenants.ts">TenantListResponse</a></code>
-
-Methods:
-
-- <code title="post /v1/associations/tenants">client.associations.tenants.<a href="./src/resources/associations/tenants/tenants.ts">create</a>({ ...params }) -> AssociationTenant</code>
-- <code title="get /v1/associations/tenants/{tenantId}">client.associations.tenants.<a href="./src/resources/associations/tenants/tenants.ts">retrieve</a>(tenantID) -> AssociationTenant</code>
-- <code title="put /v1/associations/tenants/{tenantId}">client.associations.tenants.<a href="./src/resources/associations/tenants/tenants.ts">update</a>(tenantID, { ...params }) -> AssociationTenant</code>
-- <code title="get /v1/associations/tenants">client.associations.tenants.<a href="./src/resources/associations/tenants/tenants.ts">list</a>({ ...params }) -> TenantListResponse</code>
-
-### Notes
-
-Types:
-
-- <code><a href="./src/resources/associations/tenants/notes.ts">NoteListResponse</a></code>
-
-Methods:
-
-- <code title="post /v1/associations/tenants/{tenantId}/notes">client.associations.tenants.notes.<a href="./src/resources/associations/tenants/notes.ts">create</a>(tenantID, { ...params }) -> Note</code>
-- <code title="get /v1/associations/tenants/{tenantId}/notes/{noteId}">client.associations.tenants.notes.<a href="./src/resources/associations/tenants/notes.ts">retrieve</a>(noteID, { ...params }) -> Note</code>
-- <code title="put /v1/associations/tenants/{tenantId}/notes/{noteId}">client.associations.tenants.notes.<a href="./src/resources/associations/tenants/notes.ts">update</a>(noteID, { ...params }) -> Note</code>
-- <code title="get /v1/associations/tenants/{tenantId}/notes">client.associations.tenants.notes.<a href="./src/resources/associations/tenants/notes.ts">list</a>(tenantID, { ...params }) -> NoteListResponse</code>
-
-## Boardmembers
-
-Types:
-
-- <code><a href="./src/resources/associations/boardmembers.ts">AssociationBoardMember</a></code>
-- <code><a href="./src/resources/associations/boardmembers.ts">BoardmemberListResponse</a></code>
-
-Methods:
-
-- <code title="post /v1/associations/{associationId}/boardmembers">client.associations.boardmembers.<a href="./src/resources/associations/boardmembers.ts">create</a>(associationID, { ...params }) -> AssociationBoardMember</code>
-- <code title="get /v1/associations/{associationId}/boardmembers/{boardMemberId}">client.associations.boardmembers.<a href="./src/resources/associations/boardmembers.ts">retrieve</a>(boardMemberID, { ...params }) -> AssociationBoardMember</code>
-- <code title="put /v1/associations/{associationId}/boardmembers/{boardMemberId}">client.associations.boardmembers.<a href="./src/resources/associations/boardmembers.ts">update</a>(boardMemberID, { ...params }) -> AssociationBoardMember</code>
-- <code title="get /v1/associations/{associationId}/boardmembers">client.associations.boardmembers.<a href="./src/resources/associations/boardmembers.ts">list</a>(associationID, { ...params }) -> BoardmemberListResponse</code>
-- <code title="delete /v1/associations/{associationId}/boardmembers/{boardMemberId}">client.associations.boardmembers.<a href="./src/resources/associations/boardmembers.ts">delete</a>(boardMemberID, { ...params }) -> void</code>
-
-## Epaysettings
-
-Types:
-
-- <code><a href="./src/resources/associations/epaysettings.ts">EPaySettings</a></code>
-- <code><a href="./src/resources/associations/epaysettings.ts">EPaySettingsPut</a></code>
-
-Methods:
-
-- <code title="get /v1/associations/{associationId}/epaysettings">client.associations.epaysettings.<a href="./src/resources/associations/epaysettings.ts">retrieve</a>(associationID) -> EPaySettings</code>
-- <code title="put /v1/associations/{associationId}/epaysettings">client.associations.epaysettings.<a href="./src/resources/associations/epaysettings.ts">update</a>(associationID, { ...params }) -> EPaySettings</code>
-
-## Meterreadings
-
-Types:
-
-- <code><a href="./src/resources/associations/meterreadings/meterreadings.ts">MeterReading</a></code>
-- <code><a href="./src/resources/associations/meterreadings/meterreadings.ts">MeterreadingListResponse</a></code>
-
-Methods:
-
-- <code title="get /v1/associations/{associationId}/meterreadings">client.associations.meterreadings.<a href="./src/resources/associations/meterreadings/meterreadings.ts">list</a>(associationID, { ...params }) -> MeterreadingListResponse</code>
-
-### Summary
-
-Types:
-
-- <code><a href="./src/resources/associations/meterreadings/summary.ts">MeterReadingDetails</a></code>
-- <code><a href="./src/resources/associations/meterreadings/summary.ts">MeterReadingDetailsPut</a></code>
-
-Methods:
-
-- <code title="put /v1/associations/{associationId}/meterreadings/summary">client.associations.meterreadings.summary.<a href="./src/resources/associations/meterreadings/summary.ts">update</a>(associationID, { ...params }) -> MeterReadingDetails</code>
-- <code title="get /v1/associations/{associationId}/meterreadings/summary">client.associations.meterreadings.summary.<a href="./src/resources/associations/meterreadings/summary.ts">list</a>(associationID, { ...params }) -> MeterReadingDetails</code>
-- <code title="delete /v1/associations/{associationId}/meterreadings/summary">client.associations.meterreadings.summary.<a href="./src/resources/associations/meterreadings/summary.ts">delete</a>(associationID, { ...params }) -> void</code>
-
-## Notes
-
-Types:
-
-- <code><a href="./src/resources/associations/notes.ts">NoteListResponse</a></code>
-
-Methods:
-
-- <code title="post /v1/associations/{associationId}/notes">client.associations.notes.<a href="./src/resources/associations/notes.ts">create</a>(associationID, { ...params }) -> Note</code>
-- <code title="get /v1/associations/{associationId}/notes/{noteId}">client.associations.notes.<a href="./src/resources/associations/notes.ts">retrieve</a>(noteID, { ...params }) -> Note</code>
-- <code title="put /v1/associations/{associationId}/notes/{noteId}">client.associations.notes.<a href="./src/resources/associations/notes.ts">update</a>(noteID, { ...params }) -> Note</code>
-- <code title="get /v1/associations/{associationId}/notes">client.associations.notes.<a href="./src/resources/associations/notes.ts">list</a>(associationID, { ...params }) -> NoteListResponse</code>
-
-## Vendors
-
-Types:
-
-- <code><a href="./src/resources/associations/vendors.ts">AssociationPreferredVendor</a></code>
-- <code><a href="./src/resources/associations/vendors.ts">VendorUpdateResponse</a></code>
-- <code><a href="./src/resources/associations/vendors.ts">VendorListResponse</a></code>
-
-Methods:
-
-- <code title="put /v1/associations/{associationId}/vendors">client.associations.vendors.<a href="./src/resources/associations/vendors.ts">update</a>(associationID, { ...params }) -> VendorUpdateResponse</code>
-- <code title="get /v1/associations/{associationId}/vendors">client.associations.vendors.<a href="./src/resources/associations/vendors.ts">list</a>(associationID, { ...params }) -> VendorListResponse</code>
-
-## Appliances
-
-Types:
-
-- <code><a href="./src/resources/associations/appliances/appliances.ts">Appliance</a></code>
-- <code><a href="./src/resources/associations/appliances/appliances.ts">ApplianceListResponse</a></code>
-
-Methods:
-
-- <code title="post /v1/associations/appliances">client.associations.appliances.<a href="./src/resources/associations/appliances/appliances.ts">create</a>({ ...params }) -> Appliance</code>
-- <code title="get /v1/associations/appliances/{applianceId}">client.associations.appliances.<a href="./src/resources/associations/appliances/appliances.ts">retrieve</a>(applianceID) -> Appliance</code>
-- <code title="put /v1/associations/appliances/{applianceId}">client.associations.appliances.<a href="./src/resources/associations/appliances/appliances.ts">update</a>(applianceID, { ...params }) -> Appliance</code>
-- <code title="get /v1/associations/appliances">client.associations.appliances.<a href="./src/resources/associations/appliances/appliances.ts">list</a>({ ...params }) -> ApplianceListResponse</code>
-- <code title="delete /v1/associations/appliances/{applianceId}">client.associations.appliances.<a href="./src/resources/associations/appliances/appliances.ts">delete</a>(applianceID) -> void</code>
-
-### Servicehistory
-
-Types:
-
-- <code><a href="./src/resources/associations/appliances/servicehistory.ts">ServiceHistory</a></code>
-- <code><a href="./src/resources/associations/appliances/servicehistory.ts">ServicehistoryListResponse</a></code>
-
-Methods:
-
-- <code title="post /v1/associations/appliances/{applianceId}/servicehistory">client.associations.appliances.servicehistory.<a href="./src/resources/associations/appliances/servicehistory.ts">create</a>(applianceID, { ...params }) -> ServiceHistory</code>
-- <code title="get /v1/associations/appliances/{applianceId}/servicehistory/{serviceHistoryId}">client.associations.appliances.servicehistory.<a href="./src/resources/associations/appliances/servicehistory.ts">retrieve</a>(serviceHistoryID, { ...params }) -> ServiceHistory</code>
-- <code title="get /v1/associations/appliances/{applianceId}/servicehistory">client.associations.appliances.servicehistory.<a href="./src/resources/associations/appliances/servicehistory.ts">list</a>(applianceID, { ...params }) -> ServicehistoryListResponse</code>
-
 # Files
 
 Types:
@@ -467,13 +69,14 @@ Types:
 - <code><a href="./src/resources/files/files.ts">File</a></code>
 - <code><a href="./src/resources/files/files.ts">FileDownload</a></code>
 - <code><a href="./src/resources/files/files.ts">FileListResponse</a></code>
+- <code><a href="./src/resources/files/files.ts">FileCreateUploadRequestResponse</a></code>
 
 Methods:
 
 - <code title="get /v1/files/{fileId}">client.files.<a href="./src/resources/files/files.ts">retrieve</a>(fileID) -> File</code>
 - <code title="put /v1/files/{fileId}">client.files.<a href="./src/resources/files/files.ts">update</a>(fileID, { ...params }) -> File</code>
 - <code title="get /v1/files">client.files.<a href="./src/resources/files/files.ts">list</a>({ ...params }) -> FileListResponse</code>
-- <code title="post /v1/files/uploadrequests">client.files.<a href="./src/resources/files/files.ts">createUploadRequest</a>({ ...params }) -> FileUploadTicket</code>
+- <code title="post /v1/files/uploadrequests">client.files.<a href="./src/resources/files/files.ts">createUploadRequest</a>({ ...params }) -> FileCreateUploadRequestResponse</code>
 - <code title="post /v1/files/{fileId}/downloadrequest">client.files.<a href="./src/resources/files/files.ts">requestDownload</a>(fileID) -> FileDownload</code>
 
 ## Sharing
@@ -640,10 +243,15 @@ Methods:
 
 ## Epaysettings
 
+Types:
+
+- <code><a href="./src/resources/leases/epaysettings.ts">EpaysettingRetrieveResponse</a></code>
+- <code><a href="./src/resources/leases/epaysettings.ts">EpaysettingUpdateResponse</a></code>
+
 Methods:
 
-- <code title="get /v1/leases/{leaseId}/epaysettings">client.leases.epaysettings.<a href="./src/resources/leases/epaysettings.ts">retrieve</a>(leaseID) -> EPaySettings</code>
-- <code title="put /v1/leases/{leaseId}/epaysettings">client.leases.epaysettings.<a href="./src/resources/leases/epaysettings.ts">update</a>(leaseID, { ...params }) -> EPaySettings</code>
+- <code title="get /v1/leases/{leaseId}/epaysettings">client.leases.epaysettings.<a href="./src/resources/leases/epaysettings.ts">retrieve</a>(leaseID) -> EpaysettingRetrieveResponse</code>
+- <code title="put /v1/leases/{leaseId}/epaysettings">client.leases.epaysettings.<a href="./src/resources/leases/epaysettings.ts">update</a>(leaseID, { ...params }) -> EpaysettingUpdateResponse</code>
 
 ## Partialpaymentsettings
 
@@ -821,6 +429,7 @@ Types:
 - <code><a href="./src/resources/rentals/units/images.ts">RentalUnitImage</a></code>
 - <code><a href="./src/resources/rentals/units/images.ts">ImageListResponse</a></code>
 - <code><a href="./src/resources/rentals/units/images.ts">ImageUpdateOrderResponse</a></code>
+- <code><a href="./src/resources/rentals/units/images.ts">ImageUploadRequestsResponse</a></code>
 
 Methods:
 
@@ -830,7 +439,7 @@ Methods:
 - <code title="delete /v1/rentals/units/{unitId}/images/{imageId}">client.rentals.units.images.<a href="./src/resources/rentals/units/images.ts">delete</a>(imageID, { ...params }) -> void</code>
 - <code title="post /v1/rentals/units/{unitId}/images/{imageId}/downloadrequests">client.rentals.units.images.<a href="./src/resources/rentals/units/images.ts">downloadRequests</a>(imageID, { ...params }) -> FileDownload</code>
 - <code title="put /v1/rentals/units/{unitId}/images/order">client.rentals.units.images.<a href="./src/resources/rentals/units/images.ts">updateOrder</a>(unitID, { ...params }) -> ImageUpdateOrderResponse</code>
-- <code title="post /v1/rentals/units/{unitId}/images/uploadrequests">client.rentals.units.images.<a href="./src/resources/rentals/units/images.ts">uploadRequests</a>(unitID, { ...params }) -> FileUploadTicket</code>
+- <code title="post /v1/rentals/units/{unitId}/images/uploadrequests">client.rentals.units.images.<a href="./src/resources/rentals/units/images.ts">uploadRequests</a>(unitID, { ...params }) -> ImageUploadRequestsResponse</code>
 - <code title="post /v1/rentals/units/{unitId}/images/videolinkrequests">client.rentals.units.images.<a href="./src/resources/rentals/units/images.ts">videoLinkRequests</a>(unitID, { ...params }) -> RentalUnitImage</code>
 
 ### Notes
@@ -872,10 +481,15 @@ Methods:
 
 ## Epaysettings
 
+Types:
+
+- <code><a href="./src/resources/rentals/epaysettings.ts">EpaysettingCreateResponse</a></code>
+- <code><a href="./src/resources/rentals/epaysettings.ts">EpaysettingListResponse</a></code>
+
 Methods:
 
-- <code title="put /v1/rentals/{propertyId}/epaysettings">client.rentals.epaysettings.<a href="./src/resources/rentals/epaysettings.ts">create</a>(propertyID, { ...params }) -> EPaySettings</code>
-- <code title="get /v1/rentals/{propertyId}/epaysettings">client.rentals.epaysettings.<a href="./src/resources/rentals/epaysettings.ts">list</a>(propertyID) -> EPaySettings</code>
+- <code title="put /v1/rentals/{propertyId}/epaysettings">client.rentals.epaysettings.<a href="./src/resources/rentals/epaysettings.ts">create</a>(propertyID, { ...params }) -> EpaysettingCreateResponse</code>
+- <code title="get /v1/rentals/{propertyId}/epaysettings">client.rentals.epaysettings.<a href="./src/resources/rentals/epaysettings.ts">list</a>(propertyID) -> EpaysettingListResponse</code>
 
 ## Images
 
@@ -887,6 +501,7 @@ Types:
 - <code><a href="./src/resources/rentals/images.ts">VideoLinkRequest</a></code>
 - <code><a href="./src/resources/rentals/images.ts">ImageListResponse</a></code>
 - <code><a href="./src/resources/rentals/images.ts">ImageUpdateOrderResponse</a></code>
+- <code><a href="./src/resources/rentals/images.ts">ImageUploadRequestsResponse</a></code>
 
 Methods:
 
@@ -896,7 +511,7 @@ Methods:
 - <code title="delete /v1/rentals/{propertyId}/images/{imageId}">client.rentals.images.<a href="./src/resources/rentals/images.ts">delete</a>(imageID, { ...params }) -> void</code>
 - <code title="post /v1/rentals/{propertyId}/images/{imageId}/downloadrequests">client.rentals.images.<a href="./src/resources/rentals/images.ts">downloadRequests</a>(imageID, { ...params }) -> FileDownload</code>
 - <code title="put /v1/rentals/{propertyId}/images/order">client.rentals.images.<a href="./src/resources/rentals/images.ts">updateOrder</a>(propertyID, { ...params }) -> ImageUpdateOrderResponse</code>
-- <code title="post /v1/rentals/{propertyId}/images/uploadrequests">client.rentals.images.<a href="./src/resources/rentals/images.ts">uploadRequests</a>(propertyID, { ...params }) -> FileUploadTicket</code>
+- <code title="post /v1/rentals/{propertyId}/images/uploadrequests">client.rentals.images.<a href="./src/resources/rentals/images.ts">uploadRequests</a>(propertyID, { ...params }) -> ImageUploadRequestsResponse</code>
 - <code title="post /v1/rentals/{propertyId}/images/videolinkrequests">client.rentals.images.<a href="./src/resources/rentals/images.ts">videoLinkRequests</a>(propertyID, { ...params }) -> RentalImage</code>
 
 ## Meterreadings
@@ -911,10 +526,15 @@ Methods:
 
 ### Summary
 
+Types:
+
+- <code><a href="./src/resources/rentals/meterreadings/summary.ts">SummaryCreateResponse</a></code>
+- <code><a href="./src/resources/rentals/meterreadings/summary.ts">SummaryListResponse</a></code>
+
 Methods:
 
-- <code title="put /v1/rentals/{propertyId}/meterreadings/summary">client.rentals.meterreadings.summary.<a href="./src/resources/rentals/meterreadings/summary.ts">create</a>(propertyID, { ...params }) -> MeterReadingDetails</code>
-- <code title="get /v1/rentals/{propertyId}/meterreadings/summary">client.rentals.meterreadings.summary.<a href="./src/resources/rentals/meterreadings/summary.ts">list</a>(propertyID, { ...params }) -> MeterReadingDetails</code>
+- <code title="put /v1/rentals/{propertyId}/meterreadings/summary">client.rentals.meterreadings.summary.<a href="./src/resources/rentals/meterreadings/summary.ts">create</a>(propertyID, { ...params }) -> SummaryCreateResponse</code>
+- <code title="get /v1/rentals/{propertyId}/meterreadings/summary">client.rentals.meterreadings.summary.<a href="./src/resources/rentals/meterreadings/summary.ts">list</a>(propertyID, { ...params }) -> SummaryListResponse</code>
 - <code title="delete /v1/rentals/{propertyId}/meterreadings/summary">client.rentals.meterreadings.summary.<a href="./src/resources/rentals/meterreadings/summary.ts">deleteAll</a>(propertyID, { ...params }) -> void</code>
 
 ## Notes
@@ -1141,13 +761,14 @@ Types:
 
 - <code><a href="./src/resources/bankaccounts/checks/files.ts">CheckFile</a></code>
 - <code><a href="./src/resources/bankaccounts/checks/files.ts">FileListResponse</a></code>
+- <code><a href="./src/resources/bankaccounts/checks/files.ts">FileUploadResponse</a></code>
 
 Methods:
 
 - <code title="get /v1/bankaccounts/{bankAccountId}/checks/{checkId}/files/{fileId}">client.bankaccounts.checks.files.<a href="./src/resources/bankaccounts/checks/files.ts">retrieve</a>(fileID, { ...params }) -> CheckFile</code>
 - <code title="get /v1/bankaccounts/{bankAccountId}/checks/{checkId}/files">client.bankaccounts.checks.files.<a href="./src/resources/bankaccounts/checks/files.ts">list</a>(checkID, { ...params }) -> FileListResponse</code>
 - <code title="delete /v1/bankaccounts/{bankAccountId}/checks/{checkId}/files/{fileId}">client.bankaccounts.checks.files.<a href="./src/resources/bankaccounts/checks/files.ts">delete</a>(fileID, { ...params }) -> void</code>
-- <code title="post /v1/bankaccounts/{bankAccountId}/checks/{checkId}/files/uploadrequests">client.bankaccounts.checks.files.<a href="./src/resources/bankaccounts/checks/files.ts">upload</a>(checkID, { ...params }) -> FileUploadTicket</code>
+- <code title="post /v1/bankaccounts/{bankAccountId}/checks/{checkId}/files/uploadrequests">client.bankaccounts.checks.files.<a href="./src/resources/bankaccounts/checks/files.ts">upload</a>(checkID, { ...params }) -> FileUploadResponse</code>
 
 ## Deposits
 
@@ -1274,6 +895,7 @@ Types:
 
 - <code><a href="./src/resources/bills/files.ts">BillFileMessage</a></code>
 - <code><a href="./src/resources/bills/files.ts">FileListResponse</a></code>
+- <code><a href="./src/resources/bills/files.ts">FileUploadResponse</a></code>
 
 Methods:
 
@@ -1281,7 +903,7 @@ Methods:
 - <code title="get /v1/bills/{billId}/files">client.bills.files.<a href="./src/resources/bills/files.ts">list</a>(billID, { ...params }) -> FileListResponse</code>
 - <code title="delete /v1/bills/{billId}/files/{fileId}">client.bills.files.<a href="./src/resources/bills/files.ts">delete</a>(fileID, { ...params }) -> void</code>
 - <code title="post /v1/bills/{billId}/files/{fileId}/downloadrequest">client.bills.files.<a href="./src/resources/bills/files.ts">download</a>(fileID, { ...params }) -> FileDownload</code>
-- <code title="post /v1/bills/{billId}/files/uploadrequests">client.bills.files.<a href="./src/resources/bills/files.ts">upload</a>(billID, { ...params }) -> FileUploadTicket</code>
+- <code title="post /v1/bills/{billId}/files/uploadrequests">client.bills.files.<a href="./src/resources/bills/files.ts">upload</a>(billID, { ...params }) -> FileUploadResponse</code>
 
 ## Payments
 
@@ -1506,6 +1128,7 @@ Types:
 
 - <code><a href="./src/resources/tasks/history/files.ts">TaskHistoryFile</a></code>
 - <code><a href="./src/resources/tasks/history/files.ts">FileListResponse</a></code>
+- <code><a href="./src/resources/tasks/history/files.ts">FileUploadReqResponse</a></code>
 
 Methods:
 
@@ -1513,7 +1136,7 @@ Methods:
 - <code title="get /v1/tasks/{taskId}/history/{taskHistoryId}/files">client.tasks.history.files.<a href="./src/resources/tasks/history/files.ts">list</a>(taskHistoryID, { ...params }) -> FileListResponse</code>
 - <code title="delete /v1/tasks/{taskId}/history/{taskHistoryId}/files/{fileId}">client.tasks.history.files.<a href="./src/resources/tasks/history/files.ts">delete</a>(fileID, { ...params }) -> void</code>
 - <code title="post /v1/tasks/{taskId}/history/{taskHistoryId}/files/{fileId}/downloadrequest">client.tasks.history.files.<a href="./src/resources/tasks/history/files.ts">downloadReq</a>(fileID, { ...params }) -> FileDownload</code>
-- <code title="post /v1/tasks/{taskId}/history/{taskHistoryId}/files/uploadrequests">client.tasks.history.files.<a href="./src/resources/tasks/history/files.ts">uploadReq</a>(taskHistoryID, { ...params }) -> FileUploadTicket</code>
+- <code title="post /v1/tasks/{taskId}/history/{taskHistoryId}/files/uploadrequests">client.tasks.history.files.<a href="./src/resources/tasks/history/files.ts">uploadReq</a>(taskHistoryID, { ...params }) -> FileUploadReqResponse</code>
 
 ## Categories
 

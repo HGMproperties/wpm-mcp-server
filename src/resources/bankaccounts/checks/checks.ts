@@ -10,6 +10,7 @@ import {
   FileListResponse,
   FileRetrieveParams,
   FileUploadParams,
+  FileUploadResponse,
   Files,
 } from './files';
 import { APIPromise } from '../../../core/api-promise';
@@ -342,6 +343,7 @@ export declare namespace Checks {
     Files as Files,
     type CheckFile as CheckFile,
     type FileListResponse as FileListResponse,
+    type FileUploadResponse as FileUploadResponse,
     type FileRetrieveParams as FileRetrieveParams,
     type FileListParams as FileListParams,
     type FileDeleteParams as FileDeleteParams,
