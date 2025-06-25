@@ -36,14 +36,14 @@ export class Rentersinsurance extends APIResource {
    * @example
    * ```ts
    * const rentersInsurancePolicies =
-   *   await client.leases.rentersinsurance.retrieveAll(0);
+   *   await client.leases.rentersinsurance.listAll(0);
    * ```
    */
-  retrieveAll(
+  listAll(
     leaseID: number,
-    query: RentersinsuranceRetrieveAllParams | null | undefined = {},
+    query: RentersinsuranceListAllParams | null | undefined = {},
     options?: RequestOptions,
-  ): APIPromise<RentersinsuranceRetrieveAllResponse> {
+  ): APIPromise<RentersinsuranceListAllResponse> {
     return this._client.get(path`/v1/leases/${leaseID}/rentersinsurance`, { query, ...options });
   }
 }
@@ -116,13 +116,13 @@ export namespace RentersInsurancePolicy {
   }
 }
 
-export type RentersinsuranceRetrieveAllResponse = Array<RentersInsurancePolicy>;
+export type RentersinsuranceListAllResponse = Array<RentersInsurancePolicy>;
 
 export interface RentersinsuranceRetrieveParams {
   leaseId: number;
 }
 
-export interface RentersinsuranceRetrieveAllParams {
+export interface RentersinsuranceListAllParams {
   /**
    * `limit` indicates the maximum number of results to be returned in the response.
    * `limit` can range between 1 and 1000 and the default is 50.
@@ -146,8 +146,8 @@ export interface RentersinsuranceRetrieveAllParams {
 export declare namespace Rentersinsurance {
   export {
     type RentersInsurancePolicy as RentersInsurancePolicy,
-    type RentersinsuranceRetrieveAllResponse as RentersinsuranceRetrieveAllResponse,
+    type RentersinsuranceListAllResponse as RentersinsuranceListAllResponse,
     type RentersinsuranceRetrieveParams as RentersinsuranceRetrieveParams,
-    type RentersinsuranceRetrieveAllParams as RentersinsuranceRetrieveAllParams,
+    type RentersinsuranceListAllParams as RentersinsuranceListAllParams,
   };
 }

@@ -77,8 +77,8 @@ import {
 } from './resources/workorders';
 import {
   Administration,
-  AdministrationRetrieveAccountResponse,
-  AdministrationRetrieveAccountingLockPeriodsResponse,
+  AdministrationGetAccountResponse,
+  AdministrationGetAcctLockPeriodsResponse,
 } from './resources/administration/administration';
 import {
   ApplicantApplication,
@@ -90,10 +90,10 @@ import {
   Applicants,
 } from './resources/applicants/applicants';
 import {
-  ApplicationCreateAutoAllocatedPaymentParams,
-  ApplicationCreatePaymentReversalParams,
-  ApplicationListOutstandingBalancesParams,
-  ApplicationListOutstandingBalancesResponse,
+  ApplicationCreateAutoPayParams,
+  ApplicationCreatePayReversalParams,
+  ApplicationListBalancesParams,
+  ApplicationListBalancesResponse,
   Applications,
   OutstandingBalancesLine,
   ReversePaymentOtherBankCharge,
@@ -115,10 +115,10 @@ import {
 import {
   Account,
   BankaccountCreateParams,
+  BankaccountGetUndepositedFundsParams,
+  BankaccountGetUndepositedFundsResponse,
   BankaccountListParams,
   BankaccountListResponse,
-  BankaccountRetrieveUndepositedFundsParams,
-  BankaccountRetrieveUndepositedFundsResponse,
   BankaccountUpdateParams,
   Bankaccounts,
 } from './resources/bankaccounts/bankaccounts';
@@ -149,17 +149,16 @@ import {
 import {
   Lease,
   LeaseCosigner,
-  LeaseCreateAutoallocatedPaymentParams,
+  LeaseCreateAutoPaymentParams,
   LeaseCreateCreditParams,
   LeaseCreateParams,
-  LeaseCreatePaymentReversalParams,
-  LeaseListOutstandingBalancesParams,
-  LeaseListOutstandingBalancesResponse,
+  LeaseCreatePayReversalParams,
+  LeaseListBalancesParams,
+  LeaseListBalancesResponse,
   LeaseListParams,
-  LeaseListRenewalHistoryParams,
-  LeaseListRenewalHistoryResponse,
+  LeaseListRenewHistoryParams,
+  LeaseListRenewHistoryResponse,
   LeaseListResponse,
-  LeaseRentChargePostMessage,
   LeaseRentForPostMessage,
   LeaseUpdateParams,
   Leases,
@@ -186,8 +185,8 @@ import {
   VendorInsuranceSave,
   VendorListParams,
   VendorListResponse,
-  VendorRetrieveTransactionsParams,
-  VendorRetrieveTransactionsResponse,
+  VendorListTransactionsParams,
+  VendorListTransactionsResponse,
   VendorUpdateParams,
   Vendors,
 } from './resources/vendors/vendors';
@@ -954,10 +953,10 @@ export declare namespace WpmMcpServer {
     Applications as Applications,
     type OutstandingBalancesLine as OutstandingBalancesLine,
     type ReversePaymentOtherBankCharge as ReversePaymentOtherBankCharge,
-    type ApplicationListOutstandingBalancesResponse as ApplicationListOutstandingBalancesResponse,
-    type ApplicationCreateAutoAllocatedPaymentParams as ApplicationCreateAutoAllocatedPaymentParams,
-    type ApplicationCreatePaymentReversalParams as ApplicationCreatePaymentReversalParams,
-    type ApplicationListOutstandingBalancesParams as ApplicationListOutstandingBalancesParams,
+    type ApplicationListBalancesResponse as ApplicationListBalancesResponse,
+    type ApplicationCreateAutoPayParams as ApplicationCreateAutoPayParams,
+    type ApplicationCreatePayReversalParams as ApplicationCreatePayReversalParams,
+    type ApplicationListBalancesParams as ApplicationListBalancesParams,
   };
 
   export {
@@ -989,19 +988,18 @@ export declare namespace WpmMcpServer {
     Leases as Leases,
     type Lease as Lease,
     type LeaseCosigner as LeaseCosigner,
-    type LeaseRentChargePostMessage as LeaseRentChargePostMessage,
     type LeaseRentForPostMessage as LeaseRentForPostMessage,
     type LeaseListResponse as LeaseListResponse,
-    type LeaseListOutstandingBalancesResponse as LeaseListOutstandingBalancesResponse,
-    type LeaseListRenewalHistoryResponse as LeaseListRenewalHistoryResponse,
+    type LeaseListBalancesResponse as LeaseListBalancesResponse,
+    type LeaseListRenewHistoryResponse as LeaseListRenewHistoryResponse,
     type LeaseCreateParams as LeaseCreateParams,
     type LeaseUpdateParams as LeaseUpdateParams,
     type LeaseListParams as LeaseListParams,
-    type LeaseCreateAutoallocatedPaymentParams as LeaseCreateAutoallocatedPaymentParams,
+    type LeaseCreateAutoPaymentParams as LeaseCreateAutoPaymentParams,
     type LeaseCreateCreditParams as LeaseCreateCreditParams,
-    type LeaseCreatePaymentReversalParams as LeaseCreatePaymentReversalParams,
-    type LeaseListOutstandingBalancesParams as LeaseListOutstandingBalancesParams,
-    type LeaseListRenewalHistoryParams as LeaseListRenewalHistoryParams,
+    type LeaseCreatePayReversalParams as LeaseCreatePayReversalParams,
+    type LeaseListBalancesParams as LeaseListBalancesParams,
+    type LeaseListRenewHistoryParams as LeaseListRenewHistoryParams,
   };
 
   export {
@@ -1030,8 +1028,8 @@ export declare namespace WpmMcpServer {
 
   export {
     Administration as Administration,
-    type AdministrationRetrieveAccountResponse as AdministrationRetrieveAccountResponse,
-    type AdministrationRetrieveAccountingLockPeriodsResponse as AdministrationRetrieveAccountingLockPeriodsResponse,
+    type AdministrationGetAccountResponse as AdministrationGetAccountResponse,
+    type AdministrationGetAcctLockPeriodsResponse as AdministrationGetAcctLockPeriodsResponse,
   };
 
   export {
@@ -1048,11 +1046,11 @@ export declare namespace WpmMcpServer {
     Bankaccounts as Bankaccounts,
     type Account as Account,
     type BankaccountListResponse as BankaccountListResponse,
-    type BankaccountRetrieveUndepositedFundsResponse as BankaccountRetrieveUndepositedFundsResponse,
+    type BankaccountGetUndepositedFundsResponse as BankaccountGetUndepositedFundsResponse,
     type BankaccountCreateParams as BankaccountCreateParams,
     type BankaccountUpdateParams as BankaccountUpdateParams,
     type BankaccountListParams as BankaccountListParams,
-    type BankaccountRetrieveUndepositedFundsParams as BankaccountRetrieveUndepositedFundsParams,
+    type BankaccountGetUndepositedFundsParams as BankaccountGetUndepositedFundsParams,
   };
 
   export {
@@ -1139,11 +1137,11 @@ export declare namespace WpmMcpServer {
     type Vendor as Vendor,
     type VendorInsuranceSave as VendorInsuranceSave,
     type VendorListResponse as VendorListResponse,
-    type VendorRetrieveTransactionsResponse as VendorRetrieveTransactionsResponse,
+    type VendorListTransactionsResponse as VendorListTransactionsResponse,
     type VendorCreateParams as VendorCreateParams,
     type VendorUpdateParams as VendorUpdateParams,
     type VendorListParams as VendorListParams,
-    type VendorRetrieveTransactionsParams as VendorRetrieveTransactionsParams,
+    type VendorListTransactionsParams as VendorListTransactionsParams,
   };
 
   export {
@@ -1156,8 +1154,4 @@ export declare namespace WpmMcpServer {
     type WorkorderUpdateParams as WorkorderUpdateParams,
     type WorkorderListParams as WorkorderListParams,
   };
-
-  export type CcPaymentsPutMessage = API.CcPaymentsPutMessage;
-  export type EftPaymentsPutMessage = API.EftPaymentsPutMessage;
-  export type OfflinePaymentsPutMessage = API.OfflinePaymentsPutMessage;
 }

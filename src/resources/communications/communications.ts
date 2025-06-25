@@ -5,20 +5,20 @@ import * as AnnouncementsAPI from './announcements';
 import {
   AnnouncementCreateParams,
   AnnouncementListParams,
+  AnnouncementListPropertiesParams,
+  AnnouncementListPropertiesResponse,
   AnnouncementListResponse,
   AnnouncementMessage,
-  AnnouncementRetrievePropertiesParams,
-  AnnouncementRetrievePropertiesResponse,
   Announcements,
   PropertyMessage,
 } from './announcements';
 import * as EmailsAPI from './emails';
 import {
   EmailListParams,
+  EmailListRecipientsParams,
+  EmailListRecipientsResponse,
   EmailListResponse,
   EmailMessage,
-  EmailRetrieveRecipientsParams,
-  EmailRetrieveRecipientsResponse,
   EmailSendParams,
   Emails,
 } from './emails';
@@ -52,19 +52,19 @@ export declare namespace Communications {
     type AnnouncementMessage as AnnouncementMessage,
     type PropertyMessage as PropertyMessage,
     type AnnouncementListResponse as AnnouncementListResponse,
-    type AnnouncementRetrievePropertiesResponse as AnnouncementRetrievePropertiesResponse,
+    type AnnouncementListPropertiesResponse as AnnouncementListPropertiesResponse,
     type AnnouncementCreateParams as AnnouncementCreateParams,
     type AnnouncementListParams as AnnouncementListParams,
-    type AnnouncementRetrievePropertiesParams as AnnouncementRetrievePropertiesParams,
+    type AnnouncementListPropertiesParams as AnnouncementListPropertiesParams,
   };
 
   export {
     Emails as Emails,
     type EmailMessage as EmailMessage,
     type EmailListResponse as EmailListResponse,
-    type EmailRetrieveRecipientsResponse as EmailRetrieveRecipientsResponse,
+    type EmailListRecipientsResponse as EmailListRecipientsResponse,
     type EmailListParams as EmailListParams,
-    type EmailRetrieveRecipientsParams as EmailRetrieveRecipientsParams,
+    type EmailListRecipientsParams as EmailListRecipientsParams,
     type EmailSendParams as EmailSendParams,
   };
 

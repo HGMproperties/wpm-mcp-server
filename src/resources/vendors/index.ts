@@ -24,9 +24,9 @@ export {
   type Vendor,
   type VendorInsuranceSave,
   type VendorListResponse,
-  type VendorRetrieveTransactionsResponse,
+  type VendorListTransactionsResponse,
   type VendorCreateParams,
   type VendorUpdateParams,
   type VendorListParams,
-  type VendorRetrieveTransactionsParams,
+  type VendorListTransactionsParams,
 } from './vendors';

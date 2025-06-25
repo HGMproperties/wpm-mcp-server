@@ -18,6 +18,5 @@ export {
   type FileRetrieveParams,
   type FileListParams,
   type FileDeleteParams,
-  type FileDownloadParams,
   type FileUploadParams,
 } from './files';

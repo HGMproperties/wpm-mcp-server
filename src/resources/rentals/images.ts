@@ -65,9 +65,9 @@ export class Images extends APIResource {
    *
    * <h4>Required permission(s):</h4><span class="permissionBlock">Rentals > Rental properties and units</span> - `View`
    */
-  downloadrequests(
+  downloadRequests(
     imageID: number,
-    params: ImageDownloadrequestsParams,
+    params: ImageDownloadRequestsParams,
     options?: RequestOptions,
   ): APIPromise<FilesAPI.FileDownload> {
     const { propertyId } = params;
@@ -139,9 +139,9 @@ export class Images extends APIResource {
    *
    * <h4>Required permission(s):</h4><span class="permissionBlock">Rentals > Rental properties and units</span> - `View` `Edit`
    */
-  uploadrequests(
+  uploadRequests(
     propertyID: number,
-    body: ImageUploadrequestsParams,
+    body: ImageUploadRequestsParams,
     options?: RequestOptions,
   ): APIPromise<ArchitecturalrequestsFilesAPI.FileUploadTicket> {
     return this._client.post(path`/v1/rentals/${propertyID}/images/uploadrequests`, { body, ...options });
@@ -152,9 +152,9 @@ export class Images extends APIResource {
    *
    * <h4>Required permission(s):</h4><span class="permissionBlock">Rentals > Rental properties and units</span> - `View` `Edit`
    */
-  videolinkrequests(
+  videoLinkRequests(
     propertyID: number,
-    body: ImageVideolinkrequestsParams,
+    body: ImageVideoLinkRequestsParams,
     options?: RequestOptions,
   ): APIPromise<RentalImage> {
     return this._client.post(path`/v1/rentals/${propertyID}/images/videolinkrequests`, { body, ...options });
@@ -279,7 +279,7 @@ export interface ImageDeleteParams {
   propertyId: number;
 }
 
-export interface ImageDownloadrequestsParams {
+export interface ImageDownloadRequestsParams {
   propertyId: number;
 }
 
@@ -291,7 +291,7 @@ export interface ImageUpdateOrderParams {
   Ids: Array<number>;
 }
 
-export interface ImageUploadrequestsParams {
+export interface ImageUploadRequestsParams {
   /**
    * Name of file being uploaded. The value can not exceed 255 characters.
    */
@@ -308,7 +308,7 @@ export interface ImageUploadrequestsParams {
   Description?: string | null;
 }
 
-export interface ImageVideolinkrequestsParams {
+export interface ImageVideoLinkRequestsParams {
   /**
    * Indicates whether the video will be shown in the listing.
    */
@@ -333,9 +333,9 @@ export declare namespace Images {
     type ImageUpdateParams as ImageUpdateParams,
     type ImageListParams as ImageListParams,
     type ImageDeleteParams as ImageDeleteParams,
-    type ImageDownloadrequestsParams as ImageDownloadrequestsParams,
+    type ImageDownloadRequestsParams as ImageDownloadRequestsParams,
     type ImageUpdateOrderParams as ImageUpdateOrderParams,
-    type ImageUploadrequestsParams as ImageUploadrequestsParams,
-    type ImageVideolinkrequestsParams as ImageVideolinkrequestsParams,
+    type ImageUploadRequestsParams as ImageUploadRequestsParams,
+    type ImageVideoLinkRequestsParams as ImageVideoLinkRequestsParams,
   };
 }

@@ -47,9 +47,9 @@ export class Applications extends APIResource {
    *
    * <h4>Required permission(s):</h4><span class="permissionBlock">Rentals > Lease transactions</span> - `View` `Edit`
    */
-  createAutoAllocatedPayment(
+  createAutoPay(
     applicationID: number,
-    body: ApplicationCreateAutoAllocatedPaymentParams,
+    body: ApplicationCreateAutoPayParams,
     options?: RequestOptions,
   ): APIPromise<TransactionsAPI.ApplicationTransaction> {
     return this._client.post(path`/v1/applications/${applicationID}/autoallocatedpayments`, {
@@ -66,9 +66,9 @@ export class Applications extends APIResource {
    *
    * <span class="permissionBlock">Accounting > Bank Accounts</span> - `View` `Edit`
    */
-  createPaymentReversal(
+  createPayReversal(
     applicationID: number,
-    body: ApplicationCreatePaymentReversalParams,
+    body: ApplicationCreatePayReversalParams,
     options?: RequestOptions,
   ): APIPromise<TransactionsAPI.ApplicationTransaction> {
     return this._client.post(path`/v1/applications/${applicationID}/reversepayments`, { body, ...options });
@@ -80,10 +80,10 @@ export class Applications extends APIResource {
    *
    * <h4>Required permission(s):</h4><span class="permissionBlock">Rentals > Outstanding Balances</span> - `View`
    */
-  listOutstandingBalances(
-    query: ApplicationListOutstandingBalancesParams | null | undefined = {},
+  listBalances(
+    query: ApplicationListBalancesParams | null | undefined = {},
     options?: RequestOptions,
-  ): APIPromise<ApplicationListOutstandingBalancesResponse> {
+  ): APIPromise<ApplicationListBalancesResponse> {
     return this._client.get('/v1/applications/outstandingbalances', { query, ...options });
   }
 }
@@ -115,14 +115,14 @@ export interface ReversePaymentOtherBankCharge {
   TotalAmount: number;
 }
 
-export type ApplicationListOutstandingBalancesResponse =
-  Array<ApplicationListOutstandingBalancesResponse.ApplicationListOutstandingBalancesResponseItem>;
+export type ApplicationListBalancesResponse =
+  Array<ApplicationListBalancesResponse.ApplicationListBalancesResponseItem>;
 
-export namespace ApplicationListOutstandingBalancesResponse {
+export namespace ApplicationListBalancesResponse {
   /**
    * This is an object that represents outstanding balances tied to applications.
    */
-  export interface ApplicationListOutstandingBalancesResponseItem {
+  export interface ApplicationListBalancesResponseItem {
     /**
      * Application unique identifier.
      */
@@ -170,7 +170,7 @@ export namespace ApplicationListOutstandingBalancesResponse {
   }
 }
 
-export interface ApplicationCreateAutoAllocatedPaymentParams {
+export interface ApplicationCreateAutoPayParams {
   /**
    * The date of the transaction. The date must be formatted as YYYY-MM-DD.
    */
@@ -211,7 +211,7 @@ export interface ApplicationCreateAutoAllocatedPaymentParams {
   ReferenceNumber?: string | null;
 }
 
-export interface ApplicationCreatePaymentReversalParams {
+export interface ApplicationCreatePayReversalParams {
   /**
    * Date of the transaction. The date must be formatted as YYYY-MM-DD.
    */
@@ -236,10 +236,10 @@ export interface ApplicationCreatePaymentReversalParams {
   /**
    * Non-sufficient funds (NSF) charge to the application.
    */
-  NSFCharge?: ApplicationCreatePaymentReversalParams.NsfCharge | null;
+  NSFCharge?: ApplicationCreatePayReversalParams.NsfCharge | null;
 }
 
-export namespace ApplicationCreatePaymentReversalParams {
+export namespace ApplicationCreatePayReversalParams {
   /**
    * Non-sufficient funds (NSF) charge to the application.
    */
@@ -256,7 +256,7 @@ export namespace ApplicationCreatePaymentReversalParams {
   }
 }
 
-export interface ApplicationListOutstandingBalancesParams {
+export interface ApplicationListBalancesParams {
   /**
    * Filters results to specific applications by their unique identifiers. If not
    * specified, all application outstanding balances will be returned.
@@ -308,10 +308,10 @@ export declare namespace Applications {
   export {
     type OutstandingBalancesLine as OutstandingBalancesLine,
     type ReversePaymentOtherBankCharge as ReversePaymentOtherBankCharge,
-    type ApplicationListOutstandingBalancesResponse as ApplicationListOutstandingBalancesResponse,
-    type ApplicationCreateAutoAllocatedPaymentParams as ApplicationCreateAutoAllocatedPaymentParams,
-    type ApplicationCreatePaymentReversalParams as ApplicationCreatePaymentReversalParams,
-    type ApplicationListOutstandingBalancesParams as ApplicationListOutstandingBalancesParams,
+    type ApplicationListBalancesResponse as ApplicationListBalancesResponse,
+    type ApplicationCreateAutoPayParams as ApplicationCreateAutoPayParams,
+    type ApplicationCreatePayReversalParams as ApplicationCreatePayReversalParams,
+    type ApplicationListBalancesParams as ApplicationListBalancesParams,
   };
 
   export {

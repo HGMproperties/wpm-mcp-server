@@ -9,7 +9,7 @@ import { EpaysettingCreateParams, Epaysettings } from './epaysettings';
 import * as ImagesAPI from './images';
 import {
   ImageDeleteParams,
-  ImageDownloadrequestsParams,
+  ImageDownloadRequestsParams,
   ImageListParams,
   ImageListResponse,
   ImageReorderRequest,
@@ -17,8 +17,8 @@ import {
   ImageUpdateOrderParams,
   ImageUpdateOrderResponse,
   ImageUpdateParams,
-  ImageUploadrequestsParams,
-  ImageVideolinkrequestsParams,
+  ImageUploadRequestsParams,
+  ImageVideoLinkRequestsParams,
   Images,
   ListingEntityFile,
   RentalImage,
@@ -70,10 +70,10 @@ import * as UnitsAPI from './units/units';
 import {
   RentalUnit,
   UnitCreateParams,
+  UnitListListingsParams,
+  UnitListListingsResponse,
   UnitListParams,
   UnitListResponse,
-  UnitRetrieveListingsParams,
-  UnitRetrieveListingsResponse,
   UnitUpdateParams,
   Units,
 } from './units/units';
@@ -541,11 +541,11 @@ export declare namespace Rentals {
     Units as Units,
     type RentalUnit as RentalUnit,
     type UnitListResponse as UnitListResponse,
-    type UnitRetrieveListingsResponse as UnitRetrieveListingsResponse,
+    type UnitListListingsResponse as UnitListListingsResponse,
     type UnitCreateParams as UnitCreateParams,
     type UnitUpdateParams as UnitUpdateParams,
     type UnitListParams as UnitListParams,
-    type UnitRetrieveListingsParams as UnitRetrieveListingsParams,
+    type UnitListListingsParams as UnitListListingsParams,
   };
 
   export {
@@ -577,10 +577,10 @@ export declare namespace Rentals {
     type ImageUpdateParams as ImageUpdateParams,
     type ImageListParams as ImageListParams,
     type ImageDeleteParams as ImageDeleteParams,
-    type ImageDownloadrequestsParams as ImageDownloadrequestsParams,
+    type ImageDownloadRequestsParams as ImageDownloadRequestsParams,
     type ImageUpdateOrderParams as ImageUpdateOrderParams,
-    type ImageUploadrequestsParams as ImageUploadrequestsParams,
-    type ImageVideolinkrequestsParams as ImageVideolinkrequestsParams,
+    type ImageUploadRequestsParams as ImageUploadRequestsParams,
+    type ImageVideoLinkRequestsParams as ImageVideoLinkRequestsParams,
   };
 
   export {

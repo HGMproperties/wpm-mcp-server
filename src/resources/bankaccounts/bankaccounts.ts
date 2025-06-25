@@ -36,7 +36,6 @@ import {
 } from './transactions';
 import * as TransfersAPI from './transfers';
 import {
-  BankAccountTransferAccountingEntitySaveMessage,
   Transfer,
   TransferCreateParams,
   TransferListParams,
@@ -72,15 +71,15 @@ import {
 import * as ReconciliationsAPI from './reconciliations/reconciliations';
 import {
   Reconciliation,
-  ReconciliationCleartransactionsrequestParams,
+  ReconciliationClearTransactionsParams,
   ReconciliationCreateParams,
-  ReconciliationFinalizerequestParams,
+  ReconciliationFinalizeParams,
   ReconciliationListParams,
   ReconciliationListResponse,
+  ReconciliationListTransactionsParams,
+  ReconciliationListTransactionsResponse,
   ReconciliationRetrieveParams,
-  ReconciliationRetrieveTransactionsParams,
-  ReconciliationRetrieveTransactionsResponse,
-  ReconciliationUncleartransactionsrequestParams,
+  ReconciliationUnclearTransactionsParams,
   ReconciliationUpdateParams,
   Reconciliations,
 } from './reconciliations/reconciliations';
@@ -152,11 +151,11 @@ export class Bankaccounts extends APIResource {
    *
    * <h4>Required permission(s):</h4><span class="permissionBlock">Accounting > Bank Accounts</span> - `View`
    */
-  retrieveUndepositedFunds(
+  getUndepositedFunds(
     bankAccountID: number,
-    query: BankaccountRetrieveUndepositedFundsParams | null | undefined = {},
+    query: BankaccountGetUndepositedFundsParams | null | undefined = {},
     options?: RequestOptions,
-  ): APIPromise<BankaccountRetrieveUndepositedFundsResponse> {
+  ): APIPromise<BankaccountGetUndepositedFundsResponse> {
     return this._client.get(path`/v1/bankaccounts/${bankAccountID}/undepositedfunds`, { query, ...options });
   }
 }
@@ -624,18 +623,18 @@ export namespace Account {
 
 export type BankaccountListResponse = Array<Account>;
 
-export type BankaccountRetrieveUndepositedFundsResponse =
-  Array<BankaccountRetrieveUndepositedFundsResponse.BankaccountRetrieveUndepositedFundsResponseItem>;
+export type BankaccountGetUndepositedFundsResponse =
+  Array<BankaccountGetUndepositedFundsResponse.BankaccountGetUndepositedFundsResponseItem>;
 
-export namespace BankaccountRetrieveUndepositedFundsResponse {
-  export interface BankaccountRetrieveUndepositedFundsResponseItem {
+export namespace BankaccountGetUndepositedFundsResponse {
+  export interface BankaccountGetUndepositedFundsResponseItem {
     /**
      * General ledger transaction.
      */
-    GeneralLedgerTransaction?: BankaccountRetrieveUndepositedFundsResponseItem.GeneralLedgerTransaction | null;
+    GeneralLedgerTransaction?: BankaccountGetUndepositedFundsResponseItem.GeneralLedgerTransaction | null;
   }
 
-  export namespace BankaccountRetrieveUndepositedFundsResponseItem {
+  export namespace BankaccountGetUndepositedFundsResponseItem {
     /**
      * General ledger transaction.
      */
@@ -1477,7 +1476,7 @@ export interface BankaccountListParams {
   routingnumbers?: Array<string>;
 }
 
-export interface BankaccountRetrieveUndepositedFundsParams {
+export interface BankaccountGetUndepositedFundsParams {
   /**
    * `limit` indicates the maximum number of results to be returned in the response.
    * `limit` can range between 1 and 1000 and the default is 50.
@@ -1510,11 +1509,11 @@ export declare namespace Bankaccounts {
   export {
     type Account as Account,
     type BankaccountListResponse as BankaccountListResponse,
-    type BankaccountRetrieveUndepositedFundsResponse as BankaccountRetrieveUndepositedFundsResponse,
+    type BankaccountGetUndepositedFundsResponse as BankaccountGetUndepositedFundsResponse,
     type BankaccountCreateParams as BankaccountCreateParams,
     type BankaccountUpdateParams as BankaccountUpdateParams,
     type BankaccountListParams as BankaccountListParams,
-    type BankaccountRetrieveUndepositedFundsParams as BankaccountRetrieveUndepositedFundsParams,
+    type BankaccountGetUndepositedFundsParams as BankaccountGetUndepositedFundsParams,
   };
 
   export {
@@ -1557,15 +1556,15 @@ export declare namespace Bankaccounts {
     Reconciliations as Reconciliations,
     type Reconciliation as Reconciliation,
     type ReconciliationListResponse as ReconciliationListResponse,
-    type ReconciliationRetrieveTransactionsResponse as ReconciliationRetrieveTransactionsResponse,
+    type ReconciliationListTransactionsResponse as ReconciliationListTransactionsResponse,
     type ReconciliationCreateParams as ReconciliationCreateParams,
     type ReconciliationRetrieveParams as ReconciliationRetrieveParams,
     type ReconciliationUpdateParams as ReconciliationUpdateParams,
     type ReconciliationListParams as ReconciliationListParams,
-    type ReconciliationCleartransactionsrequestParams as ReconciliationCleartransactionsrequestParams,
-    type ReconciliationFinalizerequestParams as ReconciliationFinalizerequestParams,
-    type ReconciliationRetrieveTransactionsParams as ReconciliationRetrieveTransactionsParams,
-    type ReconciliationUncleartransactionsrequestParams as ReconciliationUncleartransactionsrequestParams,
+    type ReconciliationClearTransactionsParams as ReconciliationClearTransactionsParams,
+    type ReconciliationFinalizeParams as ReconciliationFinalizeParams,
+    type ReconciliationListTransactionsParams as ReconciliationListTransactionsParams,
+    type ReconciliationUnclearTransactionsParams as ReconciliationUnclearTransactionsParams,
   };
 
   export {
@@ -1578,7 +1577,6 @@ export declare namespace Bankaccounts {
 
   export {
     Transfers as Transfers,
-    type BankAccountTransferAccountingEntitySaveMessage as BankAccountTransferAccountingEntitySaveMessage,
     type Transfer as Transfer,
     type TransferSave as TransferSave,
     type TransferListResponse as TransferListResponse,

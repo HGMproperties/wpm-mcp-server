@@ -39,11 +39,11 @@ export class Emails extends APIResource {
    *             <span class="permissionBlock">Maintenance > Vendors</span> - `View` In order to retrieve recipients that are Vendors, you must have this permission.
    *             <span class="permissionBlock">Administration > Users</span> - `View` In order to see recipients that are Staff, you must have this permission.
    */
-  retrieveRecipients(
+  listRecipients(
     emailID: number,
-    query: EmailRetrieveRecipientsParams | null | undefined = {},
+    query: EmailListRecipientsParams | null | undefined = {},
     options?: RequestOptions,
-  ): APIPromise<EmailRetrieveRecipientsResponse> {
+  ): APIPromise<EmailListRecipientsResponse> {
     return this._client.get(path`/v1/communications/emails/${emailID}/recipients`, { query, ...options });
   }
 
@@ -112,11 +112,10 @@ export namespace EmailMessage {
 
 export type EmailListResponse = Array<EmailMessage>;
 
-export type EmailRetrieveRecipientsResponse =
-  Array<EmailRetrieveRecipientsResponse.EmailRetrieveRecipientsResponseItem>;
+export type EmailListRecipientsResponse = Array<EmailListRecipientsResponse.EmailListRecipientsResponseItem>;
 
-export namespace EmailRetrieveRecipientsResponse {
-  export interface EmailRetrieveRecipientsResponseItem {
+export namespace EmailListRecipientsResponse {
+  export interface EmailListRecipientsResponseItem {
     /**
      * Email address of the recipient.
      */
@@ -202,7 +201,7 @@ export interface EmailListParams {
   subject?: string;
 }
 
-export interface EmailRetrieveRecipientsParams {
+export interface EmailListRecipientsParams {
   /**
    * `limit` indicates the maximum number of results to be returned in the response.
    * `limit` can range between 1 and 1000 and the default is 50.
@@ -273,9 +272,9 @@ export declare namespace Emails {
   export {
     type EmailMessage as EmailMessage,
     type EmailListResponse as EmailListResponse,
-    type EmailRetrieveRecipientsResponse as EmailRetrieveRecipientsResponse,
+    type EmailListRecipientsResponse as EmailListRecipientsResponse,
     type EmailListParams as EmailListParams,
-    type EmailRetrieveRecipientsParams as EmailRetrieveRecipientsParams,
+    type EmailListRecipientsParams as EmailListRecipientsParams,
     type EmailSendParams as EmailSendParams,
   };
 }

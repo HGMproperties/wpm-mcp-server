@@ -72,21 +72,19 @@ export class Notes extends APIResource {
    *
    * @example
    * ```ts
-   * const notes = await client.leases.tenants.notes.retrieveAll(
-   *   0,
-   * );
+   * const notes = await client.leases.tenants.notes.listAll(0);
    * ```
    */
-  retrieveAll(
+  listAll(
     tenantID: number,
-    query: NoteRetrieveAllParams | null | undefined = {},
+    query: NoteListAllParams | null | undefined = {},
     options?: RequestOptions,
-  ): APIPromise<NoteRetrieveAllResponse> {
+  ): APIPromise<NoteListAllResponse> {
     return this._client.get(path`/v1/leases/tenants/${tenantID}/notes`, { query, ...options });
   }
 }
 
-export type NoteRetrieveAllResponse = Array<NotesAPI.Note>;
+export type NoteListAllResponse = Array<NotesAPI.Note>;
 
 export interface NoteCreateParams {
   /**
@@ -111,7 +109,7 @@ export interface NoteUpdateParams {
   Note: string;
 }
 
-export interface NoteRetrieveAllParams {
+export interface NoteListAllParams {
   /**
    * Filters results to only notes that were last updated by the specified user
    * identifier.
@@ -153,10 +151,10 @@ export interface NoteRetrieveAllParams {
 
 export declare namespace Notes {
   export {
-    type NoteRetrieveAllResponse as NoteRetrieveAllResponse,
+    type NoteListAllResponse as NoteListAllResponse,
     type NoteCreateParams as NoteCreateParams,
     type NoteRetrieveParams as NoteRetrieveParams,
     type NoteUpdateParams as NoteUpdateParams,
-    type NoteRetrieveAllParams as NoteRetrieveAllParams,
+    type NoteListAllParams as NoteListAllParams,
   };
 }
