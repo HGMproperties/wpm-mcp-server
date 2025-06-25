@@ -12,6 +12,7 @@ export {
 export {
   Contactrequests,
   type ContactDetailSave,
+  type ContactDetailSavePhoneMessage,
   type ContactRequestTask,
   type ContactrequestListResponse,
   type ContactrequestCreateParams,

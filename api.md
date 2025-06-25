@@ -1,3 +1,11 @@
+# Shared
+
+Types:
+
+- <code><a href="./src/resources/shared.ts">CcPaymentsPutMessage</a></code>
+- <code><a href="./src/resources/shared.ts">EftPaymentsPutMessage</a></code>
+- <code><a href="./src/resources/shared.ts">OfflinePaymentsPutMessage</a></code>
+
 # Applications
 
 Types:
@@ -507,6 +515,7 @@ Types:
 
 - <code><a href="./src/resources/leases/leases.ts">Lease</a></code>
 - <code><a href="./src/resources/leases/leases.ts">LeaseCosigner</a></code>
+- <code><a href="./src/resources/leases/leases.ts">LeaseRentChargePostMessage</a></code>
 - <code><a href="./src/resources/leases/leases.ts">LeaseRentForPostMessage</a></code>
 - <code><a href="./src/resources/leases/leases.ts">LeaseListResponse</a></code>
 - <code><a href="./src/resources/leases/leases.ts">LeaseListOutstandingBalancesResponse</a></code>
@@ -1226,6 +1235,7 @@ Methods:
 
 Types:
 
+- <code><a href="./src/resources/bankaccounts/transfers.ts">BankAccountTransferAccountingEntitySaveMessage</a></code>
 - <code><a href="./src/resources/bankaccounts/transfers.ts">Transfer</a></code>
 - <code><a href="./src/resources/bankaccounts/transfers.ts">TransferSave</a></code>
 - <code><a href="./src/resources/bankaccounts/transfers.ts">TransferListResponse</a></code>
@@ -1534,6 +1544,7 @@ Methods:
 Types:
 
 - <code><a href="./src/resources/tasks/contactrequests.ts">ContactDetailSave</a></code>
+- <code><a href="./src/resources/tasks/contactrequests.ts">ContactDetailSavePhoneMessage</a></code>
 - <code><a href="./src/resources/tasks/contactrequests.ts">ContactRequestTask</a></code>
 - <code><a href="./src/resources/tasks/contactrequests.ts">ContactrequestListResponse</a></code>
 

@@ -36,6 +36,7 @@ import {
 } from './transactions';
 import * as TransfersAPI from './transfers';
 import {
+  BankAccountTransferAccountingEntitySaveMessage,
   Transfer,
   TransferCreateParams,
   TransferListParams,
@@ -1577,6 +1578,7 @@ export declare namespace Bankaccounts {
 
   export {
     Transfers as Transfers,
+    type BankAccountTransferAccountingEntitySaveMessage as BankAccountTransferAccountingEntitySaveMessage,
     type Transfer as Transfer,
     type TransferSave as TransferSave,
     type TransferListResponse as TransferListResponse,

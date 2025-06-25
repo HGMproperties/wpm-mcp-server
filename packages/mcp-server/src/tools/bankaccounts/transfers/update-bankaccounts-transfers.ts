@@ -29,24 +29,7 @@ export const tool: Tool = {
         type: 'integer',
       },
       AccountingEntity: {
-        type: 'object',
-        description: 'A rental property, association or company to associate with the transfer.',
-        properties: {
-          AccountingEntityType: {
-            type: 'string',
-            description: 'The type of accounting entity.',
-            enum: ['Association', 'Rental', 'Company'],
-          },
-          Id: {
-            type: 'integer',
-            description: 'The accounting entity unique identifier.',
-          },
-          UnitId: {
-            type: 'integer',
-            description: 'The unit unique identifier for the accounting entity.',
-          },
-        },
-        required: ['AccountingEntityType', 'Id'],
+        $ref: '#/$defs/bank_account_transfer_accounting_entity_save_message',
       },
       EntryDate: {
         type: 'string',
@@ -64,6 +47,27 @@ export const tool: Tool = {
       Memo: {
         type: 'string',
         description: 'Memo associated with the transfer, if applicable.',
+      },
+    },
+    $defs: {
+      bank_account_transfer_accounting_entity_save_message: {
+        type: 'object',
+        properties: {
+          AccountingEntityType: {
+            type: 'string',
+            description: 'The type of accounting entity.',
+            enum: ['Association', 'Rental', 'Company'],
+          },
+          Id: {
+            type: 'integer',
+            description: 'The accounting entity unique identifier.',
+          },
+          UnitId: {
+            type: 'integer',
+            description: 'The unit unique identifier for the accounting entity.',
+          },
+        },
+        required: ['AccountingEntityType', 'Id'],
       },
     },
   },
