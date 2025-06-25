@@ -3,7 +3,7 @@
 import WpmMcpServer from 'wpm-mcp-server';
 
 const client = new WpmMcpServer({
-  apiKey: 'My API Key',
+  clientID: 'My Client ID',
   baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
 });
 
@@ -98,8 +98,8 @@ describe('resource reconciliations', () => {
   });
 
   // skipped: tests are disabled for the time being
-  test.skip('cleartransactionsrequest: only required params', async () => {
-    const responsePromise = client.bankaccounts.reconciliations.cleartransactionsrequest(0, {
+  test.skip('clearTransactions: only required params', async () => {
+    const responsePromise = client.bankaccounts.reconciliations.clearTransactions(0, {
       bankAccountId: 0,
       TransactionIds: [0],
     });
@@ -113,16 +113,16 @@ describe('resource reconciliations', () => {
   });
 
   // skipped: tests are disabled for the time being
-  test.skip('cleartransactionsrequest: required and optional params', async () => {
-    const response = await client.bankaccounts.reconciliations.cleartransactionsrequest(0, {
+  test.skip('clearTransactions: required and optional params', async () => {
+    const response = await client.bankaccounts.reconciliations.clearTransactions(0, {
       bankAccountId: 0,
       TransactionIds: [0],
     });
   });
 
   // skipped: tests are disabled for the time being
-  test.skip('finalizerequest: only required params', async () => {
-    const responsePromise = client.bankaccounts.reconciliations.finalizerequest(0, { bankAccountId: 0 });
+  test.skip('finalize: only required params', async () => {
+    const responsePromise = client.bankaccounts.reconciliations.finalize(0, { bankAccountId: 0 });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -133,13 +133,13 @@ describe('resource reconciliations', () => {
   });
 
   // skipped: tests are disabled for the time being
-  test.skip('finalizerequest: required and optional params', async () => {
-    const response = await client.bankaccounts.reconciliations.finalizerequest(0, { bankAccountId: 0 });
+  test.skip('finalize: required and optional params', async () => {
+    const response = await client.bankaccounts.reconciliations.finalize(0, { bankAccountId: 0 });
   });
 
   // skipped: tests are disabled for the time being
-  test.skip('retrieveTransactions: only required params', async () => {
-    const responsePromise = client.bankaccounts.reconciliations.retrieveTransactions(0, { bankAccountId: 0 });
+  test.skip('listTransactions: only required params', async () => {
+    const responsePromise = client.bankaccounts.reconciliations.listTransactions(0, { bankAccountId: 0 });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -150,8 +150,8 @@ describe('resource reconciliations', () => {
   });
 
   // skipped: tests are disabled for the time being
-  test.skip('retrieveTransactions: required and optional params', async () => {
-    const response = await client.bankaccounts.reconciliations.retrieveTransactions(0, {
+  test.skip('listTransactions: required and optional params', async () => {
+    const response = await client.bankaccounts.reconciliations.listTransactions(0, {
       bankAccountId: 0,
       limit: 0,
       offset: 0,
@@ -160,8 +160,8 @@ describe('resource reconciliations', () => {
   });
 
   // skipped: tests are disabled for the time being
-  test.skip('uncleartransactionsrequest: only required params', async () => {
-    const responsePromise = client.bankaccounts.reconciliations.uncleartransactionsrequest(0, {
+  test.skip('unclearTransactions: only required params', async () => {
+    const responsePromise = client.bankaccounts.reconciliations.unclearTransactions(0, {
       bankAccountId: 0,
       TransactionIds: [0],
     });
@@ -175,8 +175,8 @@ describe('resource reconciliations', () => {
   });
 
   // skipped: tests are disabled for the time being
-  test.skip('uncleartransactionsrequest: required and optional params', async () => {
-    const response = await client.bankaccounts.reconciliations.uncleartransactionsrequest(0, {
+  test.skip('unclearTransactions: required and optional params', async () => {
+    const response = await client.bankaccounts.reconciliations.unclearTransactions(0, {
       bankAccountId: 0,
       TransactionIds: [0],
     });

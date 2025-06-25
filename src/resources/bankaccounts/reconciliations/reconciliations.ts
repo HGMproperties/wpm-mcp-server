@@ -81,9 +81,9 @@ export class Reconciliations extends APIResource {
    *
    * <h4>Required permission(s):</h4><span class="permissionBlock">Accounting > BankAccount</span> - `View` `Edit`
    */
-  cleartransactionsrequest(
+  clearTransactions(
     reconciliationID: number,
-    params: ReconciliationCleartransactionsrequestParams,
+    params: ReconciliationClearTransactionsParams,
     options?: RequestOptions,
   ): APIPromise<void> {
     const { bankAccountId, ...body } = params;
@@ -99,9 +99,9 @@ export class Reconciliations extends APIResource {
    *
    * <h4>Required permission(s):</h4><span class="permissionBlock">Accounting > BankAccount</span> - `View` `Edit`
    */
-  finalizerequest(
+  finalize(
     reconciliationID: number,
-    params: ReconciliationFinalizerequestParams,
+    params: ReconciliationFinalizeParams,
     options?: RequestOptions,
   ): APIPromise<void> {
     const { bankAccountId } = params;
@@ -119,11 +119,11 @@ export class Reconciliations extends APIResource {
    *
    * <h4>Required permission(s):</h4><span class="permissionBlock">Accounting > BankAccount</span> - `View`
    */
-  retrieveTransactions(
+  listTransactions(
     reconciliationID: number,
-    params: ReconciliationRetrieveTransactionsParams,
+    params: ReconciliationListTransactionsParams,
     options?: RequestOptions,
-  ): APIPromise<ReconciliationRetrieveTransactionsResponse> {
+  ): APIPromise<ReconciliationListTransactionsResponse> {
     const { bankAccountId, ...query } = params;
     return this._client.get(
       path`/v1/bankaccounts/${bankAccountId}/reconciliations/${reconciliationID}/transactions`,
@@ -137,9 +137,9 @@ export class Reconciliations extends APIResource {
    *
    * <h4>Required permission(s):</h4><span class="permissionBlock">Accounting > BankAccount</span> - `View` `Edit`
    */
-  uncleartransactionsrequest(
+  unclearTransactions(
     reconciliationID: number,
-    params: ReconciliationUncleartransactionsrequestParams,
+    params: ReconciliationUnclearTransactionsParams,
     options?: RequestOptions,
   ): APIPromise<void> {
     const { bankAccountId, ...body } = params;
@@ -169,11 +169,11 @@ export interface Reconciliation {
 
 export type ReconciliationListResponse = Array<Reconciliation>;
 
-export type ReconciliationRetrieveTransactionsResponse =
-  Array<ReconciliationRetrieveTransactionsResponse.ReconciliationRetrieveTransactionsResponseItem>;
+export type ReconciliationListTransactionsResponse =
+  Array<ReconciliationListTransactionsResponse.ReconciliationListTransactionsResponseItem>;
 
-export namespace ReconciliationRetrieveTransactionsResponse {
-  export interface ReconciliationRetrieveTransactionsResponseItem {
+export namespace ReconciliationListTransactionsResponse {
+  export interface ReconciliationListTransactionsResponseItem {
     /**
      * Check number associated with the transaction, if applicable.
      */
@@ -315,7 +315,7 @@ export interface ReconciliationListParams {
   orderby?: string;
 }
 
-export interface ReconciliationCleartransactionsrequestParams {
+export interface ReconciliationClearTransactionsParams {
   /**
    * Path param:
    */
@@ -327,11 +327,11 @@ export interface ReconciliationCleartransactionsrequestParams {
   TransactionIds: Array<number>;
 }
 
-export interface ReconciliationFinalizerequestParams {
+export interface ReconciliationFinalizeParams {
   bankAccountId: number;
 }
 
-export interface ReconciliationRetrieveTransactionsParams {
+export interface ReconciliationListTransactionsParams {
   /**
    * Path param:
    */
@@ -357,7 +357,7 @@ export interface ReconciliationRetrieveTransactionsParams {
   orderby?: string;
 }
 
-export interface ReconciliationUncleartransactionsrequestParams {
+export interface ReconciliationUnclearTransactionsParams {
   /**
    * Path param:
    */
@@ -375,15 +375,15 @@ export declare namespace Reconciliations {
   export {
     type Reconciliation as Reconciliation,
     type ReconciliationListResponse as ReconciliationListResponse,
-    type ReconciliationRetrieveTransactionsResponse as ReconciliationRetrieveTransactionsResponse,
+    type ReconciliationListTransactionsResponse as ReconciliationListTransactionsResponse,
     type ReconciliationCreateParams as ReconciliationCreateParams,
     type ReconciliationRetrieveParams as ReconciliationRetrieveParams,
     type ReconciliationUpdateParams as ReconciliationUpdateParams,
     type ReconciliationListParams as ReconciliationListParams,
-    type ReconciliationCleartransactionsrequestParams as ReconciliationCleartransactionsrequestParams,
-    type ReconciliationFinalizerequestParams as ReconciliationFinalizerequestParams,
-    type ReconciliationRetrieveTransactionsParams as ReconciliationRetrieveTransactionsParams,
-    type ReconciliationUncleartransactionsrequestParams as ReconciliationUncleartransactionsrequestParams,
+    type ReconciliationClearTransactionsParams as ReconciliationClearTransactionsParams,
+    type ReconciliationFinalizeParams as ReconciliationFinalizeParams,
+    type ReconciliationListTransactionsParams as ReconciliationListTransactionsParams,
+    type ReconciliationUnclearTransactionsParams as ReconciliationUnclearTransactionsParams,
   };
 
   export {

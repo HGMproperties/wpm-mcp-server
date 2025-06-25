@@ -4,12 +4,12 @@ import { APIResource } from '../../../../core/resource';
 import * as FilesAPI from './files';
 import {
   AssociationArchitecturalRequestFile,
-  FileDownloadrequestsParams,
+  FileDownloadRequestsParams,
   FileListParams,
   FileName,
   FileRetrieveParams,
+  FileUploadRequestsParams,
   FileUploadTicket,
-  FileUploadrequestsParams,
   Files,
 } from './files';
 import { APIPromise } from '../../../../core/api-promise';
@@ -363,7 +363,7 @@ export declare namespace Architecturalrequests {
     type FileUploadTicket as FileUploadTicket,
     type FileRetrieveParams as FileRetrieveParams,
     type FileListParams as FileListParams,
-    type FileDownloadrequestsParams as FileDownloadrequestsParams,
-    type FileUploadrequestsParams as FileUploadrequestsParams,
+    type FileDownloadRequestsParams as FileDownloadRequestsParams,
+    type FileUploadRequestsParams as FileUploadRequestsParams,
   };
 }

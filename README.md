@@ -11,11 +11,8 @@ It is generated with [Stainless](https://www.stainless.com/).
 ## Installation
 
 ```sh
-npm install git+ssh://git@github.com:HGMproperties/wpm-mcp-server.git
+npm install wpm-mcp-server
 ```
-
-> [!NOTE]
-> Once this package is [published to npm](https://www.stainless.com/docs/guides/publish), this will become: `npm install wpm-mcp-server`
 
 ## Usage
 
@@ -26,7 +23,7 @@ The full API of this library can be found in [api.md](api.md).
 import WpmMcpServer from 'wpm-mcp-server';
 
 const client = new WpmMcpServer({
-  apiKey: process.env['WPM_MCP_SERVER_API_KEY'], // This is the default and can be omitted
+  clientID: process.env['WPM_BUILDIUM_CLIENT_ID'], // This is the default and can be omitted
 });
 
 const applicationTransactions = await client.applications.transactions.list(0);
@@ -41,7 +38,7 @@ This library includes TypeScript definitions for all request params and response
 import WpmMcpServer from 'wpm-mcp-server';
 
 const client = new WpmMcpServer({
-  apiKey: process.env['WPM_MCP_SERVER_API_KEY'], // This is the default and can be omitted
+  clientID: process.env['WPM_BUILDIUM_CLIENT_ID'], // This is the default and can be omitted
 });
 
 const applicationTransactions: WpmMcpServer.Applications.TransactionListResponse =

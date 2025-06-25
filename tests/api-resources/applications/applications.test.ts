@@ -3,14 +3,14 @@
 import WpmMcpServer from 'wpm-mcp-server';
 
 const client = new WpmMcpServer({
-  apiKey: 'My API Key',
+  clientID: 'My Client ID',
   baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
 });
 
 describe('resource applications', () => {
   // skipped: tests are disabled for the time being
-  test.skip('createAutoAllocatedPayment: only required params', async () => {
-    const responsePromise = client.applications.createAutoAllocatedPayment(0, {
+  test.skip('createAutoPay: only required params', async () => {
+    const responsePromise = client.applications.createAutoPay(0, {
       Date: '2019-12-27',
       PaymentMethod: 'Check',
       SendEmailReceipt: true,
@@ -26,8 +26,8 @@ describe('resource applications', () => {
   });
 
   // skipped: tests are disabled for the time being
-  test.skip('createAutoAllocatedPayment: required and optional params', async () => {
-    const response = await client.applications.createAutoAllocatedPayment(0, {
+  test.skip('createAutoPay: required and optional params', async () => {
+    const response = await client.applications.createAutoPay(0, {
       Date: '2019-12-27',
       PaymentMethod: 'Check',
       SendEmailReceipt: true,
@@ -38,8 +38,8 @@ describe('resource applications', () => {
   });
 
   // skipped: tests are disabled for the time being
-  test.skip('createPaymentReversal: only required params', async () => {
-    const responsePromise = client.applications.createPaymentReversal(0, {
+  test.skip('createPayReversal: only required params', async () => {
+    const responsePromise = client.applications.createPayReversal(0, {
       EntryDate: '2019-12-27',
       PaymentTransactionId: 0,
     });
@@ -53,8 +53,8 @@ describe('resource applications', () => {
   });
 
   // skipped: tests are disabled for the time being
-  test.skip('createPaymentReversal: required and optional params', async () => {
-    const response = await client.applications.createPaymentReversal(0, {
+  test.skip('createPayReversal: required and optional params', async () => {
+    const response = await client.applications.createPayReversal(0, {
       EntryDate: '2019-12-27',
       PaymentTransactionId: 0,
       BankFee: { GLAccountId: 0, TotalAmount: 0 },
@@ -64,8 +64,8 @@ describe('resource applications', () => {
   });
 
   // skipped: tests are disabled for the time being
-  test.skip('listOutstandingBalances', async () => {
-    const responsePromise = client.applications.listOutstandingBalances();
+  test.skip('listBalances', async () => {
+    const responsePromise = client.applications.listBalances();
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -76,10 +76,10 @@ describe('resource applications', () => {
   });
 
   // skipped: tests are disabled for the time being
-  test.skip('listOutstandingBalances: request options and params are passed correctly', async () => {
+  test.skip('listBalances: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      client.applications.listOutstandingBalances(
+      client.applications.listBalances(
         { applicationids: [0], applicationstatuses: ['Undecided'], limit: 0, offset: 0, orderby: 'orderby' },
         { path: '/_stainless_unknown_path' },
       ),

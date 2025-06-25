@@ -3,14 +3,14 @@
 import WpmMcpServer from 'wpm-mcp-server';
 
 const client = new WpmMcpServer({
-  apiKey: 'My API Key',
+  clientID: 'My Client ID',
   baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
 });
 
 describe('resource administration', () => {
   // skipped: tests are disabled for the time being
-  test.skip('retrieveAccount', async () => {
-    const responsePromise = client.administration.retrieveAccount();
+  test.skip('getAccount', async () => {
+    const responsePromise = client.administration.getAccount();
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -21,8 +21,8 @@ describe('resource administration', () => {
   });
 
   // skipped: tests are disabled for the time being
-  test.skip('retrieveAccountingLockPeriods', async () => {
-    const responsePromise = client.administration.retrieveAccountingLockPeriods();
+  test.skip('getAcctLockPeriods', async () => {
+    const responsePromise = client.administration.getAcctLockPeriods();
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;

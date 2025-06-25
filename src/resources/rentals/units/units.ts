@@ -7,15 +7,15 @@ import { Amenities, AmenityCreateParams, RentalUnitFeatures } from './amenities'
 import * as ImagesAPI from './images';
 import {
   ImageDeleteParams,
-  ImageDownloadrequestsParams,
+  ImageDownloadRequestsParams,
   ImageListParams,
   ImageListResponse,
   ImageRetrieveParams,
   ImageUpdateOrderParams,
   ImageUpdateOrderResponse,
   ImageUpdateParams,
-  ImageUploadrequestsParams,
-  ImageVideolinkrequestsParams,
+  ImageUploadRequestsParams,
+  ImageVideoLinkRequestsParams,
   Images,
   RentalUnitImage,
 } from './images';
@@ -105,10 +105,10 @@ export class Units extends APIResource {
    * <span class="permissionBlock">Rentals > Rental properties and units</span> -
    * `View`
    */
-  retrieveListings(
-    query: UnitRetrieveListingsParams | null | undefined = {},
+  listListings(
+    query: UnitListListingsParams | null | undefined = {},
     options?: RequestOptions,
-  ): APIPromise<UnitRetrieveListingsResponse> {
+  ): APIPromise<UnitListListingsResponse> {
     return this._client.get('/v1/rentals/units/listings', { query, ...options });
   }
 }
@@ -215,7 +215,7 @@ export interface RentalUnit {
 
 export type UnitListResponse = Array<RentalUnit>;
 
-export type UnitRetrieveListingsResponse = Array<ListingAPI.Listing>;
+export type UnitListListingsResponse = Array<ListingAPI.Listing>;
 
 export interface UnitCreateParams {
   /**
@@ -387,7 +387,7 @@ export interface UnitListParams {
   propertyids?: Array<number>;
 }
 
-export interface UnitRetrieveListingsParams {
+export interface UnitListListingsParams {
   /**
    * Filters results to only listings that are associated with the specified entity
    * id value. The id must be of the type specified in `EntityType` property.
@@ -429,11 +429,11 @@ export declare namespace Units {
   export {
     type RentalUnit as RentalUnit,
     type UnitListResponse as UnitListResponse,
-    type UnitRetrieveListingsResponse as UnitRetrieveListingsResponse,
+    type UnitListListingsResponse as UnitListListingsResponse,
     type UnitCreateParams as UnitCreateParams,
     type UnitUpdateParams as UnitUpdateParams,
     type UnitListParams as UnitListParams,
-    type UnitRetrieveListingsParams as UnitRetrieveListingsParams,
+    type UnitListListingsParams as UnitListListingsParams,
   };
 
   export {
@@ -468,10 +468,10 @@ export declare namespace Units {
     type ImageUpdateParams as ImageUpdateParams,
     type ImageListParams as ImageListParams,
     type ImageDeleteParams as ImageDeleteParams,
-    type ImageDownloadrequestsParams as ImageDownloadrequestsParams,
+    type ImageDownloadRequestsParams as ImageDownloadRequestsParams,
     type ImageUpdateOrderParams as ImageUpdateOrderParams,
-    type ImageUploadrequestsParams as ImageUploadrequestsParams,
-    type ImageVideolinkrequestsParams as ImageVideolinkrequestsParams,
+    type ImageUploadRequestsParams as ImageUploadRequestsParams,
+    type ImageVideoLinkRequestsParams as ImageVideoLinkRequestsParams,
   };
 
   export {

@@ -2,8 +2,8 @@
 
 export {
   Administration,
-  type AdministrationRetrieveAccountResponse,
-  type AdministrationRetrieveAccountingLockPeriodsResponse,
+  type AdministrationGetAccountResponse,
+  type AdministrationGetAcctLockPeriodsResponse,
 } from './administration/administration';
 export {
   Applicants,
@@ -18,10 +18,10 @@ export {
   Applications,
   type OutstandingBalancesLine,
   type ReversePaymentOtherBankCharge,
-  type ApplicationListOutstandingBalancesResponse,
-  type ApplicationCreateAutoAllocatedPaymentParams,
-  type ApplicationCreatePaymentReversalParams,
-  type ApplicationListOutstandingBalancesParams,
+  type ApplicationListBalancesResponse,
+  type ApplicationCreateAutoPayParams,
+  type ApplicationCreatePayReversalParams,
+  type ApplicationListBalancesParams,
 } from './applications/applications';
 export {
   Associations,
@@ -41,11 +41,11 @@ export {
   Bankaccounts,
   type Account,
   type BankaccountListResponse,
-  type BankaccountRetrieveUndepositedFundsResponse,
+  type BankaccountGetUndepositedFundsResponse,
   type BankaccountCreateParams,
   type BankaccountUpdateParams,
   type BankaccountListParams,
-  type BankaccountRetrieveUndepositedFundsParams,
+  type BankaccountGetUndepositedFundsParams,
 } from './bankaccounts/bankaccounts';
 export {
   Bills,
@@ -102,16 +102,16 @@ export {
   type LeaseCosigner,
   type LeaseRentForPostMessage,
   type LeaseListResponse,
-  type LeaseListOutstandingBalancesResponse,
-  type LeaseListRenewalHistoryResponse,
+  type LeaseListBalancesResponse,
+  type LeaseListRenewHistoryResponse,
   type LeaseCreateParams,
   type LeaseUpdateParams,
   type LeaseListParams,
-  type LeaseCreateAutoallocatedPaymentParams,
+  type LeaseCreateAutoPaymentParams,
   type LeaseCreateCreditParams,
-  type LeaseCreatePaymentReversalParams,
-  type LeaseListOutstandingBalancesParams,
-  type LeaseListRenewalHistoryParams,
+  type LeaseCreatePayReversalParams,
+  type LeaseListBalancesParams,
+  type LeaseListRenewHistoryParams,
 } from './leases/leases';
 export {
   Propertygroups,
@@ -162,11 +162,11 @@ export {
   type Vendor,
   type VendorInsuranceSave,
   type VendorListResponse,
-  type VendorRetrieveTransactionsResponse,
+  type VendorListTransactionsResponse,
   type VendorCreateParams,
   type VendorUpdateParams,
   type VendorListParams,
-  type VendorRetrieveTransactionsParams,
+  type VendorListTransactionsParams,
 } from './vendors/vendors';
 export {
   Workorders,

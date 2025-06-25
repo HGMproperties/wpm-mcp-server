@@ -83,15 +83,15 @@ export class Files extends APIResource {
    * @example
    * ```ts
    * const fileDownload =
-   *   await client.associations.ownershipaccounts.architecturalrequests.files.downloadrequests(
+   *   await client.associations.ownershipaccounts.architecturalrequests.files.downloadRequests(
    *     0,
    *     { architecturalRequestId: 0 },
    *   );
    * ```
    */
-  downloadrequests(
+  downloadRequests(
     fileID: number,
-    params: FileDownloadrequestsParams,
+    params: FileDownloadRequestsParams,
     options?: RequestOptions,
   ): APIPromise<FilesAPI.FileDownload> {
     const { architecturalRequestId } = params;
@@ -166,15 +166,15 @@ export class Files extends APIResource {
    * @example
    * ```ts
    * const fileUploadTicket =
-   *   await client.associations.ownershipaccounts.architecturalrequests.files.uploadrequests(
+   *   await client.associations.ownershipaccounts.architecturalrequests.files.uploadRequests(
    *     0,
    *     { FileName: 'x' },
    *   );
    * ```
    */
-  uploadrequests(
+  uploadRequests(
     architecturalRequestID: number,
-    body: FileUploadrequestsParams,
+    body: FileUploadRequestsParams,
     options?: RequestOptions,
   ): APIPromise<FileUploadTicket> {
     return this._client.post(
@@ -270,11 +270,11 @@ export interface FileListParams {
   orderby?: string;
 }
 
-export interface FileDownloadrequestsParams {
+export interface FileDownloadRequestsParams {
   architecturalRequestId: number;
 }
 
-export interface FileUploadrequestsParams {
+export interface FileUploadRequestsParams {
   /**
    * Name of file being uploaded. The value can not exceed 255 characters.
    */
@@ -288,7 +288,7 @@ export declare namespace Files {
     type FileUploadTicket as FileUploadTicket,
     type FileRetrieveParams as FileRetrieveParams,
     type FileListParams as FileListParams,
-    type FileDownloadrequestsParams as FileDownloadrequestsParams,
-    type FileUploadrequestsParams as FileUploadrequestsParams,
+    type FileDownloadRequestsParams as FileDownloadRequestsParams,
+    type FileUploadRequestsParams as FileUploadRequestsParams,
   };
 }

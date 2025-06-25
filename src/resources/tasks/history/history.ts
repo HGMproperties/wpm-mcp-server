@@ -4,11 +4,11 @@ import { APIResource } from '../../../core/resource';
 import * as FilesAPI from './files';
 import {
   FileDeleteParams,
-  FileDownloadRequestParams,
+  FileDownloadReqParams,
   FileListParams,
   FileListResponse,
   FileRetrieveParams,
-  FileUploadRequestParams,
+  FileUploadReqParams,
   Files,
   TaskHistoryFile,
 } from './files';
@@ -230,7 +230,7 @@ export declare namespace History {
     type FileRetrieveParams as FileRetrieveParams,
     type FileListParams as FileListParams,
     type FileDeleteParams as FileDeleteParams,
-    type FileDownloadRequestParams as FileDownloadRequestParams,
-    type FileUploadRequestParams as FileUploadRequestParams,
+    type FileDownloadReqParams as FileDownloadReqParams,
+    type FileUploadReqParams as FileUploadReqParams,
   };
 }

@@ -35,27 +35,26 @@ export class Rent extends APIResource {
   }
 
   /**
-   * Retrieves a specific rent schedule for a lease. The rent schedule provides
-   * details (dollar amount, day of the month, etc) of the recurring charges that are
-   * applied to the lease ledger each rent cycle.
+   * The rent schedule provides details (dollar amount, day of the month, etc) of the
+   * recurring charges that are applied to the lease ledger each rent cycle. A lease
+   * may have more than one rent schedule associated with it if the rent terms change
+   * within the duration of the lease.
    *
    * <h4>Required permission(s):</h4><span class="permissionBlock">Rentals > Lease transactions</span> - `View`
    *
    * @example
    * ```ts
-   * const leaseRentMessage = await client.leases.rent.retrieve(
+   * const leaseRentMessages = await client.leases.rent.retrieve(
    *   0,
-   *   { leaseId: 0 },
    * );
    * ```
    */
   retrieve(
-    rentID: number,
-    params: RentRetrieveParams,
+    leaseID: number,
+    query: RentRetrieveParams | null | undefined = {},
     options?: RequestOptions,
-  ): APIPromise<LeaseRentMessage> {
-    const { leaseId } = params;
-    return this._client.get(path`/v1/leases/${leaseId}/rent/${rentID}`, options);
+  ): APIPromise<RentRetrieveResponse> {
+    return this._client.get(path`/v1/leases/${leaseID}/rent`, { query, ...options });
   }
 
   /**
@@ -97,13 +96,35 @@ export class Rent extends APIResource {
    *
    * @example
    * ```ts
-   * const response = await client.leases.rent.retrieveAll();
+   * const leaseRentMessages =
+   *   await client.leases.rent.getByLease(0);
    * ```
    */
-  retrieveAll(
-    query: RentRetrieveAllParams | null | undefined = {},
+  getByLease(
+    leaseID: number,
+    query: RentGetByLeaseParams | null | undefined = {},
     options?: RequestOptions,
-  ): APIPromise<RentRetrieveAllResponse> {
+  ): APIPromise<RentGetByLeaseResponse> {
+    return this._client.get(path`/v1/leases/${leaseID}/rent`, { query, ...options });
+  }
+
+  /**
+   * The rent schedule provides details (dollar amount, day of the month, etc) of the
+   * recurring charges that are applied to the lease ledger each rent cycle. A lease
+   * may have more than one rent schedule associated with it if the rent terms change
+   * within the duration of the lease.
+   *
+   * <h4>Required permission(s):</h4><span class="permissionBlock">Rentals > Lease transactions</span> - `View`
+   *
+   * @example
+   * ```ts
+   * const response = await client.leases.rent.listAll();
+   * ```
+   */
+  listAll(
+    query: RentListAllParams | null | undefined = {},
+    options?: RequestOptions,
+  ): APIPromise<RentListAllResponse> {
     return this._client.get('/v1/leases/rent', { query, ...options });
   }
 }
@@ -203,10 +224,14 @@ export interface LeaseRentMessage {
   TotalAmount?: number;
 }
 
-export type RentRetrieveAllResponse = Array<RentRetrieveAllResponse.RentRetrieveAllResponseItem>;
+export type RentRetrieveResponse = Array<LeaseRentMessage>;
 
-export namespace RentRetrieveAllResponse {
-  export interface RentRetrieveAllResponseItem {
+export type RentGetByLeaseResponse = Array<LeaseRentMessage>;
+
+export type RentListAllResponse = Array<RentListAllResponse.RentListAllResponseItem>;
+
+export namespace RentListAllResponse {
+  export interface RentListAllResponseItem {
     /**
      * Indicates whether backdated charges should be created when creating or editing
      * rents. This field will always return false, even if backdated charges exist.
@@ -340,7 +365,24 @@ export namespace RentCreateParams {
 }
 
 export interface RentRetrieveParams {
-  leaseId: number;
+  /**
+   * `limit` indicates the maximum number of results to be returned in the response.
+   * `limit` can range between 1 and 1000 and the default is 50.
+   */
+  limit?: number;
+
+  /**
+   * `offset` indicates the position of the first record to return. The `offset` is
+   * zero-based and the default is 0.
+   */
+  offset?: number;
+
+  /**
+   * `orderby` indicates the field(s) and direction to sort the results in the
+   * response. See <a href="#section/API-Overview/Bulk-Request-Options">Bulk Request
+   * Options</a> for more information.
+   */
+  orderby?: string;
 }
 
 export interface RentUpdateParams {
@@ -405,7 +447,28 @@ export namespace RentUpdateParams {
   }
 }
 
-export interface RentRetrieveAllParams {
+export interface RentGetByLeaseParams {
+  /**
+   * `limit` indicates the maximum number of results to be returned in the response.
+   * `limit` can range between 1 and 1000 and the default is 50.
+   */
+  limit?: number;
+
+  /**
+   * `offset` indicates the position of the first record to return. The `offset` is
+   * zero-based and the default is 0.
+   */
+  offset?: number;
+
+  /**
+   * `orderby` indicates the field(s) and direction to sort the results in the
+   * response. See <a href="#section/API-Overview/Bulk-Request-Options">Bulk Request
+   * Options</a> for more information.
+   */
+  orderby?: string;
+}
+
+export interface RentListAllParams {
   /**
    * Filters results to only rents that were created after this date. The value must
    * be in UTC and formatted as `YYYY-MM-DDTHH:MM:SSZ`. The maximum date range is 365
@@ -464,10 +527,13 @@ export declare namespace Rent {
   export {
     type LeaseRentCharge as LeaseRentCharge,
     type LeaseRentMessage as LeaseRentMessage,
-    type RentRetrieveAllResponse as RentRetrieveAllResponse,
+    type RentRetrieveResponse as RentRetrieveResponse,
+    type RentGetByLeaseResponse as RentGetByLeaseResponse,
+    type RentListAllResponse as RentListAllResponse,
     type RentCreateParams as RentCreateParams,
     type RentRetrieveParams as RentRetrieveParams,
     type RentUpdateParams as RentUpdateParams,
-    type RentRetrieveAllParams as RentRetrieveAllParams,
+    type RentGetByLeaseParams as RentGetByLeaseParams,
+    type RentListAllParams as RentListAllParams,
   };
 }

@@ -94,17 +94,20 @@ import {
   LeaseRentMessage,
   Rent,
   RentCreateParams,
-  RentRetrieveAllParams,
-  RentRetrieveAllResponse,
+  RentGetByLeaseParams,
+  RentGetByLeaseResponse,
+  RentListAllParams,
+  RentListAllResponse,
   RentRetrieveParams,
+  RentRetrieveResponse,
   RentUpdateParams,
 } from './rent';
 import * as RentersinsuranceAPI from './rentersinsurance';
 import {
   RentersInsurancePolicy,
   Rentersinsurance,
-  RentersinsuranceRetrieveAllParams,
-  RentersinsuranceRetrieveAllResponse,
+  RentersinsuranceListAllParams,
+  RentersinsuranceListAllResponse,
   RentersinsuranceRetrieveParams,
 } from './rentersinsurance';
 import * as TransactionsAPI from './transactions';
@@ -121,8 +124,8 @@ import {
   RentalTenantPut,
   Tenant as TenantsAPITenant,
   TenantCreateParams,
-  TenantRetrieveAllParams,
-  TenantRetrieveAllResponse,
+  TenantListAllParams,
+  TenantListAllResponse,
   TenantUpdateParams,
   Tenants,
 } from './tenants/tenants';
@@ -257,7 +260,7 @@ export class Leases extends APIResource {
    * @example
    * ```ts
    * const leaseTransaction =
-   *   await client.leases.createAutoallocatedPayment(0, {
+   *   await client.leases.createAutoPayment(0, {
    *     Date: '2019-12-27',
    *     PaymentMethod: 'Check',
    *     SendEmailReceipt: true,
@@ -265,9 +268,9 @@ export class Leases extends APIResource {
    *   });
    * ```
    */
-  createAutoallocatedPayment(
+  createAutoPayment(
     leaseID: number,
-    body: LeaseCreateAutoallocatedPaymentParams,
+    body: LeaseCreateAutoPaymentParams,
     options?: RequestOptions,
   ): APIPromise<TransactionsAPI.LeaseTransaction> {
     return this._client.post(path`/v1/leases/${leaseID}/autoallocatedpayments`, { body, ...options });
@@ -309,15 +312,15 @@ export class Leases extends APIResource {
    * @example
    * ```ts
    * const leaseTransaction =
-   *   await client.leases.createPaymentReversal(0, {
+   *   await client.leases.createPayReversal(0, {
    *     EntryDate: '2019-12-27',
    *     PaymentTransactionId: 0,
    *   });
    * ```
    */
-  createPaymentReversal(
+  createPayReversal(
     leaseID: number,
-    body: LeaseCreatePaymentReversalParams,
+    body: LeaseCreatePayReversalParams,
     options?: RequestOptions,
   ): APIPromise<TransactionsAPI.LeaseTransaction> {
     return this._client.post(path`/v1/leases/${leaseID}/reversepayments`, { body, ...options });
@@ -331,14 +334,13 @@ export class Leases extends APIResource {
    *
    * @example
    * ```ts
-   * const response =
-   *   await client.leases.listOutstandingBalances();
+   * const response = await client.leases.listBalances();
    * ```
    */
-  listOutstandingBalances(
-    query: LeaseListOutstandingBalancesParams | null | undefined = {},
+  listBalances(
+    query: LeaseListBalancesParams | null | undefined = {},
     options?: RequestOptions,
-  ): APIPromise<LeaseListOutstandingBalancesResponse> {
+  ): APIPromise<LeaseListBalancesResponse> {
     return this._client.get('/v1/leases/outstandingbalances', { query, ...options });
   }
 
@@ -349,13 +351,13 @@ export class Leases extends APIResource {
    *
    * @example
    * ```ts
-   * const response = await client.leases.listRenewalHistory();
+   * const response = await client.leases.listRenewHistory();
    * ```
    */
-  listRenewalHistory(
-    query: LeaseListRenewalHistoryParams | null | undefined = {},
+  listRenewHistory(
+    query: LeaseListRenewHistoryParams | null | undefined = {},
     options?: RequestOptions,
-  ): APIPromise<LeaseListRenewalHistoryResponse> {
+  ): APIPromise<LeaseListRenewHistoryResponse> {
     return this._client.get('/v1/leases/renewalhistory', { query, ...options });
   }
 }
@@ -675,11 +677,10 @@ export namespace LeaseRentForPostMessage {
 
 export type LeaseListResponse = Array<Lease>;
 
-export type LeaseListOutstandingBalancesResponse =
-  Array<LeaseListOutstandingBalancesResponse.LeaseListOutstandingBalancesResponseItem>;
+export type LeaseListBalancesResponse = Array<LeaseListBalancesResponse.LeaseListBalancesResponseItem>;
 
-export namespace LeaseListOutstandingBalancesResponse {
-  export interface LeaseListOutstandingBalancesResponseItem {
+export namespace LeaseListBalancesResponse {
+  export interface LeaseListBalancesResponseItem {
     /**
      * Outstanding balance due from within the last 30 days.
      */
@@ -742,11 +743,11 @@ export namespace LeaseListOutstandingBalancesResponse {
   }
 }
 
-export type LeaseListRenewalHistoryResponse =
-  Array<LeaseListRenewalHistoryResponse.LeaseListRenewalHistoryResponseItem>;
+export type LeaseListRenewHistoryResponse =
+  Array<LeaseListRenewHistoryResponse.LeaseListRenewHistoryResponseItem>;
 
-export namespace LeaseListRenewalHistoryResponse {
-  export interface LeaseListRenewalHistoryResponseItem {
+export namespace LeaseListRenewHistoryResponse {
+  export interface LeaseListRenewHistoryResponseItem {
     /**
      * Date and time the lease renewal was created.
      */
@@ -1042,7 +1043,7 @@ export interface LeaseListParams {
   unitnumber?: string;
 }
 
-export interface LeaseCreateAutoallocatedPaymentParams {
+export interface LeaseCreateAutoPaymentParams {
   /**
    * The date of the transaction. The date must be formatted as YYYY-MM-DD.
    */
@@ -1145,7 +1146,7 @@ export namespace LeaseCreateCreditParams {
   }
 }
 
-export interface LeaseCreatePaymentReversalParams {
+export interface LeaseCreatePayReversalParams {
   /**
    * Date of the transaction.
    */
@@ -1160,15 +1161,15 @@ export interface LeaseCreatePaymentReversalParams {
   /**
    * Fee assessed by the bank for the reversed payment.
    */
-  BankFee?: LeaseCreatePaymentReversalParams.BankFee | null;
+  BankFee?: LeaseCreatePayReversalParams.BankFee | null;
 
   /**
    * Non-sufficient funds (NSF) charge to the tenant.
    */
-  NSFCharge?: LeaseCreatePaymentReversalParams.NsfCharge | null;
+  NSFCharge?: LeaseCreatePayReversalParams.NsfCharge | null;
 }
 
-export namespace LeaseCreatePaymentReversalParams {
+export namespace LeaseCreatePayReversalParams {
   /**
    * Fee assessed by the bank for the reversed payment.
    */
@@ -1200,7 +1201,7 @@ export namespace LeaseCreatePaymentReversalParams {
   }
 }
 
-export interface LeaseListOutstandingBalancesParams {
+export interface LeaseListBalancesParams {
   balanceduration?:
     | 'TotalBalance'
     | 'Balance0to30Days'
@@ -1240,7 +1241,7 @@ export interface LeaseListOutstandingBalancesParams {
   pastdueemail?: 'NoEmailAddress' | 'Sent';
 }
 
-export interface LeaseListRenewalHistoryParams {
+export interface LeaseListRenewHistoryParams {
   /**
    * Filters results to only lease renewals that were created after this date. The
    * value must be in UTC and formatted as `YYYY-MM-DDTHH:MM:SSZ`. The maximum date
@@ -1319,16 +1320,16 @@ export declare namespace Leases {
     type LeaseCosigner as LeaseCosigner,
     type LeaseRentForPostMessage as LeaseRentForPostMessage,
     type LeaseListResponse as LeaseListResponse,
-    type LeaseListOutstandingBalancesResponse as LeaseListOutstandingBalancesResponse,
-    type LeaseListRenewalHistoryResponse as LeaseListRenewalHistoryResponse,
+    type LeaseListBalancesResponse as LeaseListBalancesResponse,
+    type LeaseListRenewHistoryResponse as LeaseListRenewHistoryResponse,
     type LeaseCreateParams as LeaseCreateParams,
     type LeaseUpdateParams as LeaseUpdateParams,
     type LeaseListParams as LeaseListParams,
-    type LeaseCreateAutoallocatedPaymentParams as LeaseCreateAutoallocatedPaymentParams,
+    type LeaseCreateAutoPaymentParams as LeaseCreateAutoPaymentParams,
     type LeaseCreateCreditParams as LeaseCreateCreditParams,
-    type LeaseCreatePaymentReversalParams as LeaseCreatePaymentReversalParams,
-    type LeaseListOutstandingBalancesParams as LeaseListOutstandingBalancesParams,
-    type LeaseListRenewalHistoryParams as LeaseListRenewalHistoryParams,
+    type LeaseCreatePayReversalParams as LeaseCreatePayReversalParams,
+    type LeaseListBalancesParams as LeaseListBalancesParams,
+    type LeaseListRenewHistoryParams as LeaseListRenewHistoryParams,
   };
 
   export {
@@ -1444,28 +1445,31 @@ export declare namespace Leases {
     Rent as Rent,
     type LeaseRentCharge as LeaseRentCharge,
     type LeaseRentMessage as LeaseRentMessage,
-    type RentRetrieveAllResponse as RentRetrieveAllResponse,
+    type RentRetrieveResponse as RentRetrieveResponse,
+    type RentGetByLeaseResponse as RentGetByLeaseResponse,
+    type RentListAllResponse as RentListAllResponse,
     type RentCreateParams as RentCreateParams,
     type RentRetrieveParams as RentRetrieveParams,
     type RentUpdateParams as RentUpdateParams,
-    type RentRetrieveAllParams as RentRetrieveAllParams,
+    type RentGetByLeaseParams as RentGetByLeaseParams,
+    type RentListAllParams as RentListAllParams,
   };
 
   export {
     Rentersinsurance as Rentersinsurance,
     type RentersInsurancePolicy as RentersInsurancePolicy,
-    type RentersinsuranceRetrieveAllResponse as RentersinsuranceRetrieveAllResponse,
+    type RentersinsuranceListAllResponse as RentersinsuranceListAllResponse,
     type RentersinsuranceRetrieveParams as RentersinsuranceRetrieveParams,
-    type RentersinsuranceRetrieveAllParams as RentersinsuranceRetrieveAllParams,
+    type RentersinsuranceListAllParams as RentersinsuranceListAllParams,
   };
 
   export {
     Tenants as Tenants,
     type RentalTenantPut as RentalTenantPut,
     type TenantsAPITenant as Tenant,
-    type TenantRetrieveAllResponse as TenantRetrieveAllResponse,
+    type TenantListAllResponse as TenantListAllResponse,
     type TenantCreateParams as TenantCreateParams,
     type TenantUpdateParams as TenantUpdateParams,
-    type TenantRetrieveAllParams as TenantRetrieveAllParams,
+    type TenantListAllParams as TenantListAllParams,
   };
 }

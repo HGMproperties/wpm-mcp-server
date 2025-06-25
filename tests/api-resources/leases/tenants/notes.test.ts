@@ -3,7 +3,7 @@
 import WpmMcpServer from 'wpm-mcp-server';
 
 const client = new WpmMcpServer({
-  apiKey: 'My API Key',
+  clientID: 'My Client ID',
   baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
 });
 
@@ -60,8 +60,8 @@ describe('resource notes', () => {
   });
 
   // skipped: tests are disabled for the time being
-  test.skip('retrieveAll', async () => {
-    const responsePromise = client.leases.tenants.notes.retrieveAll(0);
+  test.skip('listAll', async () => {
+    const responsePromise = client.leases.tenants.notes.listAll(0);
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -72,10 +72,10 @@ describe('resource notes', () => {
   });
 
   // skipped: tests are disabled for the time being
-  test.skip('retrieveAll: request options and params are passed correctly', async () => {
+  test.skip('listAll: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      client.leases.tenants.notes.retrieveAll(
+      client.leases.tenants.notes.listAll(
         0,
         {
           lastupdatedbyuserid: 0,

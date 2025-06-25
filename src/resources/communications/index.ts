@@ -5,19 +5,19 @@ export {
   type AnnouncementMessage,
   type PropertyMessage,
   type AnnouncementListResponse,
-  type AnnouncementRetrievePropertiesResponse,
+  type AnnouncementListPropertiesResponse,
   type AnnouncementCreateParams,
   type AnnouncementListParams,
-  type AnnouncementRetrievePropertiesParams,
+  type AnnouncementListPropertiesParams,
 } from './announcements';
 export { Communications } from './communications';
 export {
   Emails,
   type EmailMessage,
   type EmailListResponse,
-  type EmailRetrieveRecipientsResponse,
+  type EmailListRecipientsResponse,
   type EmailListParams,
-  type EmailRetrieveRecipientsParams,
+  type EmailListRecipientsParams,
   type EmailSendParams,
 } from './emails';
 export {

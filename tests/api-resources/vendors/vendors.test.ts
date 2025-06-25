@@ -3,7 +3,7 @@
 import WpmMcpServer from 'wpm-mcp-server';
 
 const client = new WpmMcpServer({
-  apiKey: 'My API Key',
+  clientID: 'My Client ID',
   baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
 });
 
@@ -167,8 +167,8 @@ describe('resource vendors', () => {
   });
 
   // skipped: tests are disabled for the time being
-  test.skip('retrieveTransactions: only required params', async () => {
-    const responsePromise = client.vendors.retrieveTransactions(0, {
+  test.skip('listTransactions: only required params', async () => {
+    const responsePromise = client.vendors.listTransactions(0, {
       transactiondatefrom: '2019-12-27',
       transactiondateto: '2019-12-27',
     });
@@ -182,8 +182,8 @@ describe('resource vendors', () => {
   });
 
   // skipped: tests are disabled for the time being
-  test.skip('retrieveTransactions: required and optional params', async () => {
-    const response = await client.vendors.retrieveTransactions(0, {
+  test.skip('listTransactions: required and optional params', async () => {
+    const response = await client.vendors.listTransactions(0, {
       transactiondatefrom: '2019-12-27',
       transactiondateto: '2019-12-27',
       limit: 0,

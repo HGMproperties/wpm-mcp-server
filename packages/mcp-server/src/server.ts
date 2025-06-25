@@ -26,7 +26,7 @@ export { endpoints } from './tools';
 export const server = new McpServer(
   {
     name: 'wpm_mcp_server_api',
-    version: '0.0.1-alpha.1',
+    version: '1.6.0',
   },
   {
     capabilities: {

@@ -3,7 +3,7 @@
 import WpmMcpServer from 'wpm-mcp-server';
 
 const client = new WpmMcpServer({
-  apiKey: 'My API Key',
+  clientID: 'My Client ID',
   baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
 });
 
@@ -61,8 +61,12 @@ describe('resource bills', () => {
   });
 
   // skipped: tests are disabled for the time being
-  test.skip('update', async () => {
-    const responsePromise = client.bills.update(0, {});
+  test.skip('update: only required params', async () => {
+    const responsePromise = client.bills.update(0, {
+      Date: '2019-12-27',
+      DueDate: '2019-12-27',
+      VendorId: 0,
+    });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -70,6 +74,27 @@ describe('resource bills', () => {
     const dataAndResponse = await responsePromise.withResponse();
     expect(dataAndResponse.data).toBe(response);
     expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  // skipped: tests are disabled for the time being
+  test.skip('update: required and optional params', async () => {
+    const response = await client.bills.update(0, {
+      Date: '2019-12-27',
+      DueDate: '2019-12-27',
+      VendorId: 0,
+      Lines: [
+        {
+          AccountingEntity: { AccountingEntityType: 'Association', Id: 0, UnitId: 0 },
+          Amount: 0,
+          GlAccountId: 0,
+          Id: 0,
+          Markup: { Amount: 0, Type: 'Percent' },
+          Memo: 'Memo',
+        },
+      ],
+      Memo: 'Memo',
+      ReferenceNumber: 'ReferenceNumber',
+    });
   });
 
   // skipped: tests are disabled for the time being

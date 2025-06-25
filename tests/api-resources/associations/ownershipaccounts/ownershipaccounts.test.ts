@@ -3,7 +3,7 @@
 import WpmMcpServer from 'wpm-mcp-server';
 
 const client = new WpmMcpServer({
-  apiKey: 'My API Key',
+  clientID: 'My Client ID',
   baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
 });
 
@@ -141,8 +141,8 @@ describe('resource ownershipaccounts', () => {
   });
 
   // skipped: tests are disabled for the time being
-  test.skip('autoallocatedpayments: only required params', async () => {
-    const responsePromise = client.associations.ownershipaccounts.autoallocatedpayments(0, {
+  test.skip('autoPayments: only required params', async () => {
+    const responsePromise = client.associations.ownershipaccounts.autoPayments(0, {
       Date: '2019-12-27',
       PaymentMethod: 'Check',
       SendEmailReceipt: true,
@@ -158,8 +158,8 @@ describe('resource ownershipaccounts', () => {
   });
 
   // skipped: tests are disabled for the time being
-  test.skip('autoallocatedpayments: required and optional params', async () => {
-    const response = await client.associations.ownershipaccounts.autoallocatedpayments(0, {
+  test.skip('autoPayments: required and optional params', async () => {
+    const response = await client.associations.ownershipaccounts.autoPayments(0, {
       Date: '2019-12-27',
       PaymentMethod: 'Check',
       SendEmailReceipt: true,
@@ -198,8 +198,8 @@ describe('resource ownershipaccounts', () => {
   });
 
   // skipped: tests are disabled for the time being
-  test.skip('retrieveOutstandingbalances', async () => {
-    const responsePromise = client.associations.ownershipaccounts.retrieveOutstandingbalances();
+  test.skip('getBalances', async () => {
+    const responsePromise = client.associations.ownershipaccounts.getBalances();
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -210,10 +210,10 @@ describe('resource ownershipaccounts', () => {
   });
 
   // skipped: tests are disabled for the time being
-  test.skip('retrieveOutstandingbalances: request options and params are passed correctly', async () => {
+  test.skip('getBalances: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      client.associations.ownershipaccounts.retrieveOutstandingbalances(
+      client.associations.ownershipaccounts.getBalances(
         {
           associationid: 0,
           balanceduration: 'TotalBalance',

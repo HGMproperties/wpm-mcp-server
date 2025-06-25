@@ -10,10 +10,10 @@ export {
   type ImageUpdateParams,
   type ImageListParams,
   type ImageDeleteParams,
-  type ImageDownloadrequestsParams,
+  type ImageDownloadRequestsParams,
   type ImageUpdateOrderParams,
-  type ImageUploadrequestsParams,
-  type ImageVideolinkrequestsParams,
+  type ImageUploadRequestsParams,
+  type ImageVideoLinkRequestsParams,
 } from './images';
 export { ListingResource, type Listing, type ListingFile, type ListingCreateParams } from './listing';
 export {
@@ -37,9 +37,9 @@ export {
   Units,
   type RentalUnit,
   type UnitListResponse,
-  type UnitRetrieveListingsResponse,
+  type UnitListListingsResponse,
   type UnitCreateParams,
   type UnitUpdateParams,
   type UnitListParams,
-  type UnitRetrieveListingsParams,
+  type UnitListListingsParams,
 } from './units';

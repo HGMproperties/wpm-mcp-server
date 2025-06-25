@@ -4,31 +4,17 @@ It is generated with [Stainless](https://www.stainless.com/).
 
 ## Installation
 
-### Building
+### Direct invocation
 
-Because it's not published yet, clone the repo and build it:
-
-```sh
-git clone git@github.com:HGMproperties/wpm-mcp-server.git
-cd wpm-mcp-server
-./scripts/bootstrap
-./scripts/build
-```
-
-### Running
+You can run the MCP Server directly via `npx`:
 
 ```sh
-# set env vars as needed
-export WPM_MCP_SERVER_API_KEY="My API Key"
-node ./packages/mcp-server/dist/index.js
+export WPM_BUILDIUM_CLIENT_ID="My Client ID"
+export WPM_BUILDIUM_CLIENT_SECRET="My Client Secret"
+npx -y wpm-mcp-server-mcp@latest
 ```
-
-> [!NOTE]
-> Once this package is [published to npm](https://www.stainless.com/docs/guides/publish), this will become: `npx -y wpm-mcp-server-mcp`
 
 ### Via MCP Client
-
-[Build the project](#building) as mentioned above.
 
 There is a partial list of existing clients at [modelcontextprotocol.io](https://modelcontextprotocol.io/clients). If you already
 have a client, consult their documentation to install the MCP server.
@@ -39,10 +25,11 @@ For clients with a configuration JSON, it might look something like this:
 {
   "mcpServers": {
     "wpm_mcp_server_api": {
-      "command": "node",
-      "args": ["/path/to/local/wpm-mcp-server/packages/mcp-server", "--client=claude", "--tools=dynamic"],
+      "command": "npx",
+      "args": ["-y", "wpm-mcp-server-mcp", "--client=claude", "--tools=dynamic"],
       "env": {
-        "WPM_MCP_SERVER_API_KEY": "My API Key"
+        "WPM_BUILDIUM_CLIENT_ID": "My Client ID",
+        "WPM_BUILDIUM_CLIENT_SECRET": "My Client Secret"
       }
     }
   }
@@ -148,7 +135,7 @@ over time, you can manually enable or disable certain capabilities:
 import { server, endpoints, init } from "wpm-mcp-server-mcp/server";
 
 // import a specific tool
-import createAutoAllocatedPaymentApplications from "wpm-mcp-server-mcp/tools/applications/create-auto-allocated-payment-applications";
+import createAutoPayApplications from "wpm-mcp-server-mcp/tools/applications/create-auto-pay-applications";
 
 // initialize the server and all endpoints
 init({ server, endpoints });
@@ -173,7 +160,7 @@ const myCustomEndpoint = {
 };
 
 // initialize the server with your custom endpoints
-init({ server: myServer, endpoints: [createAutoAllocatedPaymentApplications, myCustomEndpoint] });
+init({ server: myServer, endpoints: [createAutoPayApplications, myCustomEndpoint] });
 ```
 
 ## Available Tools
@@ -182,17 +169,17 @@ The following tools are available in this MCP server.
 
 ### Resource `applications`:
 
-- `create_auto_allocated_payment_applications` (`write`): Creates a payment on the application ledger. Note that the recorded payment will be automatically allocated to the general ledger accounts based on the payment allocation settings. These settings can be found under the Settings > Application Settings > Residents page in your account. If you'd like to specify the GL accounts the payment should apply to, please use the <a href="#operation/ExternalApiApplicationLedgerPayments_CreateApplicationLedgerPayment">Create a payment</a> endpoint.
+- `create_auto_pay_applications` (`write`): Creates a payment on the application ledger. Note that the recorded payment will be automatically allocated to the general ledger accounts based on the payment allocation settings. These settings can be found under the Settings > Application Settings > Residents page in your account. If you'd like to specify the GL accounts the payment should apply to, please use the <a href="#operation/ExternalApiApplicationLedgerPayments_CreateApplicationLedgerPayment">Create a payment</a> endpoint.
 
   <h4>Required permission(s):</h4><span class="permissionBlock">Rentals > Lease transactions</span> - `View` `Edit`
 
-- `create_payment_reversal_applications` (`write`): Reverses an application ledger payment. Note, this action can only be taken on a payment that has been deposited.
+- `create_pay_reversal_applications` (`write`): Reverses an application ledger payment. Note, this action can only be taken on a payment that has been deposited.
 
   <h4>Required permission(s):</h4><span class="permissionBlock">Rentals > Lease transactions</span> - `View` `Edit`
               
   <span class="permissionBlock">Accounting > Bank Accounts</span> - `View` `Edit`
 
-- `list_outstanding_balances_applications` (`read`): Retrieves a list of applications that have outstanding balances. Applications with a zero or credit balance will not be returned in the results.
+- `list_balances_applications` (`read`): Retrieves a list of applications that have outstanding balances. Applications with a zero or credit balance will not be returned in the results.
 
   <h4>Required permission(s):</h4><span class="permissionBlock">Rentals > Outstanding Balances</span> - `View`
 
@@ -301,7 +288,7 @@ The following tools are available in this MCP server.
 
   <h4>Required permission(s):</h4><span class="permissionBlock">Associations > Ownership accounts</span> - `View`
 
-- `autoallocatedpayments_associations_ownershipaccounts` (`write`): Creates a payment on the ownership account ledger. Note that the recorded payment will be automatically allocated to the general ledger accounts based on the payment allocation settings. These settings can be found under the Settings > Application Settings > Residents page in your account. If you'd like to specify the general ledger accounts the payment should apply to, please use the <a href="#operation/ExternalApiOwnershipAccountLedgerPayments_CreateOwnershipAccountLedgerPayment">Create a payment</a> endpoint.
+- `auto_payments_associations_ownershipaccounts` (`write`): Creates a payment on the ownership account ledger. Note that the recorded payment will be automatically allocated to the general ledger accounts based on the payment allocation settings. These settings can be found under the Settings > Application Settings > Residents page in your account. If you'd like to specify the general ledger accounts the payment should apply to, please use the <a href="#operation/ExternalApiOwnershipAccountLedgerPayments_CreateOwnershipAccountLedgerPayment">Create a payment</a> endpoint.
 
   <h4>Required permission(s):</h4><span class="permissionBlock">Associations > Ownership account transactions</span> - `View` `Edit`
 
@@ -309,7 +296,7 @@ The following tools are available in this MCP server.
 
   <h4>Required permission(s):</h4><span class="permissionBlock">Associations > Ownership account transactions</span> - `View` `Edit`
 
-- `retrieve_outstandingbalances_associations_ownershipaccounts` (`read`): Retrieves a list of ownership account outstanding balances.
+- `get_balances_associations_ownershipaccounts` (`read`): Retrieves a list of ownership account outstanding balances.
 
   <h4>Required permission(s):</h4><span class="permissionBlock">Associations > Outstanding Balances</span> - `View`
 
@@ -377,7 +364,7 @@ The following tools are available in this MCP server.
               
   <span class="permissionBlock">Associations > Architectural requests</span> - `View`
 
-- `downloadrequests_architecturalrequests_ownershipaccounts_associations_files` (`write`): Downloads a specific file associated to the architectural request.
+- `download_requests_architecturalrequests_ownershipaccounts_associations_files` (`write`): Downloads a specific file associated to the architectural request.
 
   <h4>Required permission(s):</h4><span class="permissionBlock">Associations > Associations and units</span> - `View`
               
@@ -387,7 +374,7 @@ The following tools are available in this MCP server.
               
   <span class="permissionBlock">Associations > Architectural requests</span> - `View`
 
-- `uploadrequests_architecturalrequests_ownershipaccounts_associations_files` (`write`): Uploads a file and associates it to the specified architectural request record.
+- `upload_requests_architecturalrequests_ownershipaccounts_associations_files` (`write`): Uploads a file and associates it to the specified architectural request record.
 
   Uploading a file requires making two API requests. Each step is outlined below.
 
@@ -482,7 +469,7 @@ The following tools are available in this MCP server.
 
 ### Resource `associations.ownershipaccounts.recurringtransactions`:
 
-- `list_ownershipaccounts_associations_recurringtransactions` (`read`): Retrieves all recurring transactions for all ownership accounts.
+- `list_ownershipaccounts_associations_recurringtransactions` (`read`): Retrieves all recurring transactions for an ownership account.
 
   <h4>Required permission(s):</h4><span class="permissionBlock">Associations > Ownership account transactions</span> - `View`
 
@@ -941,7 +928,7 @@ The following tools are available in this MCP server.
 
   <span class="permissionBlock">Rentals > Leases</span> - `View`
 
-- `create_autoallocated_payment_leases` (`write`): Creates a payment on the lease ledger. Note that the recorded payment will be automatically allocated to the general ledger accounts based on the payment allocation settings. These settings can be found under the Settings > Application Settings > Residents page in your account. If you'd like to specify the GL accounts the payment should apply to, please use the <a href="#operation/ExternalApiLeaseLedgerPaymentsWrite_CreatePayment">Create a payment</a> endpoint.
+- `create_auto_payment_leases` (`write`): Creates a payment on the lease ledger. Note that the recorded payment will be automatically allocated to the general ledger accounts based on the payment allocation settings. These settings can be found under the Settings > Application Settings > Residents page in your account. If you'd like to specify the GL accounts the payment should apply to, please use the <a href="#operation/ExternalApiLeaseLedgerPaymentsWrite_CreatePayment">Create a payment</a> endpoint.
 
   <h4>Required permission(s):</h4><span class="permissionBlock">Rentals > Lease transactions</span> - `View` `Edit`
 
@@ -949,17 +936,17 @@ The following tools are available in this MCP server.
 
   <h4>Required permission(s):</h4><span class="permissionBlock">Rentals > Lease transactions</span> - `View` `Edit`
 
-- `create_payment_reversal_leases` (`write`): Reverses a lease ledger payment. Note, this action can only be taken on a payment that has been deposited.
+- `create_pay_reversal_leases` (`write`): Reverses a lease ledger payment. Note, this action can only be taken on a payment that has been deposited.
 
   <h4>Required permission(s):</h4><span class="permissionBlock">Rentals > Lease transactions</span> - `View` `Edit`
               
   <span class="permissionBlock">Accounting > Bank Accounts</span> - `View` `Edit`
 
-- `list_outstanding_balances_leases` (`read`): Retrieves a list of leases that have outstanding balances. Leases with a zero or credit balance will not be returned in the results.
+- `list_balances_leases` (`read`): Retrieves a list of leases that have outstanding balances. Leases with a zero or credit balance will not be returned in the results.
 
   <h4>Required permission(s):</h4><span class="permissionBlock">Rentals > Outstanding Balances</span> - `View`
 
-- `list_renewal_history_leases` (`read`): Retrieves all lease renewal history
+- `list_renew_history_leases` (`read`): Retrieves all lease renewal history
 
   <h4>Required permission(s):</h4><span class="permissionBlock">Rentals > Leases</span> - `View`
 
@@ -1159,7 +1146,7 @@ The following tools are available in this MCP server.
 
   <h4>Required permission(s):</h4><span class="permissionBlock">Rentals > Lease Transactions</span> - `View` `Edit`
 
-- `retrieve_leases_rent` (`read`): Retrieves a specific rent schedule for a lease. The rent schedule provides details (dollar amount, day of the month, etc) of the recurring charges that are applied to the lease ledger each rent cycle.
+- `retrieve_leases_rent` (`read`): The rent schedule provides details (dollar amount, day of the month, etc) of the recurring charges that are applied to the lease ledger each rent cycle. A lease may have more than one rent schedule associated with it if the rent terms change within the duration of the lease.
 
   <h4>Required permission(s):</h4><span class="permissionBlock">Rentals > Lease transactions</span> - `View`
 
@@ -1167,7 +1154,11 @@ The following tools are available in this MCP server.
 
   <h4>Required permission(s):</h4><span class="permissionBlock">Rentals > Lease Transactions</span> - `View` `Edit`
 
-- `retrieve_all_leases_rent` (`read`): The rent schedule provides details (dollar amount, day of the month, etc) of the recurring charges that are applied to the lease ledger each rent cycle. A lease may have more than one rent schedule associated with it if the rent terms change within the duration of the lease.
+- `get_by_lease_leases_rent` (`read`): The rent schedule provides details (dollar amount, day of the month, etc) of the recurring charges that are applied to the lease ledger each rent cycle. A lease may have more than one rent schedule associated with it if the rent terms change within the duration of the lease.
+
+  <h4>Required permission(s):</h4><span class="permissionBlock">Rentals > Lease transactions</span> - `View`
+
+- `list_all_leases_rent` (`read`): The rent schedule provides details (dollar amount, day of the month, etc) of the recurring charges that are applied to the lease ledger each rent cycle. A lease may have more than one rent schedule associated with it if the rent terms change within the duration of the lease.
 
   <h4>Required permission(s):</h4><span class="permissionBlock">Rentals > Lease transactions</span> - `View`
 
@@ -1177,7 +1168,7 @@ The following tools are available in this MCP server.
 
   <h4>Required permission(s):</h4><span class="permissionBlock">Rentals > Leases</span> - `View`
 
-- `retrieve_all_leases_rentersinsurance` (`read`): Retrieves all renters insurance policies for a lease.
+- `list_all_leases_rentersinsurance` (`read`): Retrieves all renters insurance policies for a lease.
 
   <h4>Required permission(s):</h4><span class="permissionBlock">Rentals > Leases</span> - `View`
 
@@ -1200,7 +1191,7 @@ The following tools are available in this MCP server.
 
   <h4>Required permission(s):</h4><span class="permissionBlock">Rentals > Tenants</span> - `View` `Edit`
 
-- `retrieve_all_leases_tenants` (`read`): Retrieves a list of tenants.
+- `list_all_leases_tenants` (`read`): Retrieves a list of tenants.
 
   <h4>Required permission(s):</h4><span class="permissionBlock">Rentals > Tenants</span> - `View`
 
@@ -1221,7 +1212,7 @@ The following tools are available in this MCP server.
 
   <h4>Required permission(s):</h4><span class="permissionBlock">Rentals > Tenants</span> - `View` `Edit`
 
-- `retrieve_all_tenants_leases_notes` (`read`): Retrieves all tenant notes.
+- `list_all_tenants_leases_notes` (`read`): Retrieves all tenant notes.
 
   <h4>Required permission(s):</h4><span class="permissionBlock">Rentals > Tenants</span> - `View`
 
@@ -1275,7 +1266,7 @@ The following tools are available in this MCP server.
 
   <h4>Required permission(s):</h4><span class="permissionBlock">Rentals > Rental properties and units</span> - `View`
 
-- `retrieve_listings_rentals_units` (`read`): Retrieves all listings.
+- `list_listings_rentals_units` (`read`): Retrieves all listings.
 
   <span class="permissionBlock">Rentals > Listings</span> - `View`
 
@@ -1359,7 +1350,7 @@ The following tools are available in this MCP server.
 
   <h4>Required permission(s):</h4><span class="permissionBlock">Rentals > Rental properties and units</span> - `View` `Edit` `Delete`
 
-- `downloadrequests_units_rentals_images` (`write`): Use this endpoint to create a temporary URL that can be used to download a unit image. This URL expires after 5 minutes.
+- `download_requests_units_rentals_images` (`write`): Use this endpoint to create a temporary URL that can be used to download a unit image. This URL expires after 5 minutes.
 
   <h4>Required permission(s):</h4><span class="permissionBlock">Rentals > Rental properties and units</span> - `View`
 
@@ -1367,7 +1358,7 @@ The following tools are available in this MCP server.
 
   <h4>Required permission(s):</h4><span class="permissionBlock">Rentals > Rental properties and units</span> - `View` `Edit`
 
-- `uploadrequests_units_rentals_images` (`write`): Uploads an image and associates it to the specified unit record.
+- `upload_requests_units_rentals_images` (`write`): Uploads an image and associates it to the specified unit record.
 
   Uploading a file requires making two API requests. Each step is outlined below.
 
@@ -1407,7 +1398,7 @@ The following tools are available in this MCP server.
 
   <h4>Required permission(s):</h4><span class="permissionBlock">Rentals > Rental properties and units</span> - `View` `Edit`
 
-- `videolinkrequests_units_rentals_images` (`write`): Creates an image for a rental unit using a video link.
+- `video_link_requests_units_rentals_images` (`write`): Creates an image for a rental unit using a video link.
 
   <h4>Required permission(s):</h4><span class="permissionBlock">Rentals > Properties and units</span> - `View` `Edit`
 
@@ -1487,7 +1478,7 @@ The following tools are available in this MCP server.
 
   <h4>Required permission(s):</h4><span class="permissionBlock">Rentals > Rental properties and units</span> - `View` `Edit` `Delete`
 
-- `downloadrequests_rentals_images` (`write`): Use this endpoint to create a temporary URL that can be used to download a property image. This URL expires after 5 minutes.
+- `download_requests_rentals_images` (`write`): Use this endpoint to create a temporary URL that can be used to download a property image. This URL expires after 5 minutes.
 
   <h4>Required permission(s):</h4><span class="permissionBlock">Rentals > Rental properties and units</span> - `View`
 
@@ -1495,7 +1486,7 @@ The following tools are available in this MCP server.
 
   <h4>Required permission(s):</h4><span class="permissionBlock">Rentals > Rental properties and units</span> - `View` `Edit`
 
-- `uploadrequests_rentals_images` (`write`): Uploads an image and associates it to the specified rental record.
+- `upload_requests_rentals_images` (`write`): Uploads an image and associates it to the specified rental record.
 
   Uploading a file requires making two API requests. Each step is outlined below.
 
@@ -1535,7 +1526,7 @@ The following tools are available in this MCP server.
 
   <h4>Required permission(s):</h4><span class="permissionBlock">Rentals > Rental properties and units</span> - `View` `Edit`
 
-- `videolinkrequests_rentals_images` (`write`): Creates an image for a rental using a video link.
+- `video_link_requests_rentals_images` (`write`): Creates an image for a rental using a video link.
 
   <h4>Required permission(s):</h4><span class="permissionBlock">Rentals > Rental properties and units</span> - `View` `Edit`
 
@@ -1684,11 +1675,11 @@ The following tools are available in this MCP server.
 
 ### Resource `administration`:
 
-- `retrieve_account_administration` (`read`): Retrieves information related to the Buildium account.
+- `get_account_administration` (`read`): Retrieves information related to the Buildium account.
 
   <h4>Required permission(s):</h4><span class="permissionBlock">Administration > Account Information</span> - `View`
 
-- `retrieve_accounting_lock_periods_administration` (`read`): Retrieves accounting lock periods.
+- `get_acct_lock_periods_administration` (`read`): Retrieves accounting lock periods.
 
   <h4>Required permission(s):</h4><span class="permissionBlock">Administration > Application Settings</span> - `View`
 
@@ -1817,7 +1808,7 @@ The following tools are available in this MCP server.
 
   <h4>Required permission(s):</h4><span class="permissionBlock">Accounting > Bank Accounts</span> - `View`
 
-- `retrieve_undeposited_funds_bankaccounts` (`read`): Retrieve all bank account undeposited funds.
+- `get_undeposited_funds_bankaccounts` (`read`): Retrieve all bank account undeposited funds.
 
   <h4>Required permission(s):</h4><span class="permissionBlock">Accounting > Bank Accounts</span> - `View`
 
@@ -1863,12 +1854,6 @@ The following tools are available in this MCP server.
 - `delete_checks_bankaccounts_files` (`write`): Deletes a file for a check
 
   <h4>Required permission(s):</h4><span class="permissionBlock">Accounting > BankAccounts</span> - `View` `Edit` `Delete`
-              
-  <span class="permissionBlock">Accounting > General Ledger Transactions</span> - `View` <span class="permissionBlock">(Required for checks associated with a Company) </span>
-
-- `download_checks_bankaccounts_files` (`write`): Downloads a specific file associated to the check.
-
-  <h4>Required permission(s):</h4><span class="permissionBlock">Accounting > Bank Accounts</span> - `View`
               
   <span class="permissionBlock">Accounting > General Ledger Transactions</span> - `View` <span class="permissionBlock">(Required for checks associated with a Company) </span>
 
@@ -1972,19 +1957,19 @@ The following tools are available in this MCP server.
 
   <h4>Required permission(s):</h4><span class="permissionBlock">Accounting > BankAccount</span> - `View`
 
-- `cleartransactionsrequest_bankaccounts_reconciliations` (`write`): Clears transactions for a reconciliation. Reconciliation transactions can only be cleared for bank accounts that are not linked externally.
+- `clear_transactions_bankaccounts_reconciliations` (`write`): Clears transactions for a reconciliation. Reconciliation transactions can only be cleared for bank accounts that are not linked externally.
 
   <h4>Required permission(s):</h4><span class="permissionBlock">Accounting > BankAccount</span> - `View` `Edit`
 
-- `finalizerequest_bankaccounts_reconciliations` (`write`): Finalizes a manual reconciliation. Reconciliations can only be finalized for bank accounts that are not linked externally.
+- `finalize_bankaccounts_reconciliations` (`write`): Finalizes a manual reconciliation. Reconciliations can only be finalized for bank accounts that are not linked externally.
 
   <h4>Required permission(s):</h4><span class="permissionBlock">Accounting > BankAccount</span> - `View` `Edit`
 
-- `retrieve_transactions_bankaccounts_reconciliations` (`read`): Retrieves all transactions, both cleared and uncleared, up to the Statement Ending Date of the related reconciliation. This is true for pending and completed reconciliations. Transactions can only be retrieved for bank accounts that are not linked externally.
+- `list_transactions_bankaccounts_reconciliations` (`read`): Retrieves all transactions, both cleared and uncleared, up to the Statement Ending Date of the related reconciliation. This is true for pending and completed reconciliations. Transactions can only be retrieved for bank accounts that are not linked externally.
 
   <h4>Required permission(s):</h4><span class="permissionBlock">Accounting > BankAccount</span> - `View`
 
-- `uncleartransactionsrequest_bankaccounts_reconciliations` (`write`): Un-clears transactions for a reconciliation. Reconciliation transactions can only be un-cleared for bank accounts that are not linked externally.
+- `unclear_transactions_bankaccounts_reconciliations` (`write`): Un-clears transactions for a reconciliation. Reconciliation transactions can only be un-cleared for bank accounts that are not linked externally.
 
   <h4>Required permission(s):</h4><span class="permissionBlock">Accounting > BankAccount</span> - `View` `Edit`
 
@@ -2062,7 +2047,8 @@ The following tools are available in this MCP server.
 
   <h4>Required permission(s):</h4><span class="permissionBlock">Accounting > Bills</span> - `View`
 
-- `update_bills` (`write`): Updates a bill.
+- `update_bills` (`write`): Use this operation to update any of the writable fields of an existing bill resource. When updating this resource keep the following in mind:
+  <ul><li>Writable fields omitted from the request or that do not have a value in the request message are set to `NULL`. If you do not want to update the field, submit the original field value.</li><li>When a bill has an existing payment any edits to the line items that change the total bill amount must result in the new total bill amount being equal to or greater than the amount paid.</li><li>When adding a new line item leave the `LineItem.Id` field empty.</li><li>You cannot update a bill that has a pending EFT associated with it.</li></ul>
 
   <h4>Required permission(s):</h4><span class="permissionBlock">Accounting > Bills</span> - `View` `Edit`
 
@@ -2191,7 +2177,7 @@ The following tools are available in this MCP server.
 
   <h4>Required permission(s):</h4><span class="permissionBlock">Communications > Announcements</span> - `View` `Edit`
 
-- `retrieve_properties_communications_announcements` (`read`): Retrieves a list of association and/or rental properties whose residents received the announcement. An empty response collection indicates that the announcement was sent to all properties at the time of its creation.
+- `list_properties_communications_announcements` (`read`): Retrieves a list of association and/or rental properties whose residents received the announcement. An empty response collection indicates that the announcement was sent to all properties at the time of its creation.
 
   <h4>Required permission(s):</h4><span class="permissionBlock">Communications > Announcements</span> - `View`
 
@@ -2205,7 +2191,7 @@ The following tools are available in this MCP server.
 
   <h4>Required permission(s):</h4><span class="permissionBlock">Communication > Emails</span> - `View`
 
-- `retrieve_recipients_communications_emails` (`read`): Retrieves all email recipients.
+- `list_recipients_communications_emails` (`read`): Retrieves all email recipients.
 
   <h4>Required permission(s):</h4><span class="permissionBlock">Communications > Email</span> - `View`
               
@@ -2423,13 +2409,13 @@ The following tools are available in this MCP server.
 
   <h4>Required permission(s):</h4><span class="permissionBlock">Tasks > Tasks</span> - `View` `Edit` `Delete`
 
-- `download_request_history_tasks_files` (`write`): Downloads a specific file associated to the task history record.
+- `download_req_history_tasks_files` (`write`): Downloads a specific file associated to the task history record.
 
   This endpoint can be used for any task type - contact requests, rental owner requests, resident requests or to do's.
 
   <h4>Required permission(s):</h4><span class="permissionBlock">Tasks > Tasks</span> - `View`
 
-- `upload_request_history_tasks_files` (`write`): Uploads a file and associates it to the specified task history record.
+- `upload_req_history_tasks_files` (`write`): Uploads a file and associates it to the specified task history record.
 
   This endpoint can be used for any task type - contact requests, rental owner requests, resident requests or to do's.
 
@@ -2602,7 +2588,7 @@ The following tools are available in this MCP server.
 
   <h4>Required permission(s):</h4><span class="permissionBlock">Maintenance > Vendors</span> - `View`
 
-- `retrieve_transactions_vendors` (`read`): Retrieves all transactions for a given vendor.
+- `list_transactions_vendors` (`read`): Retrieves all transactions for a given vendor.
 
   <h4>Required permission(s):</h4><span class="permissionBlock">Maintenance > Vendors</span> - `View`
 
