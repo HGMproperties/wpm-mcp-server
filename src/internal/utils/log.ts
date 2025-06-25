@@ -106,6 +106,8 @@ export const formatRequestDetails = (details: {
         ([name, value]) => [
           name,
           (
+            name.toLowerCase() === 'x-buildium-client-id' ||
+            name.toLowerCase() === 'x-buildium-client-secret' ||
             name.toLowerCase() === 'authorization' ||
             name.toLowerCase() === 'cookie' ||
             name.toLowerCase() === 'set-cookie'
