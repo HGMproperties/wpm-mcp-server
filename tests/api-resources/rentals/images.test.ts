@@ -88,8 +88,8 @@ describe('resource images', () => {
   });
 
   // skipped: tests are disabled for the time being
-  test.skip('downloadrequests: only required params', async () => {
-    const responsePromise = client.rentals.images.downloadrequests(0, { propertyId: 0 });
+  test.skip('downloadRequests: only required params', async () => {
+    const responsePromise = client.rentals.images.downloadRequests(0, { propertyId: 0 });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -100,8 +100,8 @@ describe('resource images', () => {
   });
 
   // skipped: tests are disabled for the time being
-  test.skip('downloadrequests: required and optional params', async () => {
-    const response = await client.rentals.images.downloadrequests(0, { propertyId: 0 });
+  test.skip('downloadRequests: required and optional params', async () => {
+    const response = await client.rentals.images.downloadRequests(0, { propertyId: 0 });
   });
 
   // skipped: tests are disabled for the time being
@@ -122,8 +122,8 @@ describe('resource images', () => {
   });
 
   // skipped: tests are disabled for the time being
-  test.skip('uploadrequests: only required params', async () => {
-    const responsePromise = client.rentals.images.uploadrequests(0, { FileName: 'x', ShowInListing: true });
+  test.skip('uploadRequests: only required params', async () => {
+    const responsePromise = client.rentals.images.uploadRequests(0, { FileName: 'x', ShowInListing: true });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -134,8 +134,8 @@ describe('resource images', () => {
   });
 
   // skipped: tests are disabled for the time being
-  test.skip('uploadrequests: required and optional params', async () => {
-    const response = await client.rentals.images.uploadrequests(0, {
+  test.skip('uploadRequests: required and optional params', async () => {
+    const response = await client.rentals.images.uploadRequests(0, {
       FileName: 'x',
       ShowInListing: true,
       Description: 'Description',
@@ -143,8 +143,8 @@ describe('resource images', () => {
   });
 
   // skipped: tests are disabled for the time being
-  test.skip('videolinkrequests: only required params', async () => {
-    const responsePromise = client.rentals.images.videolinkrequests(0, {
+  test.skip('videoLinkRequests: only required params', async () => {
+    const responsePromise = client.rentals.images.videoLinkRequests(0, {
       ShowInListing: true,
       VideoUrl: 'x',
     });
@@ -158,7 +158,7 @@ describe('resource images', () => {
   });
 
   // skipped: tests are disabled for the time being
-  test.skip('videolinkrequests: required and optional params', async () => {
-    const response = await client.rentals.images.videolinkrequests(0, { ShowInListing: true, VideoUrl: 'x' });
+  test.skip('videoLinkRequests: required and optional params', async () => {
+    const response = await client.rentals.images.videoLinkRequests(0, { ShowInListing: true, VideoUrl: 'x' });
   });
 });

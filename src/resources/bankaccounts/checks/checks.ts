@@ -6,7 +6,6 @@ import * as FilesAPI from './files';
 import {
   CheckFile,
   FileDeleteParams,
-  FileDownloadParams,
   FileListParams,
   FileListResponse,
   FileRetrieveParams,
@@ -346,7 +345,6 @@ export declare namespace Checks {
     type FileRetrieveParams as FileRetrieveParams,
     type FileListParams as FileListParams,
     type FileDeleteParams as FileDeleteParams,
-    type FileDownloadParams as FileDownloadParams,
     type FileUploadParams as FileUploadParams,
   };
 }

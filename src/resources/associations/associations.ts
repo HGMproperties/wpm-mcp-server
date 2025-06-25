@@ -66,13 +66,13 @@ import {
 import * as OwnershipaccountsAPI from './ownershipaccounts/ownershipaccounts';
 import {
   AssociationOwnershipAccount,
-  OwnershipaccountAutoallocatedpaymentsParams,
+  OwnershipaccountAutoPaymentsParams,
   OwnershipaccountCreateParams,
   OwnershipaccountCreditsParams,
+  OwnershipaccountGetBalancesParams,
+  OwnershipaccountGetBalancesResponse,
   OwnershipaccountListParams,
   OwnershipaccountListResponse,
-  OwnershipaccountRetrieveOutstandingbalancesParams,
-  OwnershipaccountRetrieveOutstandingbalancesResponse,
   OwnershipaccountUpdateParams,
   Ownershipaccounts,
 } from './ownershipaccounts/ownershipaccounts';
@@ -1377,13 +1377,13 @@ export declare namespace Associations {
     Ownershipaccounts as Ownershipaccounts,
     type AssociationOwnershipAccount as AssociationOwnershipAccount,
     type OwnershipaccountListResponse as OwnershipaccountListResponse,
-    type OwnershipaccountRetrieveOutstandingbalancesResponse as OwnershipaccountRetrieveOutstandingbalancesResponse,
+    type OwnershipaccountGetBalancesResponse as OwnershipaccountGetBalancesResponse,
     type OwnershipaccountCreateParams as OwnershipaccountCreateParams,
     type OwnershipaccountUpdateParams as OwnershipaccountUpdateParams,
     type OwnershipaccountListParams as OwnershipaccountListParams,
-    type OwnershipaccountAutoallocatedpaymentsParams as OwnershipaccountAutoallocatedpaymentsParams,
+    type OwnershipaccountAutoPaymentsParams as OwnershipaccountAutoPaymentsParams,
     type OwnershipaccountCreditsParams as OwnershipaccountCreditsParams,
-    type OwnershipaccountRetrieveOutstandingbalancesParams as OwnershipaccountRetrieveOutstandingbalancesParams,
+    type OwnershipaccountGetBalancesParams as OwnershipaccountGetBalancesParams,
   };
 
   export {

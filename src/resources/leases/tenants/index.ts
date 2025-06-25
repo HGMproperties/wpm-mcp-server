@@ -2,18 +2,18 @@
 
 export {
   Notes,
-  type NoteRetrieveAllResponse,
+  type NoteListAllResponse,
   type NoteCreateParams,
   type NoteRetrieveParams,
   type NoteUpdateParams,
-  type NoteRetrieveAllParams,
+  type NoteListAllParams,
 } from './notes';
 export {
   Tenants,
   type RentalTenantPut,
   type Tenant,
-  type TenantRetrieveAllResponse,
+  type TenantListAllResponse,
   type TenantCreateParams,
   type TenantUpdateParams,
-  type TenantRetrieveAllParams,
+  type TenantListAllParams,
 } from './tenants';

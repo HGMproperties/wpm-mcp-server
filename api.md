@@ -4,13 +4,13 @@ Types:
 
 - <code><a href="./src/resources/applications/applications.ts">OutstandingBalancesLine</a></code>
 - <code><a href="./src/resources/applications/applications.ts">ReversePaymentOtherBankCharge</a></code>
-- <code><a href="./src/resources/applications/applications.ts">ApplicationListOutstandingBalancesResponse</a></code>
+- <code><a href="./src/resources/applications/applications.ts">ApplicationListBalancesResponse</a></code>
 
 Methods:
 
-- <code title="post /v1/applications/{applicationId}/autoallocatedpayments">client.applications.<a href="./src/resources/applications/applications.ts">createAutoAllocatedPayment</a>(applicationID, { ...params }) -> ApplicationTransaction</code>
-- <code title="post /v1/applications/{applicationId}/reversepayments">client.applications.<a href="./src/resources/applications/applications.ts">createPaymentReversal</a>(applicationID, { ...params }) -> ApplicationTransaction</code>
-- <code title="get /v1/applications/outstandingbalances">client.applications.<a href="./src/resources/applications/applications.ts">listOutstandingBalances</a>({ ...params }) -> ApplicationListOutstandingBalancesResponse</code>
+- <code title="post /v1/applications/{applicationId}/autoallocatedpayments">client.applications.<a href="./src/resources/applications/applications.ts">createAutoPay</a>(applicationID, { ...params }) -> ApplicationTransaction</code>
+- <code title="post /v1/applications/{applicationId}/reversepayments">client.applications.<a href="./src/resources/applications/applications.ts">createPayReversal</a>(applicationID, { ...params }) -> ApplicationTransaction</code>
+- <code title="get /v1/applications/outstandingbalances">client.applications.<a href="./src/resources/applications/applications.ts">listBalances</a>({ ...params }) -> ApplicationListBalancesResponse</code>
 
 ## Transactions
 
@@ -90,7 +90,7 @@ Types:
 
 - <code><a href="./src/resources/associations/ownershipaccounts/ownershipaccounts.ts">AssociationOwnershipAccount</a></code>
 - <code><a href="./src/resources/associations/ownershipaccounts/ownershipaccounts.ts">OwnershipaccountListResponse</a></code>
-- <code><a href="./src/resources/associations/ownershipaccounts/ownershipaccounts.ts">OwnershipaccountRetrieveOutstandingbalancesResponse</a></code>
+- <code><a href="./src/resources/associations/ownershipaccounts/ownershipaccounts.ts">OwnershipaccountGetBalancesResponse</a></code>
 
 Methods:
 
@@ -98,9 +98,9 @@ Methods:
 - <code title="get /v1/associations/ownershipaccounts/{ownershipAccountId}">client.associations.ownershipaccounts.<a href="./src/resources/associations/ownershipaccounts/ownershipaccounts.ts">retrieve</a>(ownershipAccountID) -> AssociationOwnershipAccount</code>
 - <code title="put /v1/associations/ownershipaccounts/{ownershipAccountId}">client.associations.ownershipaccounts.<a href="./src/resources/associations/ownershipaccounts/ownershipaccounts.ts">update</a>(ownershipAccountID, { ...params }) -> AssociationOwnershipAccount</code>
 - <code title="get /v1/associations/ownershipaccounts">client.associations.ownershipaccounts.<a href="./src/resources/associations/ownershipaccounts/ownershipaccounts.ts">list</a>({ ...params }) -> OwnershipaccountListResponse</code>
-- <code title="post /v1/associations/ownershipaccounts/{ownershipAccountId}/autoallocatedpayments">client.associations.ownershipaccounts.<a href="./src/resources/associations/ownershipaccounts/ownershipaccounts.ts">autoallocatedpayments</a>(ownershipAccountID, { ...params }) -> OwnershipAccountTransaction</code>
+- <code title="post /v1/associations/ownershipaccounts/{ownershipAccountId}/autoallocatedpayments">client.associations.ownershipaccounts.<a href="./src/resources/associations/ownershipaccounts/ownershipaccounts.ts">autoPayments</a>(ownershipAccountID, { ...params }) -> OwnershipAccountTransaction</code>
 - <code title="post /v1/associations/ownershipaccounts/{ownershipAccountId}/credits">client.associations.ownershipaccounts.<a href="./src/resources/associations/ownershipaccounts/ownershipaccounts.ts">credits</a>(ownershipAccountID, { ...params }) -> OwnershipAccountTransaction</code>
-- <code title="get /v1/associations/ownershipaccounts/outstandingbalances">client.associations.ownershipaccounts.<a href="./src/resources/associations/ownershipaccounts/ownershipaccounts.ts">retrieveOutstandingbalances</a>({ ...params }) -> OwnershipaccountRetrieveOutstandingbalancesResponse</code>
+- <code title="get /v1/associations/ownershipaccounts/outstandingbalances">client.associations.ownershipaccounts.<a href="./src/resources/associations/ownershipaccounts/ownershipaccounts.ts">getBalances</a>({ ...params }) -> OwnershipaccountGetBalancesResponse</code>
 
 ### Transactions
 
@@ -141,8 +141,8 @@ Methods:
 
 - <code title="get /v1/associations/ownershipaccounts/architecturalrequests/{architecturalRequestId}/files/{fileId}">client.associations.ownershipaccounts.architecturalrequests.files.<a href="./src/resources/associations/ownershipaccounts/architecturalrequests/files.ts">retrieve</a>(fileID, { ...params }) -> AssociationArchitecturalRequestFile</code>
 - <code title="get /v1/associations/ownershipaccounts/architecturalrequests/{architecturalRequestId}/files">client.associations.ownershipaccounts.architecturalrequests.files.<a href="./src/resources/associations/ownershipaccounts/architecturalrequests/files.ts">list</a>(architecturalRequestID, { ...params }) -> AssociationArchitecturalRequestFile</code>
-- <code title="post /v1/associations/ownershipaccounts/architecturalrequests/{architecturalRequestId}/files/{fileId}/downloadrequests">client.associations.ownershipaccounts.architecturalrequests.files.<a href="./src/resources/associations/ownershipaccounts/architecturalrequests/files.ts">downloadrequests</a>(fileID, { ...params }) -> FileDownload</code>
-- <code title="post /v1/associations/ownershipaccounts/architecturalrequests/{architecturalRequestId}/files/uploadrequests">client.associations.ownershipaccounts.architecturalrequests.files.<a href="./src/resources/associations/ownershipaccounts/architecturalrequests/files.ts">uploadrequests</a>(architecturalRequestID, { ...params }) -> FileUploadTicket</code>
+- <code title="post /v1/associations/ownershipaccounts/architecturalrequests/{architecturalRequestId}/files/{fileId}/downloadrequests">client.associations.ownershipaccounts.architecturalrequests.files.<a href="./src/resources/associations/ownershipaccounts/architecturalrequests/files.ts">downloadRequests</a>(fileID, { ...params }) -> FileDownload</code>
+- <code title="post /v1/associations/ownershipaccounts/architecturalrequests/{architecturalRequestId}/files/uploadrequests">client.associations.ownershipaccounts.architecturalrequests.files.<a href="./src/resources/associations/ownershipaccounts/architecturalrequests/files.ts">uploadRequests</a>(architecturalRequestID, { ...params }) -> FileUploadTicket</code>
 
 ### Charges
 
@@ -509,8 +509,8 @@ Types:
 - <code><a href="./src/resources/leases/leases.ts">LeaseCosigner</a></code>
 - <code><a href="./src/resources/leases/leases.ts">LeaseRentForPostMessage</a></code>
 - <code><a href="./src/resources/leases/leases.ts">LeaseListResponse</a></code>
-- <code><a href="./src/resources/leases/leases.ts">LeaseListOutstandingBalancesResponse</a></code>
-- <code><a href="./src/resources/leases/leases.ts">LeaseListRenewalHistoryResponse</a></code>
+- <code><a href="./src/resources/leases/leases.ts">LeaseListBalancesResponse</a></code>
+- <code><a href="./src/resources/leases/leases.ts">LeaseListRenewHistoryResponse</a></code>
 
 Methods:
 
@@ -518,11 +518,11 @@ Methods:
 - <code title="get /v1/leases/{leaseId}">client.leases.<a href="./src/resources/leases/leases.ts">retrieve</a>(leaseID) -> Lease</code>
 - <code title="put /v1/leases/{leaseId}">client.leases.<a href="./src/resources/leases/leases.ts">update</a>(leaseID, { ...params }) -> Lease</code>
 - <code title="get /v1/leases">client.leases.<a href="./src/resources/leases/leases.ts">list</a>({ ...params }) -> LeaseListResponse</code>
-- <code title="post /v1/leases/{leaseId}/autoallocatedpayments">client.leases.<a href="./src/resources/leases/leases.ts">createAutoallocatedPayment</a>(leaseID, { ...params }) -> LeaseTransaction</code>
+- <code title="post /v1/leases/{leaseId}/autoallocatedpayments">client.leases.<a href="./src/resources/leases/leases.ts">createAutoPayment</a>(leaseID, { ...params }) -> LeaseTransaction</code>
 - <code title="post /v1/leases/{leaseId}/credits">client.leases.<a href="./src/resources/leases/leases.ts">createCredit</a>(leaseID, { ...params }) -> LeaseTransaction</code>
-- <code title="post /v1/leases/{leaseId}/reversepayments">client.leases.<a href="./src/resources/leases/leases.ts">createPaymentReversal</a>(leaseID, { ...params }) -> LeaseTransaction</code>
-- <code title="get /v1/leases/outstandingbalances">client.leases.<a href="./src/resources/leases/leases.ts">listOutstandingBalances</a>({ ...params }) -> LeaseListOutstandingBalancesResponse</code>
-- <code title="get /v1/leases/renewalhistory">client.leases.<a href="./src/resources/leases/leases.ts">listRenewalHistory</a>({ ...params }) -> LeaseListRenewalHistoryResponse</code>
+- <code title="post /v1/leases/{leaseId}/reversepayments">client.leases.<a href="./src/resources/leases/leases.ts">createPayReversal</a>(leaseID, { ...params }) -> LeaseTransaction</code>
+- <code title="get /v1/leases/outstandingbalances">client.leases.<a href="./src/resources/leases/leases.ts">listBalances</a>({ ...params }) -> LeaseListBalancesResponse</code>
+- <code title="get /v1/leases/renewalhistory">client.leases.<a href="./src/resources/leases/leases.ts">listRenewHistory</a>({ ...params }) -> LeaseListRenewHistoryResponse</code>
 
 ## Transactions
 
@@ -692,28 +692,28 @@ Types:
 - <code><a href="./src/resources/leases/rent.ts">LeaseRentCharge</a></code>
 - <code><a href="./src/resources/leases/rent.ts">LeaseRentMessage</a></code>
 - <code><a href="./src/resources/leases/rent.ts">RentRetrieveResponse</a></code>
-- <code><a href="./src/resources/leases/rent.ts">RentGetSpecificRentResponse</a></code>
-- <code><a href="./src/resources/leases/rent.ts">RentRetrieveAllResponse</a></code>
+- <code><a href="./src/resources/leases/rent.ts">RentGetByLeaseResponse</a></code>
+- <code><a href="./src/resources/leases/rent.ts">RentListAllResponse</a></code>
 
 Methods:
 
 - <code title="post /v1/leases/{leaseId}/rent">client.leases.rent.<a href="./src/resources/leases/rent.ts">create</a>(leaseID, { ...params }) -> LeaseRentMessage</code>
 - <code title="get /v1/leases/{leaseId}/rent">client.leases.rent.<a href="./src/resources/leases/rent.ts">retrieve</a>(leaseID, { ...params }) -> RentRetrieveResponse</code>
 - <code title="put /v1/leases/{leaseId}/rent/{rentId}">client.leases.rent.<a href="./src/resources/leases/rent.ts">update</a>(rentID, { ...params }) -> LeaseRentMessage</code>
-- <code title="get /v1/leases/{leaseId}/rent">client.leases.rent.<a href="./src/resources/leases/rent.ts">getSpecificRent</a>(leaseID, { ...params }) -> RentGetSpecificRentResponse</code>
-- <code title="get /v1/leases/rent">client.leases.rent.<a href="./src/resources/leases/rent.ts">retrieveAll</a>({ ...params }) -> RentRetrieveAllResponse</code>
+- <code title="get /v1/leases/{leaseId}/rent">client.leases.rent.<a href="./src/resources/leases/rent.ts">getByLease</a>(leaseID, { ...params }) -> RentGetByLeaseResponse</code>
+- <code title="get /v1/leases/rent">client.leases.rent.<a href="./src/resources/leases/rent.ts">listAll</a>({ ...params }) -> RentListAllResponse</code>
 
 ## Rentersinsurance
 
 Types:
 
 - <code><a href="./src/resources/leases/rentersinsurance.ts">RentersInsurancePolicy</a></code>
-- <code><a href="./src/resources/leases/rentersinsurance.ts">RentersinsuranceRetrieveAllResponse</a></code>
+- <code><a href="./src/resources/leases/rentersinsurance.ts">RentersinsuranceListAllResponse</a></code>
 
 Methods:
 
 - <code title="get /v1/leases/{leaseId}/rentersinsurance/{policyId}">client.leases.rentersinsurance.<a href="./src/resources/leases/rentersinsurance.ts">retrieve</a>(policyID, { ...params }) -> RentersInsurancePolicy</code>
-- <code title="get /v1/leases/{leaseId}/rentersinsurance">client.leases.rentersinsurance.<a href="./src/resources/leases/rentersinsurance.ts">retrieveAll</a>(leaseID, { ...params }) -> RentersinsuranceRetrieveAllResponse</code>
+- <code title="get /v1/leases/{leaseId}/rentersinsurance">client.leases.rentersinsurance.<a href="./src/resources/leases/rentersinsurance.ts">listAll</a>(leaseID, { ...params }) -> RentersinsuranceListAllResponse</code>
 
 ## Tenants
 
@@ -721,27 +721,27 @@ Types:
 
 - <code><a href="./src/resources/leases/tenants/tenants.ts">RentalTenantPut</a></code>
 - <code><a href="./src/resources/leases/tenants/tenants.ts">Tenant</a></code>
-- <code><a href="./src/resources/leases/tenants/tenants.ts">TenantRetrieveAllResponse</a></code>
+- <code><a href="./src/resources/leases/tenants/tenants.ts">TenantListAllResponse</a></code>
 
 Methods:
 
 - <code title="post /v1/leases/tenants">client.leases.tenants.<a href="./src/resources/leases/tenants/tenants.ts">create</a>({ ...params }) -> Tenant</code>
 - <code title="get /v1/leases/tenants/{tenantId}">client.leases.tenants.<a href="./src/resources/leases/tenants/tenants.ts">retrieve</a>(tenantID) -> Tenant</code>
 - <code title="put /v1/leases/tenants/{tenantId}">client.leases.tenants.<a href="./src/resources/leases/tenants/tenants.ts">update</a>(tenantID, { ...params }) -> Tenant</code>
-- <code title="get /v1/leases/tenants">client.leases.tenants.<a href="./src/resources/leases/tenants/tenants.ts">retrieveAll</a>({ ...params }) -> TenantRetrieveAllResponse</code>
+- <code title="get /v1/leases/tenants">client.leases.tenants.<a href="./src/resources/leases/tenants/tenants.ts">listAll</a>({ ...params }) -> TenantListAllResponse</code>
 
 ### Notes
 
 Types:
 
-- <code><a href="./src/resources/leases/tenants/notes.ts">NoteRetrieveAllResponse</a></code>
+- <code><a href="./src/resources/leases/tenants/notes.ts">NoteListAllResponse</a></code>
 
 Methods:
 
 - <code title="post /v1/leases/tenants/{tenantId}/notes">client.leases.tenants.notes.<a href="./src/resources/leases/tenants/notes.ts">create</a>(tenantID, { ...params }) -> Note</code>
 - <code title="get /v1/leases/tenants/{tenantId}/notes/{noteId}">client.leases.tenants.notes.<a href="./src/resources/leases/tenants/notes.ts">retrieve</a>(noteID, { ...params }) -> Note</code>
 - <code title="put /v1/leases/tenants/{tenantId}/notes/{noteId}">client.leases.tenants.notes.<a href="./src/resources/leases/tenants/notes.ts">update</a>(noteID, { ...params }) -> Note</code>
-- <code title="get /v1/leases/tenants/{tenantId}/notes">client.leases.tenants.notes.<a href="./src/resources/leases/tenants/notes.ts">retrieveAll</a>(tenantID, { ...params }) -> NoteRetrieveAllResponse</code>
+- <code title="get /v1/leases/tenants/{tenantId}/notes">client.leases.tenants.notes.<a href="./src/resources/leases/tenants/notes.ts">listAll</a>(tenantID, { ...params }) -> NoteListAllResponse</code>
 
 # Rentals
 
@@ -765,7 +765,7 @@ Types:
 
 - <code><a href="./src/resources/rentals/units/units.ts">RentalUnit</a></code>
 - <code><a href="./src/resources/rentals/units/units.ts">UnitListResponse</a></code>
-- <code><a href="./src/resources/rentals/units/units.ts">UnitRetrieveListingsResponse</a></code>
+- <code><a href="./src/resources/rentals/units/units.ts">UnitListListingsResponse</a></code>
 
 Methods:
 
@@ -773,7 +773,7 @@ Methods:
 - <code title="get /v1/rentals/units/{unitId}">client.rentals.units.<a href="./src/resources/rentals/units/units.ts">retrieve</a>(unitID) -> RentalUnit</code>
 - <code title="put /v1/rentals/units/{unitId}">client.rentals.units.<a href="./src/resources/rentals/units/units.ts">update</a>(unitID, { ...params }) -> RentalUnit</code>
 - <code title="get /v1/rentals/units">client.rentals.units.<a href="./src/resources/rentals/units/units.ts">list</a>({ ...params }) -> UnitListResponse</code>
-- <code title="get /v1/rentals/units/listings">client.rentals.units.<a href="./src/resources/rentals/units/units.ts">retrieveListings</a>({ ...params }) -> UnitRetrieveListingsResponse</code>
+- <code title="get /v1/rentals/units/listings">client.rentals.units.<a href="./src/resources/rentals/units/units.ts">listListings</a>({ ...params }) -> UnitListListingsResponse</code>
 
 ### Listing
 
@@ -828,10 +828,10 @@ Methods:
 - <code title="put /v1/rentals/units/{unitId}/images/{imageId}">client.rentals.units.images.<a href="./src/resources/rentals/units/images.ts">update</a>(imageID, { ...params }) -> RentalImage</code>
 - <code title="get /v1/rentals/units/{unitId}/images">client.rentals.units.images.<a href="./src/resources/rentals/units/images.ts">list</a>(unitID, { ...params }) -> ImageListResponse</code>
 - <code title="delete /v1/rentals/units/{unitId}/images/{imageId}">client.rentals.units.images.<a href="./src/resources/rentals/units/images.ts">delete</a>(imageID, { ...params }) -> void</code>
-- <code title="post /v1/rentals/units/{unitId}/images/{imageId}/downloadrequests">client.rentals.units.images.<a href="./src/resources/rentals/units/images.ts">downloadrequests</a>(imageID, { ...params }) -> FileDownload</code>
+- <code title="post /v1/rentals/units/{unitId}/images/{imageId}/downloadrequests">client.rentals.units.images.<a href="./src/resources/rentals/units/images.ts">downloadRequests</a>(imageID, { ...params }) -> FileDownload</code>
 - <code title="put /v1/rentals/units/{unitId}/images/order">client.rentals.units.images.<a href="./src/resources/rentals/units/images.ts">updateOrder</a>(unitID, { ...params }) -> ImageUpdateOrderResponse</code>
-- <code title="post /v1/rentals/units/{unitId}/images/uploadrequests">client.rentals.units.images.<a href="./src/resources/rentals/units/images.ts">uploadrequests</a>(unitID, { ...params }) -> FileUploadTicket</code>
-- <code title="post /v1/rentals/units/{unitId}/images/videolinkrequests">client.rentals.units.images.<a href="./src/resources/rentals/units/images.ts">videolinkrequests</a>(unitID, { ...params }) -> RentalUnitImage</code>
+- <code title="post /v1/rentals/units/{unitId}/images/uploadrequests">client.rentals.units.images.<a href="./src/resources/rentals/units/images.ts">uploadRequests</a>(unitID, { ...params }) -> FileUploadTicket</code>
+- <code title="post /v1/rentals/units/{unitId}/images/videolinkrequests">client.rentals.units.images.<a href="./src/resources/rentals/units/images.ts">videoLinkRequests</a>(unitID, { ...params }) -> RentalUnitImage</code>
 
 ### Notes
 
@@ -894,10 +894,10 @@ Methods:
 - <code title="put /v1/rentals/{propertyId}/images/{imageId}">client.rentals.images.<a href="./src/resources/rentals/images.ts">update</a>(imageID, { ...params }) -> RentalImage</code>
 - <code title="get /v1/rentals/{propertyId}/images">client.rentals.images.<a href="./src/resources/rentals/images.ts">list</a>(propertyID, { ...params }) -> ImageListResponse</code>
 - <code title="delete /v1/rentals/{propertyId}/images/{imageId}">client.rentals.images.<a href="./src/resources/rentals/images.ts">delete</a>(imageID, { ...params }) -> void</code>
-- <code title="post /v1/rentals/{propertyId}/images/{imageId}/downloadrequests">client.rentals.images.<a href="./src/resources/rentals/images.ts">downloadrequests</a>(imageID, { ...params }) -> FileDownload</code>
+- <code title="post /v1/rentals/{propertyId}/images/{imageId}/downloadrequests">client.rentals.images.<a href="./src/resources/rentals/images.ts">downloadRequests</a>(imageID, { ...params }) -> FileDownload</code>
 - <code title="put /v1/rentals/{propertyId}/images/order">client.rentals.images.<a href="./src/resources/rentals/images.ts">updateOrder</a>(propertyID, { ...params }) -> ImageUpdateOrderResponse</code>
-- <code title="post /v1/rentals/{propertyId}/images/uploadrequests">client.rentals.images.<a href="./src/resources/rentals/images.ts">uploadrequests</a>(propertyID, { ...params }) -> FileUploadTicket</code>
-- <code title="post /v1/rentals/{propertyId}/images/videolinkrequests">client.rentals.images.<a href="./src/resources/rentals/images.ts">videolinkrequests</a>(propertyID, { ...params }) -> RentalImage</code>
+- <code title="post /v1/rentals/{propertyId}/images/uploadrequests">client.rentals.images.<a href="./src/resources/rentals/images.ts">uploadRequests</a>(propertyID, { ...params }) -> FileUploadTicket</code>
+- <code title="post /v1/rentals/{propertyId}/images/videolinkrequests">client.rentals.images.<a href="./src/resources/rentals/images.ts">videoLinkRequests</a>(propertyID, { ...params }) -> RentalImage</code>
 
 ## Meterreadings
 
@@ -1014,13 +1014,13 @@ Methods:
 
 Types:
 
-- <code><a href="./src/resources/administration/administration.ts">AdministrationRetrieveAccountResponse</a></code>
-- <code><a href="./src/resources/administration/administration.ts">AdministrationRetrieveAccountingLockPeriodsResponse</a></code>
+- <code><a href="./src/resources/administration/administration.ts">AdministrationGetAccountResponse</a></code>
+- <code><a href="./src/resources/administration/administration.ts">AdministrationGetAcctLockPeriodsResponse</a></code>
 
 Methods:
 
-- <code title="get /v1/administration/account">client.administration.<a href="./src/resources/administration/administration.ts">retrieveAccount</a>() -> AdministrationRetrieveAccountResponse</code>
-- <code title="get /v1/administration/accountinglockperiod">client.administration.<a href="./src/resources/administration/administration.ts">retrieveAccountingLockPeriods</a>() -> AdministrationRetrieveAccountingLockPeriodsResponse</code>
+- <code title="get /v1/administration/account">client.administration.<a href="./src/resources/administration/administration.ts">getAccount</a>() -> AdministrationGetAccountResponse</code>
+- <code title="get /v1/administration/accountinglockperiod">client.administration.<a href="./src/resources/administration/administration.ts">getAcctLockPeriods</a>() -> AdministrationGetAcctLockPeriodsResponse</code>
 
 ## Residentsettings
 
@@ -1109,7 +1109,7 @@ Types:
 
 - <code><a href="./src/resources/bankaccounts/bankaccounts.ts">Account</a></code>
 - <code><a href="./src/resources/bankaccounts/bankaccounts.ts">BankaccountListResponse</a></code>
-- <code><a href="./src/resources/bankaccounts/bankaccounts.ts">BankaccountRetrieveUndepositedFundsResponse</a></code>
+- <code><a href="./src/resources/bankaccounts/bankaccounts.ts">BankaccountGetUndepositedFundsResponse</a></code>
 
 Methods:
 
@@ -1117,7 +1117,7 @@ Methods:
 - <code title="get /v1/bankaccounts/{bankAccountId}">client.bankaccounts.<a href="./src/resources/bankaccounts/bankaccounts.ts">retrieve</a>(bankAccountID) -> Account</code>
 - <code title="put /v1/bankaccounts/{bankAccountId}">client.bankaccounts.<a href="./src/resources/bankaccounts/bankaccounts.ts">update</a>(bankAccountID, { ...params }) -> Account</code>
 - <code title="get /v1/bankaccounts">client.bankaccounts.<a href="./src/resources/bankaccounts/bankaccounts.ts">list</a>({ ...params }) -> BankaccountListResponse</code>
-- <code title="get /v1/bankaccounts/{bankAccountId}/undepositedfunds">client.bankaccounts.<a href="./src/resources/bankaccounts/bankaccounts.ts">retrieveUndepositedFunds</a>(bankAccountID, { ...params }) -> BankaccountRetrieveUndepositedFundsResponse</code>
+- <code title="get /v1/bankaccounts/{bankAccountId}/undepositedfunds">client.bankaccounts.<a href="./src/resources/bankaccounts/bankaccounts.ts">getUndepositedFunds</a>(bankAccountID, { ...params }) -> BankaccountGetUndepositedFundsResponse</code>
 
 ## Checks
 
@@ -1147,7 +1147,6 @@ Methods:
 - <code title="get /v1/bankaccounts/{bankAccountId}/checks/{checkId}/files/{fileId}">client.bankaccounts.checks.files.<a href="./src/resources/bankaccounts/checks/files.ts">retrieve</a>(fileID, { ...params }) -> CheckFile</code>
 - <code title="get /v1/bankaccounts/{bankAccountId}/checks/{checkId}/files">client.bankaccounts.checks.files.<a href="./src/resources/bankaccounts/checks/files.ts">list</a>(checkID, { ...params }) -> FileListResponse</code>
 - <code title="delete /v1/bankaccounts/{bankAccountId}/checks/{checkId}/files/{fileId}">client.bankaccounts.checks.files.<a href="./src/resources/bankaccounts/checks/files.ts">delete</a>(fileID, { ...params }) -> void</code>
-- <code title="post /v1/bankaccounts/{bankAccountId}/checks/{checkId}/files/{fileId}/downloadrequests">client.bankaccounts.checks.files.<a href="./src/resources/bankaccounts/checks/files.ts">download</a>(fileID, { ...params }) -> FileDownload</code>
 - <code title="post /v1/bankaccounts/{bankAccountId}/checks/{checkId}/files/uploadrequests">client.bankaccounts.checks.files.<a href="./src/resources/bankaccounts/checks/files.ts">upload</a>(checkID, { ...params }) -> FileUploadTicket</code>
 
 ## Deposits
@@ -1188,7 +1187,7 @@ Types:
 
 - <code><a href="./src/resources/bankaccounts/reconciliations/reconciliations.ts">Reconciliation</a></code>
 - <code><a href="./src/resources/bankaccounts/reconciliations/reconciliations.ts">ReconciliationListResponse</a></code>
-- <code><a href="./src/resources/bankaccounts/reconciliations/reconciliations.ts">ReconciliationRetrieveTransactionsResponse</a></code>
+- <code><a href="./src/resources/bankaccounts/reconciliations/reconciliations.ts">ReconciliationListTransactionsResponse</a></code>
 
 Methods:
 
@@ -1196,10 +1195,10 @@ Methods:
 - <code title="get /v1/bankaccounts/{bankAccountId}/reconciliations/{reconciliationId}">client.bankaccounts.reconciliations.<a href="./src/resources/bankaccounts/reconciliations/reconciliations.ts">retrieve</a>(reconciliationID, { ...params }) -> Reconciliation</code>
 - <code title="put /v1/bankaccounts/{bankAccountId}/reconciliations/{reconciliationId}">client.bankaccounts.reconciliations.<a href="./src/resources/bankaccounts/reconciliations/reconciliations.ts">update</a>(reconciliationID, { ...params }) -> Reconciliation</code>
 - <code title="get /v1/bankaccounts/{bankAccountId}/reconciliations">client.bankaccounts.reconciliations.<a href="./src/resources/bankaccounts/reconciliations/reconciliations.ts">list</a>(bankAccountID, { ...params }) -> ReconciliationListResponse</code>
-- <code title="post /v1/bankaccounts/{bankAccountId}/reconciliations/{reconciliationId}/cleartransactionsrequest">client.bankaccounts.reconciliations.<a href="./src/resources/bankaccounts/reconciliations/reconciliations.ts">cleartransactionsrequest</a>(reconciliationID, { ...params }) -> void</code>
-- <code title="post /v1/bankaccounts/{bankAccountId}/reconciliations/{reconciliationId}/finalizerequest">client.bankaccounts.reconciliations.<a href="./src/resources/bankaccounts/reconciliations/reconciliations.ts">finalizerequest</a>(reconciliationID, { ...params }) -> void</code>
-- <code title="get /v1/bankaccounts/{bankAccountId}/reconciliations/{reconciliationId}/transactions">client.bankaccounts.reconciliations.<a href="./src/resources/bankaccounts/reconciliations/reconciliations.ts">retrieveTransactions</a>(reconciliationID, { ...params }) -> ReconciliationRetrieveTransactionsResponse</code>
-- <code title="post /v1/bankaccounts/{bankAccountId}/reconciliations/{reconciliationId}/uncleartransactionsrequest">client.bankaccounts.reconciliations.<a href="./src/resources/bankaccounts/reconciliations/reconciliations.ts">uncleartransactionsrequest</a>(reconciliationID, { ...params }) -> void</code>
+- <code title="post /v1/bankaccounts/{bankAccountId}/reconciliations/{reconciliationId}/cleartransactionsrequest">client.bankaccounts.reconciliations.<a href="./src/resources/bankaccounts/reconciliations/reconciliations.ts">clearTransactions</a>(reconciliationID, { ...params }) -> void</code>
+- <code title="post /v1/bankaccounts/{bankAccountId}/reconciliations/{reconciliationId}/finalizerequest">client.bankaccounts.reconciliations.<a href="./src/resources/bankaccounts/reconciliations/reconciliations.ts">finalize</a>(reconciliationID, { ...params }) -> void</code>
+- <code title="get /v1/bankaccounts/{bankAccountId}/reconciliations/{reconciliationId}/transactions">client.bankaccounts.reconciliations.<a href="./src/resources/bankaccounts/reconciliations/reconciliations.ts">listTransactions</a>(reconciliationID, { ...params }) -> ReconciliationListTransactionsResponse</code>
+- <code title="post /v1/bankaccounts/{bankAccountId}/reconciliations/{reconciliationId}/uncleartransactionsrequest">client.bankaccounts.reconciliations.<a href="./src/resources/bankaccounts/reconciliations/reconciliations.ts">unclearTransactions</a>(reconciliationID, { ...params }) -> void</code>
 
 ### Balances
 
@@ -1335,7 +1334,7 @@ Types:
 - <code><a href="./src/resources/communications/announcements.ts">AnnouncementMessage</a></code>
 - <code><a href="./src/resources/communications/announcements.ts">PropertyMessage</a></code>
 - <code><a href="./src/resources/communications/announcements.ts">AnnouncementListResponse</a></code>
-- <code><a href="./src/resources/communications/announcements.ts">AnnouncementRetrievePropertiesResponse</a></code>
+- <code><a href="./src/resources/communications/announcements.ts">AnnouncementListPropertiesResponse</a></code>
 
 Methods:
 
@@ -1343,7 +1342,7 @@ Methods:
 - <code title="get /v1/communications/announcements/{announcementId}">client.communications.announcements.<a href="./src/resources/communications/announcements.ts">retrieve</a>(announcementID) -> AnnouncementMessage</code>
 - <code title="get /v1/communications/announcements">client.communications.announcements.<a href="./src/resources/communications/announcements.ts">list</a>({ ...params }) -> AnnouncementListResponse</code>
 - <code title="post /v1/communications/announcements/{announcementId}/expirationrequest">client.communications.announcements.<a href="./src/resources/communications/announcements.ts">expire</a>(announcementID) -> void</code>
-- <code title="get /v1/communications/announcements/{announcementId}/properties">client.communications.announcements.<a href="./src/resources/communications/announcements.ts">retrieveProperties</a>(announcementID, { ...params }) -> AnnouncementRetrievePropertiesResponse</code>
+- <code title="get /v1/communications/announcements/{announcementId}/properties">client.communications.announcements.<a href="./src/resources/communications/announcements.ts">listProperties</a>(announcementID, { ...params }) -> AnnouncementListPropertiesResponse</code>
 
 ## Emails
 
@@ -1351,13 +1350,13 @@ Types:
 
 - <code><a href="./src/resources/communications/emails.ts">EmailMessage</a></code>
 - <code><a href="./src/resources/communications/emails.ts">EmailListResponse</a></code>
-- <code><a href="./src/resources/communications/emails.ts">EmailRetrieveRecipientsResponse</a></code>
+- <code><a href="./src/resources/communications/emails.ts">EmailListRecipientsResponse</a></code>
 
 Methods:
 
 - <code title="get /v1/communications/emails/{emailId}">client.communications.emails.<a href="./src/resources/communications/emails.ts">retrieve</a>(emailID) -> EmailMessage</code>
 - <code title="get /v1/communications/emails">client.communications.emails.<a href="./src/resources/communications/emails.ts">list</a>({ ...params }) -> EmailListResponse</code>
-- <code title="get /v1/communications/emails/{emailId}/recipients">client.communications.emails.<a href="./src/resources/communications/emails.ts">retrieveRecipients</a>(emailID, { ...params }) -> EmailRetrieveRecipientsResponse</code>
+- <code title="get /v1/communications/emails/{emailId}/recipients">client.communications.emails.<a href="./src/resources/communications/emails.ts">listRecipients</a>(emailID, { ...params }) -> EmailListRecipientsResponse</code>
 - <code title="post /v1/communications/emails">client.communications.emails.<a href="./src/resources/communications/emails.ts">send</a>({ ...params }) -> void</code>
 
 ## Phonelogs
@@ -1513,8 +1512,8 @@ Methods:
 - <code title="get /v1/tasks/{taskId}/history/{taskHistoryId}/files/{fileId}">client.tasks.history.files.<a href="./src/resources/tasks/history/files.ts">retrieve</a>(fileID, { ...params }) -> TaskHistoryFile</code>
 - <code title="get /v1/tasks/{taskId}/history/{taskHistoryId}/files">client.tasks.history.files.<a href="./src/resources/tasks/history/files.ts">list</a>(taskHistoryID, { ...params }) -> FileListResponse</code>
 - <code title="delete /v1/tasks/{taskId}/history/{taskHistoryId}/files/{fileId}">client.tasks.history.files.<a href="./src/resources/tasks/history/files.ts">delete</a>(fileID, { ...params }) -> void</code>
-- <code title="post /v1/tasks/{taskId}/history/{taskHistoryId}/files/{fileId}/downloadrequest">client.tasks.history.files.<a href="./src/resources/tasks/history/files.ts">downloadRequest</a>(fileID, { ...params }) -> FileDownload</code>
-- <code title="post /v1/tasks/{taskId}/history/{taskHistoryId}/files/uploadrequests">client.tasks.history.files.<a href="./src/resources/tasks/history/files.ts">uploadRequest</a>(taskHistoryID, { ...params }) -> FileUploadTicket</code>
+- <code title="post /v1/tasks/{taskId}/history/{taskHistoryId}/files/{fileId}/downloadrequest">client.tasks.history.files.<a href="./src/resources/tasks/history/files.ts">downloadReq</a>(fileID, { ...params }) -> FileDownload</code>
+- <code title="post /v1/tasks/{taskId}/history/{taskHistoryId}/files/uploadrequests">client.tasks.history.files.<a href="./src/resources/tasks/history/files.ts">uploadReq</a>(taskHistoryID, { ...params }) -> FileUploadTicket</code>
 
 ## Categories
 
@@ -1606,7 +1605,7 @@ Types:
 - <code><a href="./src/resources/vendors/vendors.ts">Vendor</a></code>
 - <code><a href="./src/resources/vendors/vendors.ts">VendorInsuranceSave</a></code>
 - <code><a href="./src/resources/vendors/vendors.ts">VendorListResponse</a></code>
-- <code><a href="./src/resources/vendors/vendors.ts">VendorRetrieveTransactionsResponse</a></code>
+- <code><a href="./src/resources/vendors/vendors.ts">VendorListTransactionsResponse</a></code>
 
 Methods:
 
@@ -1614,7 +1613,7 @@ Methods:
 - <code title="get /v1/vendors/{vendorId}">client.vendors.<a href="./src/resources/vendors/vendors.ts">retrieve</a>(vendorID) -> Vendor</code>
 - <code title="put /v1/vendors/{vendorId}">client.vendors.<a href="./src/resources/vendors/vendors.ts">update</a>(vendorID, { ...params }) -> Vendor</code>
 - <code title="get /v1/vendors">client.vendors.<a href="./src/resources/vendors/vendors.ts">list</a>({ ...params }) -> VendorListResponse</code>
-- <code title="get /v1/vendors/{vendorId}/transactions">client.vendors.<a href="./src/resources/vendors/vendors.ts">retrieveTransactions</a>(vendorID, { ...params }) -> VendorRetrieveTransactionsResponse</code>
+- <code title="get /v1/vendors/{vendorId}/transactions">client.vendors.<a href="./src/resources/vendors/vendors.ts">listTransactions</a>(vendorID, { ...params }) -> VendorListTransactionsResponse</code>
 
 ## Credits
 

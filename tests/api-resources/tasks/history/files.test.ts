@@ -65,8 +65,8 @@ describe('resource files', () => {
   });
 
   // skipped: tests are disabled for the time being
-  test.skip('downloadRequest: only required params', async () => {
-    const responsePromise = client.tasks.history.files.downloadRequest(0, { taskId: 0, taskHistoryId: 0 });
+  test.skip('downloadReq: only required params', async () => {
+    const responsePromise = client.tasks.history.files.downloadReq(0, { taskId: 0, taskHistoryId: 0 });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -77,13 +77,13 @@ describe('resource files', () => {
   });
 
   // skipped: tests are disabled for the time being
-  test.skip('downloadRequest: required and optional params', async () => {
-    const response = await client.tasks.history.files.downloadRequest(0, { taskId: 0, taskHistoryId: 0 });
+  test.skip('downloadReq: required and optional params', async () => {
+    const response = await client.tasks.history.files.downloadReq(0, { taskId: 0, taskHistoryId: 0 });
   });
 
   // skipped: tests are disabled for the time being
-  test.skip('uploadRequest: only required params', async () => {
-    const responsePromise = client.tasks.history.files.uploadRequest(0, { taskId: 0, FileName: 'x' });
+  test.skip('uploadReq: only required params', async () => {
+    const responsePromise = client.tasks.history.files.uploadReq(0, { taskId: 0, FileName: 'x' });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -94,7 +94,7 @@ describe('resource files', () => {
   });
 
   // skipped: tests are disabled for the time being
-  test.skip('uploadRequest: required and optional params', async () => {
-    const response = await client.tasks.history.files.uploadRequest(0, { taskId: 0, FileName: 'x' });
+  test.skip('uploadReq: required and optional params', async () => {
+    const response = await client.tasks.history.files.uploadReq(0, { taskId: 0, FileName: 'x' });
   });
 });

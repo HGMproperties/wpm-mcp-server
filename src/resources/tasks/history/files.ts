@@ -69,9 +69,9 @@ export class Files extends APIResource {
    *
    * <h4>Required permission(s):</h4><span class="permissionBlock">Tasks > Tasks</span> - `View`
    */
-  downloadRequest(
+  downloadReq(
     fileID: number,
-    params: FileDownloadRequestParams,
+    params: FileDownloadReqParams,
     options?: RequestOptions,
   ): APIPromise<FilesAPI.FileDownload> {
     const { taskId, taskHistoryId } = params;
@@ -137,9 +137,9 @@ export class Files extends APIResource {
    *
    * <h4>Required permission(s):</h4><span class="permissionBlock">Tasks > Tasks</span> - `View` `Edit`
    */
-  uploadRequest(
+  uploadReq(
     taskHistoryID: number,
-    params: FileUploadRequestParams,
+    params: FileUploadReqParams,
     options?: RequestOptions,
   ): APIPromise<ArchitecturalrequestsFilesAPI.FileUploadTicket> {
     const { taskId, ...body } = params;
@@ -222,13 +222,13 @@ export interface FileDeleteParams {
   taskHistoryId: number;
 }
 
-export interface FileDownloadRequestParams {
+export interface FileDownloadReqParams {
   taskId: number;
 
   taskHistoryId: number;
 }
 
-export interface FileUploadRequestParams {
+export interface FileUploadReqParams {
   /**
    * Path param:
    */
@@ -248,7 +248,7 @@ export declare namespace Files {
     type FileRetrieveParams as FileRetrieveParams,
     type FileListParams as FileListParams,
     type FileDeleteParams as FileDeleteParams,
-    type FileDownloadRequestParams as FileDownloadRequestParams,
-    type FileUploadRequestParams as FileUploadRequestParams,
+    type FileDownloadReqParams as FileDownloadReqParams,
+    type FileUploadReqParams as FileUploadReqParams,
   };
 }

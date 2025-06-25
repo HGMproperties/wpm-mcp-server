@@ -65,23 +65,6 @@ describe('resource files', () => {
   });
 
   // skipped: tests are disabled for the time being
-  test.skip('download: only required params', async () => {
-    const responsePromise = client.bankaccounts.checks.files.download(0, { bankAccountId: 0, checkId: 0 });
-    const rawResponse = await responsePromise.asResponse();
-    expect(rawResponse).toBeInstanceOf(Response);
-    const response = await responsePromise;
-    expect(response).not.toBeInstanceOf(Response);
-    const dataAndResponse = await responsePromise.withResponse();
-    expect(dataAndResponse.data).toBe(response);
-    expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  // skipped: tests are disabled for the time being
-  test.skip('download: required and optional params', async () => {
-    const response = await client.bankaccounts.checks.files.download(0, { bankAccountId: 0, checkId: 0 });
-  });
-
-  // skipped: tests are disabled for the time being
   test.skip('upload: only required params', async () => {
     const responsePromise = client.bankaccounts.checks.files.upload(0, { bankAccountId: 0, FileName: 'x' });
     const rawResponse = await responsePromise.asResponse();

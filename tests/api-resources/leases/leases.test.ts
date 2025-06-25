@@ -191,8 +191,8 @@ describe('resource leases', () => {
   });
 
   // skipped: tests are disabled for the time being
-  test.skip('createAutoallocatedPayment: only required params', async () => {
-    const responsePromise = client.leases.createAutoallocatedPayment(0, {
+  test.skip('createAutoPayment: only required params', async () => {
+    const responsePromise = client.leases.createAutoPayment(0, {
       Date: '2019-12-27',
       PaymentMethod: 'Check',
       SendEmailReceipt: true,
@@ -208,8 +208,8 @@ describe('resource leases', () => {
   });
 
   // skipped: tests are disabled for the time being
-  test.skip('createAutoallocatedPayment: required and optional params', async () => {
-    const response = await client.leases.createAutoallocatedPayment(0, {
+  test.skip('createAutoPayment: required and optional params', async () => {
+    const response = await client.leases.createAutoPayment(0, {
       Date: '2019-12-27',
       PaymentMethod: 'Check',
       SendEmailReceipt: true,
@@ -248,8 +248,8 @@ describe('resource leases', () => {
   });
 
   // skipped: tests are disabled for the time being
-  test.skip('createPaymentReversal: only required params', async () => {
-    const responsePromise = client.leases.createPaymentReversal(0, {
+  test.skip('createPayReversal: only required params', async () => {
+    const responsePromise = client.leases.createPayReversal(0, {
       EntryDate: '2019-12-27',
       PaymentTransactionId: 0,
     });
@@ -263,8 +263,8 @@ describe('resource leases', () => {
   });
 
   // skipped: tests are disabled for the time being
-  test.skip('createPaymentReversal: required and optional params', async () => {
-    const response = await client.leases.createPaymentReversal(0, {
+  test.skip('createPayReversal: required and optional params', async () => {
+    const response = await client.leases.createPayReversal(0, {
       EntryDate: '2019-12-27',
       PaymentTransactionId: 0,
       BankFee: { GLAccountId: 0, TotalAmount: 0 },
@@ -273,8 +273,8 @@ describe('resource leases', () => {
   });
 
   // skipped: tests are disabled for the time being
-  test.skip('listOutstandingBalances', async () => {
-    const responsePromise = client.leases.listOutstandingBalances();
+  test.skip('listBalances', async () => {
+    const responsePromise = client.leases.listBalances();
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -285,10 +285,10 @@ describe('resource leases', () => {
   });
 
   // skipped: tests are disabled for the time being
-  test.skip('listOutstandingBalances: request options and params are passed correctly', async () => {
+  test.skip('listBalances: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      client.leases.listOutstandingBalances(
+      client.leases.listBalances(
         {
           balanceduration: 'TotalBalance',
           entityid: 0,
@@ -307,8 +307,8 @@ describe('resource leases', () => {
   });
 
   // skipped: tests are disabled for the time being
-  test.skip('listRenewalHistory', async () => {
-    const responsePromise = client.leases.listRenewalHistory();
+  test.skip('listRenewHistory', async () => {
+    const responsePromise = client.leases.listRenewHistory();
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -319,10 +319,10 @@ describe('resource leases', () => {
   });
 
   // skipped: tests are disabled for the time being
-  test.skip('listRenewalHistory: request options and params are passed correctly', async () => {
+  test.skip('listRenewHistory: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      client.leases.listRenewalHistory(
+      client.leases.listRenewHistory(
         {
           createddatetimefrom: '2019-12-27T18:11:19.117Z',
           createddatetimeto: '2019-12-27T18:11:19.117Z',

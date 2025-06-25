@@ -97,14 +97,14 @@ export class Rent extends APIResource {
    * @example
    * ```ts
    * const leaseRentMessages =
-   *   await client.leases.rent.getSpecificRent(0);
+   *   await client.leases.rent.getByLease(0);
    * ```
    */
-  getSpecificRent(
+  getByLease(
     leaseID: number,
-    query: RentGetSpecificRentParams | null | undefined = {},
+    query: RentGetByLeaseParams | null | undefined = {},
     options?: RequestOptions,
-  ): APIPromise<RentGetSpecificRentResponse> {
+  ): APIPromise<RentGetByLeaseResponse> {
     return this._client.get(path`/v1/leases/${leaseID}/rent`, { query, ...options });
   }
 
@@ -118,13 +118,13 @@ export class Rent extends APIResource {
    *
    * @example
    * ```ts
-   * const response = await client.leases.rent.retrieveAll();
+   * const response = await client.leases.rent.listAll();
    * ```
    */
-  retrieveAll(
-    query: RentRetrieveAllParams | null | undefined = {},
+  listAll(
+    query: RentListAllParams | null | undefined = {},
     options?: RequestOptions,
-  ): APIPromise<RentRetrieveAllResponse> {
+  ): APIPromise<RentListAllResponse> {
     return this._client.get('/v1/leases/rent', { query, ...options });
   }
 }
@@ -226,12 +226,12 @@ export interface LeaseRentMessage {
 
 export type RentRetrieveResponse = Array<LeaseRentMessage>;
 
-export type RentGetSpecificRentResponse = Array<LeaseRentMessage>;
+export type RentGetByLeaseResponse = Array<LeaseRentMessage>;
 
-export type RentRetrieveAllResponse = Array<RentRetrieveAllResponse.RentRetrieveAllResponseItem>;
+export type RentListAllResponse = Array<RentListAllResponse.RentListAllResponseItem>;
 
-export namespace RentRetrieveAllResponse {
-  export interface RentRetrieveAllResponseItem {
+export namespace RentListAllResponse {
+  export interface RentListAllResponseItem {
     /**
      * Indicates whether backdated charges should be created when creating or editing
      * rents. This field will always return false, even if backdated charges exist.
@@ -447,7 +447,7 @@ export namespace RentUpdateParams {
   }
 }
 
-export interface RentGetSpecificRentParams {
+export interface RentGetByLeaseParams {
   /**
    * `limit` indicates the maximum number of results to be returned in the response.
    * `limit` can range between 1 and 1000 and the default is 50.
@@ -468,7 +468,7 @@ export interface RentGetSpecificRentParams {
   orderby?: string;
 }
 
-export interface RentRetrieveAllParams {
+export interface RentListAllParams {
   /**
    * Filters results to only rents that were created after this date. The value must
    * be in UTC and formatted as `YYYY-MM-DDTHH:MM:SSZ`. The maximum date range is 365
@@ -528,12 +528,12 @@ export declare namespace Rent {
     type LeaseRentCharge as LeaseRentCharge,
     type LeaseRentMessage as LeaseRentMessage,
     type RentRetrieveResponse as RentRetrieveResponse,
-    type RentGetSpecificRentResponse as RentGetSpecificRentResponse,
-    type RentRetrieveAllResponse as RentRetrieveAllResponse,
+    type RentGetByLeaseResponse as RentGetByLeaseResponse,
+    type RentListAllResponse as RentListAllResponse,
     type RentCreateParams as RentCreateParams,
     type RentRetrieveParams as RentRetrieveParams,
     type RentUpdateParams as RentUpdateParams,
-    type RentGetSpecificRentParams as RentGetSpecificRentParams,
-    type RentRetrieveAllParams as RentRetrieveAllParams,
+    type RentGetByLeaseParams as RentGetByLeaseParams,
+    type RentListAllParams as RentListAllParams,
   };
 }

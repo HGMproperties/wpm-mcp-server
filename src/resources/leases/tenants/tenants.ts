@@ -8,8 +8,8 @@ import * as OwnersAPI from '../../associations/owners/owners';
 import * as NotesAPI from './notes';
 import {
   NoteCreateParams,
-  NoteRetrieveAllParams,
-  NoteRetrieveAllResponse,
+  NoteListAllParams,
+  NoteListAllResponse,
   NoteRetrieveParams,
   NoteUpdateParams,
   Notes,
@@ -96,13 +96,13 @@ export class Tenants extends APIResource {
    *
    * @example
    * ```ts
-   * const tenants = await client.leases.tenants.retrieveAll();
+   * const tenants = await client.leases.tenants.listAll();
    * ```
    */
-  retrieveAll(
-    query: TenantRetrieveAllParams | null | undefined = {},
+  listAll(
+    query: TenantListAllParams | null | undefined = {},
     options?: RequestOptions,
-  ): APIPromise<TenantRetrieveAllResponse> {
+  ): APIPromise<TenantListAllResponse> {
     return this._client.get('/v1/leases/tenants', { query, ...options });
   }
 }
@@ -257,7 +257,7 @@ export interface Tenant {
   TaxId?: string | null;
 }
 
-export type TenantRetrieveAllResponse = Array<Tenant>;
+export type TenantListAllResponse = Array<Tenant>;
 
 export interface TenantCreateParams {
   /**
@@ -392,7 +392,7 @@ export interface TenantUpdateParams {
   TaxId?: string | null;
 }
 
-export interface TenantRetrieveAllParams {
+export interface TenantListAllParams {
   /**
    * Filters results by the status of the rental property the tenants are associated
    * with. If no status is specified tenants in either `active` and `inactive` rental
@@ -481,18 +481,18 @@ export declare namespace Tenants {
   export {
     type RentalTenantPut as RentalTenantPut,
     type Tenant as Tenant,
-    type TenantRetrieveAllResponse as TenantRetrieveAllResponse,
+    type TenantListAllResponse as TenantListAllResponse,
     type TenantCreateParams as TenantCreateParams,
     type TenantUpdateParams as TenantUpdateParams,
-    type TenantRetrieveAllParams as TenantRetrieveAllParams,
+    type TenantListAllParams as TenantListAllParams,
   };
 
   export {
     Notes as Notes,
-    type NoteRetrieveAllResponse as NoteRetrieveAllResponse,
+    type NoteListAllResponse as NoteListAllResponse,
     type NoteCreateParams as NoteCreateParams,
     type NoteRetrieveParams as NoteRetrieveParams,
     type NoteUpdateParams as NoteUpdateParams,
-    type NoteRetrieveAllParams as NoteRetrieveAllParams,
+    type NoteListAllParams as NoteListAllParams,
   };
 }

@@ -16,6 +16,6 @@ export {
   type FileUploadTicket,
   type FileRetrieveParams,
   type FileListParams,
-  type FileDownloadrequestsParams,
-  type FileUploadrequestsParams,
+  type FileDownloadRequestsParams,
+  type FileUploadRequestsParams,
 } from './files';

@@ -54,9 +54,9 @@ describe('resource files', () => {
   });
 
   // skipped: tests are disabled for the time being
-  test.skip('downloadrequests: only required params', async () => {
+  test.skip('downloadRequests: only required params', async () => {
     const responsePromise =
-      client.associations.ownershipaccounts.architecturalrequests.files.downloadrequests(0, {
+      client.associations.ownershipaccounts.architecturalrequests.files.downloadRequests(0, {
         architecturalRequestId: 0,
       });
     const rawResponse = await responsePromise.asResponse();
@@ -69,16 +69,16 @@ describe('resource files', () => {
   });
 
   // skipped: tests are disabled for the time being
-  test.skip('downloadrequests: required and optional params', async () => {
-    const response = await client.associations.ownershipaccounts.architecturalrequests.files.downloadrequests(
+  test.skip('downloadRequests: required and optional params', async () => {
+    const response = await client.associations.ownershipaccounts.architecturalrequests.files.downloadRequests(
       0,
       { architecturalRequestId: 0 },
     );
   });
 
   // skipped: tests are disabled for the time being
-  test.skip('uploadrequests: only required params', async () => {
-    const responsePromise = client.associations.ownershipaccounts.architecturalrequests.files.uploadrequests(
+  test.skip('uploadRequests: only required params', async () => {
+    const responsePromise = client.associations.ownershipaccounts.architecturalrequests.files.uploadRequests(
       0,
       { FileName: 'x' },
     );
@@ -92,8 +92,8 @@ describe('resource files', () => {
   });
 
   // skipped: tests are disabled for the time being
-  test.skip('uploadrequests: required and optional params', async () => {
-    const response = await client.associations.ownershipaccounts.architecturalrequests.files.uploadrequests(
+  test.skip('uploadRequests: required and optional params', async () => {
+    const response = await client.associations.ownershipaccounts.architecturalrequests.files.uploadRequests(
       0,
       { FileName: 'x' },
     );
