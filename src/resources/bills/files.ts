@@ -13,14 +13,6 @@ export class Files extends APIResource {
    * Retrieves the metadata for a specific file associated with the specified bill.
    *
    * <h4>Required permission(s):</h4><span class="permissionBlock">Accounting > Bills</span> - `View`
-   *
-   * @example
-   * ```ts
-   * const billFileMessage = await client.bills.files.retrieve(
-   *   0,
-   *   { billId: 0 },
-   * );
-   * ```
    */
   retrieve(
     fileID: number,
@@ -37,11 +29,6 @@ export class Files extends APIResource {
    * [Download a bill file](#tag/Bills/operation/ExternalApiBillFileDownloadRequests_DownloadBillFile).
    *
    * <h4>Required permission(s):</h4><span class="permissionBlock">Accounting > Bills</span> - `View`
-   *
-   * @example
-   * ```ts
-   * const billFileMessages = await client.bills.files.list(0);
-   * ```
    */
   list(
     billID: number,
@@ -56,11 +43,6 @@ export class Files extends APIResource {
    * from the Buildium platform and can not be recovered.
    *
    * <h4>Required permission(s):</h4><span class="permissionBlock">Accounting > Bills</span> - `View` `Edit` `Delete`
-   *
-   * @example
-   * ```ts
-   * await client.bills.files.delete(0, { billId: 0 });
-   * ```
    */
   delete(fileID: number, params: FileDeleteParams, options?: RequestOptions): APIPromise<void> {
     const { billId } = params;
@@ -74,13 +56,6 @@ export class Files extends APIResource {
    * Downloads a specific file associated to the bill.
    *
    * <h4>Required permission(s):</h4><span class="permissionBlock">Accounting > Bills</span> - `View`
-   *
-   * @example
-   * ```ts
-   * const fileDownload = await client.bills.files.download(0, {
-   *   billId: 0,
-   * });
-   * ```
    */
   download(
     fileID: number,
@@ -143,14 +118,6 @@ export class Files extends APIResource {
    * query parameter.
    *
    * <h4>Required permission(s):</h4><span class="permissionBlock">Accounting > Bills</span> - `View` `Edit`
-   *
-   * @example
-   * ```ts
-   * const fileUploadTicket = await client.bills.files.upload(
-   *   0,
-   *   { FileName: 'x' },
-   * );
-   * ```
    */
   upload(
     billID: number,

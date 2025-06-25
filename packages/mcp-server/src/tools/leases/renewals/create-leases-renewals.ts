@@ -213,28 +213,7 @@ export const tool: Tool = {
             type: 'array',
             description: 'List of charges to apply to the lease.',
             items: {
-              type: 'object',
-              properties: {
-                Amount: {
-                  type: 'number',
-                  description: 'The amount of the charge.',
-                },
-                GlAccountId: {
-                  type: 'integer',
-                  description: 'The general ledger account identifier under which to record the charge.',
-                },
-                NextDueDate: {
-                  type: 'string',
-                  description:
-                    'Indicates the next date the charge will be applied to the lease ledger. This date will also be used as the start date for the calculating the `Cycle` of when to apply the next charge. The date must be formatted as YYYY-MM-DD.',
-                  format: 'date',
-                },
-                Memo: {
-                  type: 'string',
-                  description: 'Memo for the charge.',
-                },
-              },
-              required: ['Amount', 'GlAccountId', 'NextDueDate'],
+              $ref: '#/$defs/lease_rent_charge_post_message',
             },
           },
           Cycle: {
@@ -255,6 +234,30 @@ export const tool: Tool = {
           },
         },
         required: ['Charges', 'Cycle'],
+      },
+      lease_rent_charge_post_message: {
+        type: 'object',
+        properties: {
+          Amount: {
+            type: 'number',
+            description: 'The amount of the charge.',
+          },
+          GlAccountId: {
+            type: 'integer',
+            description: 'The general ledger account identifier under which to record the charge.',
+          },
+          NextDueDate: {
+            type: 'string',
+            description:
+              'Indicates the next date the charge will be applied to the lease ledger. This date will also be used as the start date for the calculating the `Cycle` of when to apply the next charge. The date must be formatted as YYYY-MM-DD.',
+            format: 'date',
+          },
+          Memo: {
+            type: 'string',
+            description: 'Memo for the charge.',
+          },
+        },
+        required: ['Amount', 'GlAccountId', 'NextDueDate'],
       },
       lease_cosigner: {
         type: 'object',

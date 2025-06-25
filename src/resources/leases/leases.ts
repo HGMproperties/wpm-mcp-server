@@ -97,6 +97,7 @@ import {
   RentRetrieveAllParams,
   RentRetrieveAllResponse,
   RentRetrieveParams,
+  RentRetrieveResponse,
   RentUpdateParams,
 } from './rent';
 import * as RentersinsuranceAPI from './rentersinsurance';
@@ -620,6 +621,30 @@ export interface LeaseCosigner {
   PhoneNumbers?: OwnersAPI.PhoneNumbers | null;
 }
 
+export interface LeaseRentChargePostMessage {
+  /**
+   * The amount of the charge.
+   */
+  Amount: number;
+
+  /**
+   * The general ledger account identifier under which to record the charge.
+   */
+  GlAccountId: number;
+
+  /**
+   * Indicates the next date the charge will be applied to the lease ledger. This
+   * date will also be used as the start date for the calculating the `Cycle` of when
+   * to apply the next charge. The date must be formatted as YYYY-MM-DD.
+   */
+  NextDueDate: string;
+
+  /**
+   * Memo for the charge.
+   */
+  Memo?: string | null;
+}
+
 /**
  * The rent for the lease. When provided in the request the charges for the
  * specified amount will be automatically applied to the lease ledger on the
@@ -629,7 +654,7 @@ export interface LeaseRentForPostMessage {
   /**
    * List of charges to apply to the lease.
    */
-  Charges: Array<LeaseRentForPostMessage.Charge>;
+  Charges: Array<LeaseRentChargePostMessage>;
 
   /**
    * Indicates the cadence of when rent `Charges` will be applied automatically to
@@ -645,32 +670,6 @@ export interface LeaseRentForPostMessage {
     | 'Daily'
     | 'Every6Months'
     | 'OneTime';
-}
-
-export namespace LeaseRentForPostMessage {
-  export interface Charge {
-    /**
-     * The amount of the charge.
-     */
-    Amount: number;
-
-    /**
-     * The general ledger account identifier under which to record the charge.
-     */
-    GlAccountId: number;
-
-    /**
-     * Indicates the next date the charge will be applied to the lease ledger. This
-     * date will also be used as the start date for the calculating the `Cycle` of when
-     * to apply the next charge. The date must be formatted as YYYY-MM-DD.
-     */
-    NextDueDate: string;
-
-    /**
-     * Memo for the charge.
-     */
-    Memo?: string | null;
-  }
 }
 
 export type LeaseListResponse = Array<Lease>;
@@ -1317,6 +1316,7 @@ export declare namespace Leases {
   export {
     type Lease as Lease,
     type LeaseCosigner as LeaseCosigner,
+    type LeaseRentChargePostMessage as LeaseRentChargePostMessage,
     type LeaseRentForPostMessage as LeaseRentForPostMessage,
     type LeaseListResponse as LeaseListResponse,
     type LeaseListOutstandingBalancesResponse as LeaseListOutstandingBalancesResponse,
@@ -1444,6 +1444,7 @@ export declare namespace Leases {
     Rent as Rent,
     type LeaseRentCharge as LeaseRentCharge,
     type LeaseRentMessage as LeaseRentMessage,
+    type RentRetrieveResponse as RentRetrieveResponse,
     type RentRetrieveAllResponse as RentRetrieveAllResponse,
     type RentCreateParams as RentCreateParams,
     type RentRetrieveParams as RentRetrieveParams,

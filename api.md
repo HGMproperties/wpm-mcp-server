@@ -1,3 +1,11 @@
+# Shared
+
+Types:
+
+- <code><a href="./src/resources/shared.ts">CcPaymentsPutMessage</a></code>
+- <code><a href="./src/resources/shared.ts">EftPaymentsPutMessage</a></code>
+- <code><a href="./src/resources/shared.ts">OfflinePaymentsPutMessage</a></code>
+
 # Applications
 
 Types:
@@ -197,7 +205,7 @@ Types:
 
 Methods:
 
-- <code title="get /v1/associations/ownershipaccounts/recurringtransactions">client.associations.ownershipaccounts.recurringtransactions.<a href="./src/resources/associations/ownershipaccounts/recurringtransactions.ts">list</a>({ ...params }) -> RecurringtransactionListResponse</code>
+- <code title="get /v1/associations/ownershipaccounts/{ownershipAccountId}/recurringtransactions">client.associations.ownershipaccounts.recurringtransactions.<a href="./src/resources/associations/ownershipaccounts/recurringtransactions.ts">list</a>(ownershipAccountID, { ...params }) -> RecurringtransactionListResponse</code>
 
 ### Notes
 
@@ -507,6 +515,7 @@ Types:
 
 - <code><a href="./src/resources/leases/leases.ts">Lease</a></code>
 - <code><a href="./src/resources/leases/leases.ts">LeaseCosigner</a></code>
+- <code><a href="./src/resources/leases/leases.ts">LeaseRentChargePostMessage</a></code>
 - <code><a href="./src/resources/leases/leases.ts">LeaseRentForPostMessage</a></code>
 - <code><a href="./src/resources/leases/leases.ts">LeaseListResponse</a></code>
 - <code><a href="./src/resources/leases/leases.ts">LeaseListOutstandingBalancesResponse</a></code>
@@ -691,12 +700,13 @@ Types:
 
 - <code><a href="./src/resources/leases/rent.ts">LeaseRentCharge</a></code>
 - <code><a href="./src/resources/leases/rent.ts">LeaseRentMessage</a></code>
+- <code><a href="./src/resources/leases/rent.ts">RentRetrieveResponse</a></code>
 - <code><a href="./src/resources/leases/rent.ts">RentRetrieveAllResponse</a></code>
 
 Methods:
 
 - <code title="post /v1/leases/{leaseId}/rent">client.leases.rent.<a href="./src/resources/leases/rent.ts">create</a>(leaseID, { ...params }) -> LeaseRentMessage</code>
-- <code title="get /v1/leases/{leaseId}/rent/{rentId}">client.leases.rent.<a href="./src/resources/leases/rent.ts">retrieve</a>(rentID, { ...params }) -> LeaseRentMessage</code>
+- <code title="get /v1/leases/{leaseId}/rent">client.leases.rent.<a href="./src/resources/leases/rent.ts">retrieve</a>(leaseID, { ...params }) -> RentRetrieveResponse</code>
 - <code title="put /v1/leases/{leaseId}/rent/{rentId}">client.leases.rent.<a href="./src/resources/leases/rent.ts">update</a>(rentID, { ...params }) -> LeaseRentMessage</code>
 - <code title="get /v1/leases/rent">client.leases.rent.<a href="./src/resources/leases/rent.ts">retrieveAll</a>({ ...params }) -> RentRetrieveAllResponse</code>
 
@@ -1225,6 +1235,7 @@ Methods:
 
 Types:
 
+- <code><a href="./src/resources/bankaccounts/transfers.ts">BankAccountTransferAccountingEntitySaveMessage</a></code>
 - <code><a href="./src/resources/bankaccounts/transfers.ts">Transfer</a></code>
 - <code><a href="./src/resources/bankaccounts/transfers.ts">TransferSave</a></code>
 - <code><a href="./src/resources/bankaccounts/transfers.ts">TransferListResponse</a></code>
@@ -1263,7 +1274,7 @@ Methods:
 
 - <code title="post /v1/bills">client.bills.<a href="./src/resources/bills/bills.ts">create</a>({ ...params }) -> BillMessage</code>
 - <code title="get /v1/bills/{billId}">client.bills.<a href="./src/resources/bills/bills.ts">retrieve</a>(billID) -> BillMessage</code>
-- <code title="patch /v1/bills/{billId}">client.bills.<a href="./src/resources/bills/bills.ts">update</a>(billID, { ...params }) -> BillMessage</code>
+- <code title="put /v1/bills/{billId}">client.bills.<a href="./src/resources/bills/bills.ts">update</a>(billID, { ...params }) -> BillMessage</code>
 - <code title="get /v1/bills">client.bills.<a href="./src/resources/bills/bills.ts">list</a>({ ...params }) -> BillListResponse</code>
 
 ## Files
@@ -1533,6 +1544,7 @@ Methods:
 Types:
 
 - <code><a href="./src/resources/tasks/contactrequests.ts">ContactDetailSave</a></code>
+- <code><a href="./src/resources/tasks/contactrequests.ts">ContactDetailSavePhoneMessage</a></code>
 - <code><a href="./src/resources/tasks/contactrequests.ts">ContactRequestTask</a></code>
 - <code><a href="./src/resources/tasks/contactrequests.ts">ContactrequestListResponse</a></code>
 

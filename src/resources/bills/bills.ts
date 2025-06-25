@@ -38,25 +38,6 @@ export class Bills extends APIResource {
    * Creates a bill.
    *
    * <h4>Required permission(s):</h4><span class="permissionBlock">Accounting > Bills</span> - `View` `Edit`
-   *
-   * @example
-   * ```ts
-   * const billMessage = await client.bills.create({
-   *   Date: '2019-12-27',
-   *   DueDate: '2019-12-27',
-   *   Lines: [
-   *     {
-   *       AccountingEntity: {
-   *         AccountingEntityType: 'Association',
-   *         Id: 0,
-   *       },
-   *       Amount: 0,
-   *       GlAccountId: 0,
-   *     },
-   *   ],
-   *   VendorId: 0,
-   * });
-   * ```
    */
   create(body: BillCreateParams, options?: RequestOptions): APIPromise<BillMessage> {
     return this._client.post('/v1/bills', { body, ...options });
@@ -66,39 +47,27 @@ export class Bills extends APIResource {
    * Retrieves a single bill.
    *
    * <h4>Required permission(s):</h4><span class="permissionBlock">Accounting > Bills</span> - `View`
-   *
-   * @example
-   * ```ts
-   * const billMessage = await client.bills.retrieve(0);
-   * ```
    */
   retrieve(billID: number, options?: RequestOptions): APIPromise<BillMessage> {
     return this._client.get(path`/v1/bills/${billID}`, options);
   }
 
   /**
-   * Updates a bill.
+   * Use this operation to update any of the writable fields of an existing bill
+   * resource. When updating this resource keep the following in mind:
+   *
+   * <ul><li>Writable fields omitted from the request or that do not have a value in the request message are set to `NULL`. If you do not want to update the field, submit the original field value.</li><li>When a bill has an existing payment any edits to the line items that change the total bill amount must result in the new total bill amount being equal to or greater than the amount paid.</li><li>When adding a new line item leave the `LineItem.Id` field empty.</li><li>You cannot update a bill that has a pending EFT associated with it.</li></ul>
    *
    * <h4>Required permission(s):</h4><span class="permissionBlock">Accounting > Bills</span> - `View` `Edit`
-   *
-   * @example
-   * ```ts
-   * const billMessage = await client.bills.update(0);
-   * ```
    */
   update(billID: number, body: BillUpdateParams, options?: RequestOptions): APIPromise<BillMessage> {
-    return this._client.patch(path`/v1/bills/${billID}`, { body, ...options });
+    return this._client.put(path`/v1/bills/${billID}`, { body, ...options });
   }
 
   /**
    * Retrieves a list of bills.
    *
    * <h4>Required permission(s):</h4><span class="permissionBlock">Accounting > Bills</span> - `View`
-   *
-   * @example
-   * ```ts
-   * const billMessages = await client.bills.list();
-   * ```
    */
   list(
     query: BillListParams | null | undefined = {},
@@ -315,13 +284,18 @@ export interface BillUpdateParams {
    * Bill Received Date, Invoice Date, or Invoice Received Date from an invoice. The
    * date must be formatted as YYYY-MM-DD.
    */
-  Date?: string | null;
+  Date: string;
 
   /**
    * The date that payment for a bill is due to the vendor. The date must be
    * formatted as YYYY-MM-DD.
    */
-  DueDate?: string | null;
+  DueDate: string;
+
+  /**
+   * The unique identifier of the vendor or supplier who sent you an invoice.
+   */
+  VendorId: number;
 
   /**
    * A collection of line items associated with the bill.
@@ -339,24 +313,22 @@ export interface BillUpdateParams {
    * value cannot exceed 40 characters.
    */
   ReferenceNumber?: string | null;
-
-  /**
-   * The unique identifier of the vendor or supplier who sent you an invoice.
-   */
-  VendorId?: number | null;
 }
 
 export namespace BillUpdateParams {
+  /**
+   * Bill line item.
+   */
   export interface Line {
     /**
-     * The accounting entity associated with the bill line item.
+     * Object to represent an Accounting Entity
      */
-    AccountingEntity?: Line.AccountingEntity | null;
+    AccountingEntity: QuickdepositsAPI.AccountingEntitySave;
 
     /**
      * Line item amount.
      */
-    Amount?: number | null;
+    Amount: number;
 
     /**
      * The general ledger account identifier under which the line item amount will be
@@ -364,7 +336,7 @@ export namespace BillUpdateParams {
      * Accounts Receivable, Undeposited Funds or any general leger account referencing
      * a bank account.
      */
-    GlAccountId?: number | null;
+    GlAccountId: number;
 
     /**
      * Bill line item unique identifier.
@@ -372,52 +344,14 @@ export namespace BillUpdateParams {
     Id?: number | null;
 
     /**
-     * Bill markup.
+     * Bill mark up.
      */
-    Markup?: Line.Markup | null;
+    Markup?: BillsAPI.BillMarkupSaveMessage | null;
 
     /**
      * Memo for the line item. The value cannot exceed 240 characters.
      */
     Memo?: string | null;
-  }
-
-  export namespace Line {
-    /**
-     * The accounting entity associated with the bill line item.
-     */
-    export interface AccountingEntity {
-      /**
-       * The type of the accounting entity
-       */
-      AccountingEntityType?: 'Association' | 'Rental' | 'Company' | null;
-
-      /**
-       * The unique identifier of the accounting entity
-       */
-      Id?: number | null;
-
-      /**
-       * The unit unique identifier for the accounting entity.
-       */
-      UnitId?: number | null;
-    }
-
-    /**
-     * Bill markup.
-     */
-    export interface Markup {
-      /**
-       * The mark up amount. The value should be relative to the markup `Type`. If the
-       * mark up `Type` is `Percent` the value cannot exceed 100.
-       */
-      Amount?: number | null;
-
-      /**
-       * The markup type.
-       */
-      Type?: 'Percent' | 'Amount' | null;
-    }
   }
 }
 

@@ -65,6 +65,23 @@ export class Transfers extends APIResource {
   }
 }
 
+export interface BankAccountTransferAccountingEntitySaveMessage {
+  /**
+   * The type of accounting entity.
+   */
+  AccountingEntityType: 'Association' | 'Rental' | 'Company';
+
+  /**
+   * The accounting entity unique identifier.
+   */
+  Id: number;
+
+  /**
+   * The unit unique identifier for the accounting entity.
+   */
+  UnitId?: number | null;
+}
+
 export interface Transfer {
   /**
    * An object that represents an accounting entity.
@@ -101,7 +118,7 @@ export interface TransferSave {
   /**
    * A rental property, association or company to associate with the transfer.
    */
-  AccountingEntity: TransferSave.AccountingEntity;
+  AccountingEntity: BankAccountTransferAccountingEntitySaveMessage;
 
   /**
    * The date the transfer was recorded.
@@ -122,28 +139,6 @@ export interface TransferSave {
    * Memo associated with the transfer, if applicable.
    */
   Memo?: string | null;
-}
-
-export namespace TransferSave {
-  /**
-   * A rental property, association or company to associate with the transfer.
-   */
-  export interface AccountingEntity {
-    /**
-     * The type of accounting entity.
-     */
-    AccountingEntityType: 'Association' | 'Rental' | 'Company';
-
-    /**
-     * The accounting entity unique identifier.
-     */
-    Id: number;
-
-    /**
-     * The unit unique identifier for the accounting entity.
-     */
-    UnitId?: number | null;
-  }
 }
 
 export type TransferListResponse = Array<Transfer>;
@@ -152,7 +147,7 @@ export interface TransferCreateParams {
   /**
    * A rental property, association or company to associate with the transfer.
    */
-  AccountingEntity: TransferCreateParams.AccountingEntity;
+  AccountingEntity: BankAccountTransferAccountingEntitySaveMessage;
 
   /**
    * The date the transfer was recorded.
@@ -173,28 +168,6 @@ export interface TransferCreateParams {
    * Memo associated with the transfer, if applicable.
    */
   Memo?: string | null;
-}
-
-export namespace TransferCreateParams {
-  /**
-   * A rental property, association or company to associate with the transfer.
-   */
-  export interface AccountingEntity {
-    /**
-     * The type of accounting entity.
-     */
-    AccountingEntityType: 'Association' | 'Rental' | 'Company';
-
-    /**
-     * The accounting entity unique identifier.
-     */
-    Id: number;
-
-    /**
-     * The unit unique identifier for the accounting entity.
-     */
-    UnitId?: number | null;
-  }
 }
 
 export interface TransferRetrieveParams {
@@ -214,7 +187,7 @@ export interface TransferUpdateParams {
    * Body param: A rental property, association or company to associate with the
    * transfer.
    */
-  AccountingEntity: TransferUpdateParams.AccountingEntity;
+  AccountingEntity: BankAccountTransferAccountingEntitySaveMessage;
 
   /**
    * Body param: The date the transfer was recorded.
@@ -235,28 +208,6 @@ export interface TransferUpdateParams {
    * Body param: Memo associated with the transfer, if applicable.
    */
   Memo?: string | null;
-}
-
-export namespace TransferUpdateParams {
-  /**
-   * A rental property, association or company to associate with the transfer.
-   */
-  export interface AccountingEntity {
-    /**
-     * The type of accounting entity.
-     */
-    AccountingEntityType: 'Association' | 'Rental' | 'Company';
-
-    /**
-     * The accounting entity unique identifier.
-     */
-    Id: number;
-
-    /**
-     * The unit unique identifier for the accounting entity.
-     */
-    UnitId?: number | null;
-  }
 }
 
 export interface TransferListParams {
@@ -294,6 +245,7 @@ export interface TransferListParams {
 
 export declare namespace Transfers {
   export {
+    type BankAccountTransferAccountingEntitySaveMessage as BankAccountTransferAccountingEntitySaveMessage,
     type Transfer as Transfer,
     type TransferSave as TransferSave,
     type TransferListResponse as TransferListResponse,
