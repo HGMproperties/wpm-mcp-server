@@ -3,6 +3,7 @@ import { Endpoint, asTextContentResult, ToolCallResult } from './tools/types';
 import { zodToJsonSchema } from 'zod-to-json-schema';
 import { z } from 'zod';
 import { Cabidela } from '@cloudflare/cabidela';
+import NodeCache from 'node-cache'; // Import node-cache
 
 function zodToInputSchema(schema: z.ZodSchema) {
   return {
@@ -10,6 +11,12 @@ function zodToInputSchema(schema: z.ZodSchema) {
     ...(zodToJsonSchema(schema) as any),
   };
 }
+
+// Create a cache instance
+// You can adjust stdTTL (standard Time To Live in seconds) and checkperiod
+// stdTTL: how long an item stays in cache (e.g., 5 minutes = 300 seconds)
+// checkperiod: how often the cache checks for expired items
+const mcpCache = new NodeCache({ stdTTL: 300, checkperiod: 60 }); 
 
 /**
  * A list of tools that expose all the endpoints in the API dynamically.
@@ -47,6 +54,17 @@ export function dynamicTools(endpoints: Endpoint[]): Endpoint[] {
     ): Promise<ToolCallResult> => {
       const query = args && listEndpointsSchema.parse(args).search_query?.trim();
 
+      // Create a unique cache key based on the query
+      const cacheKey = `list_api_endpoints:${query || 'all'}`;
+      let cachedResult = mcpCache.get<ToolCallResult>(cacheKey);
+
+      if (cachedResult) {
+        console.log(`Cache hit for ${cacheKey}`);
+        return cachedResult;
+      }
+
+      console.log(`Cache miss for ${cacheKey}. Fetching data...`);
+
       const filteredEndpoints =
         query && query.length > 0 ?
           endpoints.filter((endpoint) => {
@@ -61,7 +79,7 @@ export function dynamicTools(endpoints: Endpoint[]): Endpoint[] {
           })
         : endpoints;
 
-      return asTextContentResult({
+      const result: ToolCallResult = asTextContentResult({
         tools: filteredEndpoints.map(({ tool, metadata }) => ({
           name: tool.name,
           description: tool.description,
@@ -70,6 +88,10 @@ export function dynamicTools(endpoints: Endpoint[]): Endpoint[] {
           tags: metadata.tags,
         })),
       });
+
+      // Store the result in cache
+      mcpCache.set(cacheKey, result);
+      return result;
     },
   };
 
@@ -94,11 +116,26 @@ export function dynamicTools(endpoints: Endpoint[]): Endpoint[] {
       }
       const endpointName = getEndpointSchema.parse(args).endpoint;
 
+      // Create a unique cache key for the endpoint schema
+      const cacheKey = `get_api_endpoint_schema:${endpointName}`;
+      let cachedResult = mcpCache.get<ToolCallResult>(cacheKey);
+
+      if (cachedResult) {
+        console.log(`Cache hit for ${cacheKey}`);
+        return cachedResult;
+      }
+
+      console.log(`Cache miss for ${cacheKey}. Fetching data...`);
+
       const endpoint = endpoints.find((e) => e.tool.name === endpointName);
       if (!endpoint) {
         throw new Error(`Endpoint ${endpointName} not found`);
       }
-      return asTextContentResult(endpoint.tool);
+      const result: ToolCallResult = asTextContentResult(endpoint.tool);
+
+      // Store the result in cache
+      mcpCache.set(cacheKey, result);
+      return result;
     },
   };
 
@@ -151,6 +188,8 @@ export function dynamicTools(endpoints: Endpoint[]): Endpoint[] {
         throw new Error(`Invalid arguments for endpoint ${endpoint_name}:\n${error}`);
       }
 
+      // The invoke_api_endpoint tool should generally not be cached,
+      // as its results are dynamic based on the invocation and side effects are possible.
       return await endpoint.handler(client, endpointArgs);
     },
   };
