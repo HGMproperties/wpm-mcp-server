@@ -86,6 +86,30 @@ describe('resource rent', () => {
   });
 
   // skipped: tests are disabled for the time being
+  test.skip('getSpecificRent', async () => {
+    const responsePromise = client.leases.rent.getSpecificRent(0);
+    const rawResponse = await responsePromise.asResponse();
+    expect(rawResponse).toBeInstanceOf(Response);
+    const response = await responsePromise;
+    expect(response).not.toBeInstanceOf(Response);
+    const dataAndResponse = await responsePromise.withResponse();
+    expect(dataAndResponse.data).toBe(response);
+    expect(dataAndResponse.response).toBe(rawResponse);
+  });
+
+  // skipped: tests are disabled for the time being
+  test.skip('getSpecificRent: request options and params are passed correctly', async () => {
+    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
+    await expect(
+      client.leases.rent.getSpecificRent(
+        0,
+        { limit: 0, offset: 0, orderby: 'orderby' },
+        { path: '/_stainless_unknown_path' },
+      ),
+    ).rejects.toThrow(WpmMcpServer.NotFoundError);
+  });
+
+  // skipped: tests are disabled for the time being
   test.skip('retrieveAll', async () => {
     const responsePromise = client.leases.rent.retrieveAll();
     const rawResponse = await responsePromise.asResponse();

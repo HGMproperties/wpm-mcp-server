@@ -174,6 +174,7 @@ import retrieve_leases_recurringpayments from './leases/recurringpayments/retrie
 import create_leases_rent from './leases/rent/create-leases-rent';
 import retrieve_leases_rent from './leases/rent/retrieve-leases-rent';
 import update_leases_rent from './leases/rent/update-leases-rent';
+import get_specific_rent_leases_rent from './leases/rent/get-specific-rent-leases-rent';
 import retrieve_all_leases_rent from './leases/rent/retrieve-all-leases-rent';
 import retrieve_leases_rentersinsurance from './leases/rentersinsurance/retrieve-leases-rentersinsurance';
 import retrieve_all_leases_rentersinsurance from './leases/rentersinsurance/retrieve-all-leases-rentersinsurance';
@@ -605,6 +606,7 @@ addEndpoint(retrieve_leases_recurringpayments);
 addEndpoint(create_leases_rent);
 addEndpoint(retrieve_leases_rent);
 addEndpoint(update_leases_rent);
+addEndpoint(get_specific_rent_leases_rent);
 addEndpoint(retrieve_all_leases_rent);
 addEndpoint(retrieve_leases_rentersinsurance);
 addEndpoint(retrieve_all_leases_rentersinsurance);

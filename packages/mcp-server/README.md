@@ -1154,6 +1154,10 @@ The following tools are available in this MCP server.
 
   <h4>Required permission(s):</h4><span class="permissionBlock">Rentals > Lease Transactions</span> - `View` `Edit`
 
+- `get_specific_rent_leases_rent` (`read`): The rent schedule provides details (dollar amount, day of the month, etc) of the recurring charges that are applied to the lease ledger each rent cycle. A lease may have more than one rent schedule associated with it if the rent terms change within the duration of the lease.
+
+  <h4>Required permission(s):</h4><span class="permissionBlock">Rentals > Lease transactions</span> - `View`
+
 - `retrieve_all_leases_rent` (`read`): The rent schedule provides details (dollar amount, day of the month, etc) of the recurring charges that are applied to the lease ledger each rent cycle. A lease may have more than one rent schedule associated with it if the rent terms change within the duration of the lease.
 
   <h4>Required permission(s):</h4><span class="permissionBlock">Rentals > Lease transactions</span> - `View`
