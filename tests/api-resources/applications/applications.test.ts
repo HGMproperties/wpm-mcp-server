@@ -3,7 +3,7 @@
 import WpmMcpServer from 'wpm-mcp-server';
 
 const client = new WpmMcpServer({
-  apiKey: 'My API Key',
+  clientID: 'My Client ID',
   baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
 });
 

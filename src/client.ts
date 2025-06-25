@@ -205,9 +205,14 @@ import { isEmptyObj } from './internal/utils/values';
 
 export interface ClientOptions {
   /**
-   * Defaults to process.env['WPM_MCP_SERVER_API_KEY'].
+   * Defaults to process.env['WPM_BUILDIUM_CLIENT_ID'].
    */
-  apiKey?: string | null | undefined;
+  clientID?: string | null | undefined;
+
+  /**
+   * Defaults to process.env['WPM_BUILDIUM_CLIENT_SECRET'].
+   */
+  clientSecret?: string | null | undefined;
 
   /**
    * Override the default base URL for the API, e.g., "https://api.example.com/v2/"
@@ -280,7 +285,8 @@ export interface ClientOptions {
  * API Client for interfacing with the Wpm Mcp Server API.
  */
 export class WpmMcpServer {
-  apiKey: string | null;
+  clientID: string | null;
+  clientSecret: string | null;
 
   baseURL: string;
   maxRetries: number;
@@ -297,8 +303,9 @@ export class WpmMcpServer {
   /**
    * API Client for interfacing with the Wpm Mcp Server API.
    *
-   * @param {string | null | undefined} [opts.apiKey=process.env['WPM_MCP_SERVER_API_KEY'] ?? null]
-   * @param {string} [opts.baseURL=process.env['WPM_MCP_SERVER_BASE_URL'] ?? https://api.example.com] - Override the default base URL for the API.
+   * @param {string | null | undefined} [opts.clientID=process.env['WPM_BUILDIUM_CLIENT_ID'] ?? null]
+   * @param {string | null | undefined} [opts.clientSecret=process.env['WPM_BUILDIUM_CLIENT_SECRET'] ?? null]
+   * @param {string} [opts.baseURL=process.env['WPM_MCP_SERVER_BASE_URL'] ?? https://apisandbox.buildium.com/] - Override the default base URL for the API.
    * @param {number} [opts.timeout=1 minute] - The maximum amount of time (in milliseconds) the client will wait for a response before timing out.
    * @param {MergedRequestInit} [opts.fetchOptions] - Additional `RequestInit` options to be passed to `fetch` calls.
    * @param {Fetch} [opts.fetch] - Specify a custom `fetch` function implementation.
@@ -308,13 +315,15 @@ export class WpmMcpServer {
    */
   constructor({
     baseURL = readEnv('WPM_MCP_SERVER_BASE_URL'),
-    apiKey = readEnv('WPM_MCP_SERVER_API_KEY') ?? null,
+    clientID = readEnv('WPM_BUILDIUM_CLIENT_ID') ?? null,
+    clientSecret = readEnv('WPM_BUILDIUM_CLIENT_SECRET') ?? null,
     ...opts
   }: ClientOptions = {}) {
     const options: ClientOptions = {
-      apiKey,
+      clientID,
+      clientSecret,
       ...opts,
-      baseURL: baseURL || `https://api.example.com`,
+      baseURL: baseURL || `https://apisandbox.buildium.com/`,
     };
 
     this.baseURL = options.baseURL!;
@@ -334,7 +343,8 @@ export class WpmMcpServer {
 
     this._options = options;
 
-    this.apiKey = apiKey;
+    this.clientID = clientID;
+    this.clientSecret = clientSecret;
   }
 
   /**
@@ -350,7 +360,8 @@ export class WpmMcpServer {
       logLevel: this.logLevel,
       fetch: this.fetch,
       fetchOptions: this.fetchOptions,
-      apiKey: this.apiKey,
+      clientID: this.clientID,
+      clientSecret: this.clientSecret,
       ...options,
     });
   }
@@ -359,7 +370,7 @@ export class WpmMcpServer {
    * Check whether the base URL is set to its default.
    */
   #baseURLOverridden(): boolean {
-    return this.baseURL !== 'https://api.example.com';
+    return this.baseURL !== 'https://apisandbox.buildium.com/';
   }
 
   protected defaultQuery(): Record<string, string | undefined> | undefined {
@@ -367,23 +378,41 @@ export class WpmMcpServer {
   }
 
   protected validateHeaders({ values, nulls }: NullableHeaders) {
-    if (this.apiKey && values.get('authorization')) {
+    if (this.clientID && values.get('x-buildium-client-id')) {
       return;
     }
-    if (nulls.has('authorization')) {
+    if (nulls.has('x-buildium-client-id')) {
+      return;
+    }
+
+    if (this.clientSecret && values.get('x-buildium-client-secret')) {
+      return;
+    }
+    if (nulls.has('x-buildium-client-secret')) {
       return;
     }
 
     throw new Error(
-      'Could not resolve authentication method. Expected the apiKey to be set. Or for the "Authorization" headers to be explicitly omitted',
+      'Could not resolve authentication method. Expected either clientID or clientSecret to be set. Or for one of the "x-buildium-client-id" or "x-buildium-client-secret" headers to be explicitly omitted',
     );
   }
 
   protected authHeaders(opts: FinalRequestOptions): NullableHeaders | undefined {
-    if (this.apiKey == null) {
+    return buildHeaders([this.clientIDAuth(opts), this.clientSecretAuth(opts)]);
+  }
+
+  protected clientIDAuth(opts: FinalRequestOptions): NullableHeaders | undefined {
+    if (this.clientID == null) {
       return undefined;
     }
-    return buildHeaders([{ Authorization: `Bearer ${this.apiKey}` }]);
+    return buildHeaders([{ 'x-buildium-client-id': this.clientID }]);
+  }
+
+  protected clientSecretAuth(opts: FinalRequestOptions): NullableHeaders | undefined {
+    if (this.clientSecret == null) {
+      return undefined;
+    }
+    return buildHeaders([{ 'x-buildium-client-secret': this.clientSecret }]);
   }
 
   protected stringifyQuery(query: Record<string, unknown>): string {
