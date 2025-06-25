@@ -1,9 +1,5 @@
 # Changelog
 
-## 1.6.2 (2025-06-25)
-
-Full Changelog: [v1.6.1...v1.6.2](https://github.com/HGMproperties/wpm-mcp-server/compare/v1.6.1...v1.6.2)
-
 ## 1.6.1 (2025-06-25)
 
 Full Changelog: [v1.6.0...v1.6.1](https://github.com/HGMproperties/wpm-mcp-server/compare/v1.6.0...v1.6.1)

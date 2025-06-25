@@ -1,6 +1,6 @@
 {
   "name": "wpm-mcp-server-mcp",
-  "version": "1.6.2",
+  "version": "1.6.1",
   "description": "The official MCP Server for the Wpm Mcp Server API",
   "author": "Wpm Mcp Server <>",
   "types": "dist/index.d.ts",
