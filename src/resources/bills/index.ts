@@ -13,7 +13,6 @@ export {
   Files,
   type BillFileMessage,
   type FileListResponse,
-  type FileUploadResponse,
   type FileRetrieveParams,
   type FileListParams,
   type FileDeleteParams,

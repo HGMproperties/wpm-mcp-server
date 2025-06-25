@@ -9,12 +9,7 @@ export {
   type ApplianceUpdateParams,
   type ApplianceListParams,
 } from './appliances/index';
-export {
-  Epaysettings,
-  type EpaysettingCreateResponse,
-  type EpaysettingListResponse,
-  type EpaysettingCreateParams,
-} from './epaysettings';
+export { Epaysettings, type EpaysettingCreateParams } from './epaysettings';
 export {
   Images,
   type ImageReorderRequest,
@@ -23,7 +18,6 @@ export {
   type VideoLinkRequest,
   type ImageListResponse,
   type ImageUpdateOrderResponse,
-  type ImageUploadRequestsResponse,
   type ImageRetrieveParams,
   type ImageUpdateParams,
   type ImageListParams,

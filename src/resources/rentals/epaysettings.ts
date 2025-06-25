@@ -1,6 +1,7 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from '../../core/resource';
+import * as EpaysettingsAPI from '../associations/epaysettings';
 import { APIPromise } from '../../core/api-promise';
 import { RequestOptions } from '../../internal/request-options';
 import { path } from '../../internal/utils/path';
@@ -15,7 +16,7 @@ export class Epaysettings extends APIResource {
     propertyID: number,
     body: EpaysettingCreateParams,
     options?: RequestOptions,
-  ): APIPromise<EpaysettingCreateResponse> {
+  ): APIPromise<EpaysettingsAPI.EPaySettings> {
     return this._client.put(path`/v1/rentals/${propertyID}/epaysettings`, { body, ...options });
   }
 
@@ -24,138 +25,8 @@ export class Epaysettings extends APIResource {
    *
    * <h4>Required permission(s):</h4><span class="permissionBlock">Rentals > Rental properties and units</span> - `View`
    */
-  list(propertyID: number, options?: RequestOptions): APIPromise<EpaysettingListResponse> {
+  list(propertyID: number, options?: RequestOptions): APIPromise<EpaysettingsAPI.EPaySettings> {
     return this._client.get(path`/v1/rentals/${propertyID}/epaysettings`, options);
-  }
-}
-
-export interface EpaysettingCreateResponse {
-  /**
-   * Credit card payment settings.
-   */
-  CreditCardPayments?: EpaysettingCreateResponse.CreditCardPayments | null;
-
-  /**
-   * Electronic payment settings.
-   */
-  EFTPayments?: EpaysettingCreateResponse.EftPayments | null;
-
-  /**
-   * Offline payment settings.
-   */
-  OfflinePayments?: EpaysettingCreateResponse.OfflinePayments | null;
-}
-
-export namespace EpaysettingCreateResponse {
-  /**
-   * Credit card payment settings.
-   */
-  export interface CreditCardPayments {
-    /**
-     * Indicates whether credit card payments are enabled in the Buildium Resident
-     * Center for all residents of this property.
-     */
-    PaymentsEnabled?: boolean;
-  }
-
-  /**
-   * Electronic payment settings.
-   */
-  export interface EftPayments {
-    /**
-     * Indicates whether EFT payments are enabled in the Buildium Resident Center for
-     * all residents of this property.
-     */
-    PaymentsEnabled?: boolean;
-  }
-
-  /**
-   * Offline payment settings.
-   */
-  export interface OfflinePayments {
-    /**
-     * Indicates whether to display the company address along with the offline payment
-     * information. If `DisplayInfoInResidentCenter` is false the company address will
-     * not be displayed.
-     */
-    DisplayCompanyAddress?: boolean;
-
-    /**
-     * Indicates whether the offline payment information is displayed in the Buildium
-     * Resident Center.
-     */
-    DisplayInfoInResidentCenter?: boolean;
-
-    /**
-     * Directions for how to make offline payments. If `DisplayInfoInResidentCenter` is
-     * false the payment instructions will not be displayed.
-     */
-    PaymentInstructions?: string | null;
-  }
-}
-
-export interface EpaysettingListResponse {
-  /**
-   * Credit card payment settings.
-   */
-  CreditCardPayments?: EpaysettingListResponse.CreditCardPayments | null;
-
-  /**
-   * Electronic payment settings.
-   */
-  EFTPayments?: EpaysettingListResponse.EftPayments | null;
-
-  /**
-   * Offline payment settings.
-   */
-  OfflinePayments?: EpaysettingListResponse.OfflinePayments | null;
-}
-
-export namespace EpaysettingListResponse {
-  /**
-   * Credit card payment settings.
-   */
-  export interface CreditCardPayments {
-    /**
-     * Indicates whether credit card payments are enabled in the Buildium Resident
-     * Center for all residents of this property.
-     */
-    PaymentsEnabled?: boolean;
-  }
-
-  /**
-   * Electronic payment settings.
-   */
-  export interface EftPayments {
-    /**
-     * Indicates whether EFT payments are enabled in the Buildium Resident Center for
-     * all residents of this property.
-     */
-    PaymentsEnabled?: boolean;
-  }
-
-  /**
-   * Offline payment settings.
-   */
-  export interface OfflinePayments {
-    /**
-     * Indicates whether to display the company address along with the offline payment
-     * information. If `DisplayInfoInResidentCenter` is false the company address will
-     * not be displayed.
-     */
-    DisplayCompanyAddress?: boolean;
-
-    /**
-     * Indicates whether the offline payment information is displayed in the Buildium
-     * Resident Center.
-     */
-    DisplayInfoInResidentCenter?: boolean;
-
-    /**
-     * Directions for how to make offline payments. If `DisplayInfoInResidentCenter` is
-     * false the payment instructions will not be displayed.
-     */
-    PaymentInstructions?: string | null;
   }
 }
 
@@ -229,9 +100,5 @@ export namespace EpaysettingCreateParams {
 }
 
 export declare namespace Epaysettings {
-  export {
-    type EpaysettingCreateResponse as EpaysettingCreateResponse,
-    type EpaysettingListResponse as EpaysettingListResponse,
-    type EpaysettingCreateParams as EpaysettingCreateParams,
-  };
+  export { type EpaysettingCreateParams as EpaysettingCreateParams };
 }
