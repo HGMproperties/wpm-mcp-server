@@ -26,6 +26,17 @@ export const tool: Tool = {
         type: 'integer',
       },
       CreditCardPayments: {
+        $ref: '#/$defs/cc_payments_put_message',
+      },
+      EFTPayments: {
+        $ref: '#/$defs/eft_payments_put_message',
+      },
+      OfflinePayments: {
+        $ref: '#/$defs/offline_payments_put_message',
+      },
+    },
+    $defs: {
+      cc_payments_put_message: {
         type: 'object',
         description: 'Credit card payment settings.',
         properties: {
@@ -37,7 +48,7 @@ export const tool: Tool = {
         },
         required: ['PaymentsEnabled'],
       },
-      EFTPayments: {
+      eft_payments_put_message: {
         type: 'object',
         description: 'Electronic payment settings.',
         properties: {
@@ -49,7 +60,7 @@ export const tool: Tool = {
         },
         required: ['PaymentsEnabled'],
       },
-      OfflinePayments: {
+      offline_payments_put_message: {
         type: 'object',
         description: 'Offline payment settings.',
         properties: {
