@@ -9,7 +9,6 @@ import {
   FileListResponse,
   FileRetrieveParams,
   FileUploadReqParams,
-  FileUploadReqResponse,
   Files,
   TaskHistoryFile,
 } from './files';
@@ -228,7 +227,6 @@ export declare namespace History {
     Files as Files,
     type TaskHistoryFile as TaskHistoryFile,
     type FileListResponse as FileListResponse,
-    type FileUploadReqResponse as FileUploadReqResponse,
     type FileRetrieveParams as FileRetrieveParams,
     type FileListParams as FileListParams,
     type FileDeleteParams as FileDeleteParams,

@@ -2,6 +2,7 @@
 
 import { APIResource } from '../core/resource';
 import * as AnnouncementsAPI from './communications/announcements';
+import * as ArchitecturalrequestsAPI from './associations/ownershipaccounts/architecturalrequests/architecturalrequests';
 import { APIPromise } from '../core/api-promise';
 import { RequestOptions } from '../internal/request-options';
 import { path } from '../internal/utils/path';
@@ -61,7 +62,7 @@ export interface PropertyGroupMessage {
   /**
    * User who created the property group.
    */
-  CreatedByUser?: PropertyGroupMessage.CreatedByUser | null;
+  CreatedByUser?: ArchitecturalrequestsAPI.CreatedByUser | null;
 
   /**
    * Property group description.
@@ -83,33 +84,6 @@ export interface PropertyGroupMessage {
    * property group.
    */
   Properties?: Array<AnnouncementsAPI.PropertyMessage> | null;
-}
-
-export namespace PropertyGroupMessage {
-  /**
-   * User who created the property group.
-   */
-  export interface CreatedByUser {
-    /**
-     * First name of the user.
-     */
-    FirstName?: string | null;
-
-    /**
-     * A link to the user resource.
-     */
-    Href?: string | null;
-
-    /**
-     * User unique identifier.
-     */
-    Id?: number;
-
-    /**
-     * Last name of the user.
-     */
-    LastName?: string | null;
-  }
 }
 
 export type PropertygroupListResponse = Array<PropertyGroupMessage>;

@@ -1,5 +1,14 @@
 # Changelog
 
+## 1.5.0 (2025-06-25)
+
+Full Changelog: [v1.4.0...v1.5.0](https://github.com/HGMproperties/wpm-mcp-server/compare/v1.4.0...v1.5.0)
+
+### Features
+
+* **api:** update via SDK Studio ([bb6033d](https://github.com/HGMproperties/wpm-mcp-server/commit/bb6033d5775bb535d8f4bbfc04db8f4d1173d67e))
+* **api:** update via SDK Studio ([028c681](https://github.com/HGMproperties/wpm-mcp-server/commit/028c681e03239ca8cc9170eb381589ae632e5004))
+
 ## 1.4.0 (2025-06-25)
 
 Full Changelog: [v1.3.0...v1.4.0](https://github.com/HGMproperties/wpm-mcp-server/compare/v1.3.0...v1.4.0)
