@@ -12,16 +12,6 @@ export class Payments extends APIResource {
    *
    * <h4>Required permission(s):</h4><span class="permissionBlock">Accounting > Bills</span> - `View` `Edit`
    *             <span class="permissionBlock">Accounting > Bank Accounts</span> - `View` `Edit`
-   *
-   * @example
-   * ```ts
-   * const billPaymentMessage =
-   *   await client.bills.payments.create(0, {
-   *     BankAccountId: 0,
-   *     EntryDate: '2019-12-27',
-   *     Lines: [{ Amount: 0, BillLineId: 0 }],
-   *   });
-   * ```
    */
   create(
     billID: number,
@@ -35,12 +25,6 @@ export class Payments extends APIResource {
    * Retrieves specific bill payment.
    *
    * <h4>Required permission(s):</h4><span class="permissionBlock">Accounting > Bills</span> - `View`
-   *
-   * @example
-   * ```ts
-   * const billPaymentMessage =
-   *   await client.bills.payments.retrieve(0, { billId: 0 });
-   * ```
    */
   retrieve(
     paymentID: number,
@@ -55,12 +39,6 @@ export class Payments extends APIResource {
    * Retrieves a list of bill payments for a specific bill.
    *
    * <h4>Required permission(s):</h4><span class="permissionBlock">Accounting > Bills</span> - `View`
-   *
-   * @example
-   * ```ts
-   * const billPaymentMessages =
-   *   await client.bills.payments.list(0);
-   * ```
    */
   list(
     billID: number,
@@ -75,16 +53,6 @@ export class Payments extends APIResource {
    *
    * <h4>Required permission(s):</h4><span class="permissionBlock">Accounting > Bills</span> - `View` `Edit`
    *             <span class="permissionBlock">Accounting > Bank Accounts</span> - `View` `Edit`
-   *
-   * @example
-   * ```ts
-   * const billPaymentMessage =
-   *   await client.bills.payments.createMultiple({
-   *     BankAccountId: 0,
-   *     BillIds: [0],
-   *     EntryDate: '2019-12-27',
-   *   });
-   * ```
    */
   createMultiple(
     body: PaymentCreateMultipleParams,

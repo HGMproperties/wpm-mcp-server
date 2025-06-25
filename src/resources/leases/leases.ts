@@ -97,6 +97,7 @@ import {
   RentRetrieveAllParams,
   RentRetrieveAllResponse,
   RentRetrieveParams,
+  RentRetrieveResponse,
   RentUpdateParams,
 } from './rent';
 import * as RentersinsuranceAPI from './rentersinsurance';
@@ -1444,6 +1445,7 @@ export declare namespace Leases {
     Rent as Rent,
     type LeaseRentCharge as LeaseRentCharge,
     type LeaseRentMessage as LeaseRentMessage,
+    type RentRetrieveResponse as RentRetrieveResponse,
     type RentRetrieveAllResponse as RentRetrieveAllResponse,
     type RentCreateParams as RentCreateParams,
     type RentRetrieveParams as RentRetrieveParams,

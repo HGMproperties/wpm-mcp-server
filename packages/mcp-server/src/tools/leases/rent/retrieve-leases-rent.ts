@@ -11,30 +11,42 @@ export const metadata: Metadata = {
   operation: 'read',
   tags: [],
   httpMethod: 'get',
-  httpPath: '/v1/leases/{leaseId}/rent/{rentId}',
-  operationId: 'ExternalApiLeaseRent_GetRentById',
+  httpPath: '/v1/leases/{leaseId}/rent',
+  operationId: 'ExternalApiLeaseRent_GetRent',
 };
 
 export const tool: Tool = {
   name: 'retrieve_leases_rent',
   description:
-    'Retrieves a specific rent schedule for a lease. The rent schedule provides details (dollar amount, day of the month, etc) of the recurring charges that are applied to the lease ledger each rent cycle.\r\n            \r\n\r\n<h4>Required permission(s):</h4><span class="permissionBlock">Rentals > Lease transactions</span> - `View`',
+    'The rent schedule provides details (dollar amount, day of the month, etc) of the recurring charges that are applied to the lease ledger each rent cycle. A lease may have more than one rent schedule associated with it if the rent terms change within the duration of the lease.\r\n            \r\n\r\n<h4>Required permission(s):</h4><span class="permissionBlock">Rentals > Lease transactions</span> - `View`',
   inputSchema: {
     type: 'object',
     properties: {
       leaseId: {
         type: 'integer',
       },
-      rentId: {
+      limit: {
         type: 'integer',
+        description:
+          '`limit` indicates the maximum number of results to be returned in the response. `limit` can range between 1 and 1000 and the default is 50.',
+      },
+      offset: {
+        type: 'integer',
+        description:
+          '`offset` indicates the position of the first record to return. The `offset` is zero-based and the default is 0.',
+      },
+      orderby: {
+        type: 'string',
+        description:
+          '`orderby` indicates the field(s) and direction to sort the results in the response. See <a href="#section/API-Overview/Bulk-Request-Options">Bulk Request Options</a> for more information.',
       },
     },
   },
 };
 
 export const handler = async (client: WpmMcpServer, args: Record<string, unknown> | undefined) => {
-  const { rentId, ...body } = args as any;
-  return asTextContentResult(await client.leases.rent.retrieve(rentId, body));
+  const { leaseId, ...body } = args as any;
+  return asTextContentResult(await client.leases.rent.retrieve(leaseId, body));
 };
 
 export default { metadata, tool, handler };

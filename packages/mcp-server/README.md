@@ -469,7 +469,7 @@ The following tools are available in this MCP server.
 
 ### Resource `associations.ownershipaccounts.recurringtransactions`:
 
-- `list_ownershipaccounts_associations_recurringtransactions` (`read`): Retrieves all recurring transactions for all ownership accounts.
+- `list_ownershipaccounts_associations_recurringtransactions` (`read`): Retrieves all recurring transactions for an ownership account.
 
   <h4>Required permission(s):</h4><span class="permissionBlock">Associations > Ownership account transactions</span> - `View`
 
@@ -1146,7 +1146,7 @@ The following tools are available in this MCP server.
 
   <h4>Required permission(s):</h4><span class="permissionBlock">Rentals > Lease Transactions</span> - `View` `Edit`
 
-- `retrieve_leases_rent` (`read`): Retrieves a specific rent schedule for a lease. The rent schedule provides details (dollar amount, day of the month, etc) of the recurring charges that are applied to the lease ledger each rent cycle.
+- `retrieve_leases_rent` (`read`): The rent schedule provides details (dollar amount, day of the month, etc) of the recurring charges that are applied to the lease ledger each rent cycle. A lease may have more than one rent schedule associated with it if the rent terms change within the duration of the lease.
 
   <h4>Required permission(s):</h4><span class="permissionBlock">Rentals > Lease transactions</span> - `View`
 
@@ -2049,7 +2049,8 @@ The following tools are available in this MCP server.
 
   <h4>Required permission(s):</h4><span class="permissionBlock">Accounting > Bills</span> - `View`
 
-- `update_bills` (`write`): Updates a bill.
+- `update_bills` (`write`): Use this operation to update any of the writable fields of an existing bill resource. When updating this resource keep the following in mind:
+  <ul><li>Writable fields omitted from the request or that do not have a value in the request message are set to `NULL`. If you do not want to update the field, submit the original field value.</li><li>When a bill has an existing payment any edits to the line items that change the total bill amount must result in the new total bill amount being equal to or greater than the amount paid.</li><li>When adding a new line item leave the `LineItem.Id` field empty.</li><li>You cannot update a bill that has a pending EFT associated with it.</li></ul>
 
   <h4>Required permission(s):</h4><span class="permissionBlock">Accounting > Bills</span> - `View` `Edit`
 
