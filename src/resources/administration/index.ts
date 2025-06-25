@@ -2,7 +2,7 @@
 
 export {
   Administration,
-  type AdministrationRetrieveAccountResponse,
-  type AdministrationRetrieveAccountingLockPeriodsResponse,
+  type AdministrationGetAccountResponse,
+  type AdministrationGetAcctLockPeriodsResponse,
 } from './administration';
 export { Residentsettings } from './residentsettings/index';

@@ -20,11 +20,10 @@ export class Administration extends APIResource {
    *
    * @example
    * ```ts
-   * const response =
-   *   await client.administration.retrieveAccount();
+   * const response = await client.administration.getAccount();
    * ```
    */
-  retrieveAccount(options?: RequestOptions): APIPromise<AdministrationRetrieveAccountResponse> {
+  getAccount(options?: RequestOptions): APIPromise<AdministrationGetAccountResponse> {
     return this._client.get('/v1/administration/account', options);
   }
 
@@ -36,12 +35,10 @@ export class Administration extends APIResource {
    * @example
    * ```ts
    * const response =
-   *   await client.administration.retrieveAccountingLockPeriods();
+   *   await client.administration.getAcctLockPeriods();
    * ```
    */
-  retrieveAccountingLockPeriods(
-    options?: RequestOptions,
-  ): APIPromise<AdministrationRetrieveAccountingLockPeriodsResponse> {
+  getAcctLockPeriods(options?: RequestOptions): APIPromise<AdministrationGetAcctLockPeriodsResponse> {
     return this._client.get('/v1/administration/accountinglockperiod', options);
   }
 }
@@ -49,11 +46,11 @@ export class Administration extends APIResource {
 /**
  * This is an object that represents account info.
  */
-export interface AdministrationRetrieveAccountResponse {
+export interface AdministrationGetAccountResponse {
   /**
    * Accounting settings.
    */
-  AccountingSettings?: AdministrationRetrieveAccountResponse.AccountingSettings | null;
+  AccountingSettings?: AdministrationGetAccountResponse.AccountingSettings | null;
 
   /**
    * Account company name.
@@ -63,7 +60,7 @@ export interface AdministrationRetrieveAccountResponse {
   /**
    * Contact information.
    */
-  Contact?: AdministrationRetrieveAccountResponse.Contact | null;
+  Contact?: AdministrationGetAccountResponse.Contact | null;
 
   /**
    * Account unique identifier.
@@ -76,7 +73,7 @@ export interface AdministrationRetrieveAccountResponse {
   Url?: string | null;
 }
 
-export namespace AdministrationRetrieveAccountResponse {
+export namespace AdministrationGetAccountResponse {
   /**
    * Accounting settings.
    */
@@ -142,7 +139,7 @@ export namespace AdministrationRetrieveAccountResponse {
 /**
  * Accounting lock period settings.
  */
-export interface AdministrationRetrieveAccountingLockPeriodsResponse {
+export interface AdministrationGetAcctLockPeriodsResponse {
   /**
    * A collection of identifiers for users that have been designated financial
    * administrators. These users will have permission to add, edit, and delete
@@ -155,15 +152,15 @@ export interface AdministrationRetrieveAccountingLockPeriodsResponse {
   /**
    * Global settings.
    */
-  Global?: AdministrationRetrieveAccountingLockPeriodsResponse.Global | null;
+  Global?: AdministrationGetAcctLockPeriodsResponse.Global | null;
 
   /**
    * Settings overrides for specific properties.
    */
-  Overrides?: Array<AdministrationRetrieveAccountingLockPeriodsResponse.Override> | null;
+  Overrides?: Array<AdministrationGetAcctLockPeriodsResponse.Override> | null;
 }
 
-export namespace AdministrationRetrieveAccountingLockPeriodsResponse {
+export namespace AdministrationGetAcctLockPeriodsResponse {
   /**
    * Global settings.
    */
@@ -192,8 +189,8 @@ Administration.Residentsettings = Residentsettings;
 
 export declare namespace Administration {
   export {
-    type AdministrationRetrieveAccountResponse as AdministrationRetrieveAccountResponse,
-    type AdministrationRetrieveAccountingLockPeriodsResponse as AdministrationRetrieveAccountingLockPeriodsResponse,
+    type AdministrationGetAccountResponse as AdministrationGetAccountResponse,
+    type AdministrationGetAcctLockPeriodsResponse as AdministrationGetAcctLockPeriodsResponse,
   };
 
   export { Residentsettings as Residentsettings };

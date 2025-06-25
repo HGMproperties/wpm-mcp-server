@@ -1,7 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from '../../../core/resource';
-import * as FilesAPI from '../../files/files';
 import * as ArchitecturalrequestsFilesAPI from '../../associations/ownershipaccounts/architecturalrequests/files';
 import { APIPromise } from '../../../core/api-promise';
 import { buildHeaders } from '../../../internal/headers';
@@ -52,25 +51,6 @@ export class Files extends APIResource {
       ...options,
       headers: buildHeaders([{ Accept: '*/*' }, options?.headers]),
     });
-  }
-
-  /**
-   * Downloads a specific file associated to the check.
-   *
-   * <h4>Required permission(s):</h4><span class="permissionBlock">Accounting > Bank Accounts</span> - `View`
-   *
-   * <span class="permissionBlock">Accounting > General Ledger Transactions</span> - `View` <span class="permissionBlock">(Required for checks associated with a Company) </span>
-   */
-  download(
-    fileID: number,
-    params: FileDownloadParams,
-    options?: RequestOptions,
-  ): APIPromise<FilesAPI.FileDownload> {
-    const { bankAccountId, checkId } = params;
-    return this._client.post(
-      path`/v1/bankaccounts/${bankAccountId}/checks/${checkId}/files/${fileID}/downloadrequests`,
-      options,
-    );
   }
 
   /**
@@ -212,12 +192,6 @@ export interface FileDeleteParams {
   checkId: number;
 }
 
-export interface FileDownloadParams {
-  bankAccountId: number;
-
-  checkId: number;
-}
-
 export interface FileUploadParams {
   /**
    * Path param:
@@ -238,7 +212,6 @@ export declare namespace Files {
     type FileRetrieveParams as FileRetrieveParams,
     type FileListParams as FileListParams,
     type FileDeleteParams as FileDeleteParams,
-    type FileDownloadParams as FileDownloadParams,
     type FileUploadParams as FileUploadParams,
   };
 }

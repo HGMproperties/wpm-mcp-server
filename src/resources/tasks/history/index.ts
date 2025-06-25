@@ -7,8 +7,8 @@ export {
   type FileRetrieveParams,
   type FileListParams,
   type FileDeleteParams,
-  type FileDownloadRequestParams,
-  type FileUploadRequestParams,
+  type FileDownloadReqParams,
+  type FileUploadReqParams,
 } from './files';
 export {
   History,

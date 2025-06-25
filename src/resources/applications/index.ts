@@ -4,10 +4,10 @@ export {
   Applications,
   type OutstandingBalancesLine,
   type ReversePaymentOtherBankCharge,
-  type ApplicationListOutstandingBalancesResponse,
-  type ApplicationCreateAutoAllocatedPaymentParams,
-  type ApplicationCreatePaymentReversalParams,
-  type ApplicationListOutstandingBalancesParams,
+  type ApplicationListBalancesResponse,
+  type ApplicationCreateAutoPayParams,
+  type ApplicationCreatePayReversalParams,
+  type ApplicationListBalancesParams,
 } from './applications';
 export {
   Charges,

@@ -56,11 +56,11 @@ export class Announcements extends APIResource {
    *
    * <h4>Required permission(s):</h4><span class="permissionBlock">Communications > Announcements</span> - `View`
    */
-  retrieveProperties(
+  listProperties(
     announcementID: number,
-    query: AnnouncementRetrievePropertiesParams | null | undefined = {},
+    query: AnnouncementListPropertiesParams | null | undefined = {},
     options?: RequestOptions,
-  ): APIPromise<AnnouncementRetrievePropertiesResponse> {
+  ): APIPromise<AnnouncementListPropertiesResponse> {
     return this._client.get(path`/v1/communications/announcements/${announcementID}/properties`, {
       query,
       ...options,
@@ -150,7 +150,7 @@ export interface PropertyMessage {
 
 export type AnnouncementListResponse = Array<AnnouncementMessage>;
 
-export type AnnouncementRetrievePropertiesResponse = Array<PropertyMessage>;
+export type AnnouncementListPropertiesResponse = Array<PropertyMessage>;
 
 export interface AnnouncementCreateParams {
   /**
@@ -244,7 +244,7 @@ export interface AnnouncementListParams {
   senderid?: number;
 }
 
-export interface AnnouncementRetrievePropertiesParams {
+export interface AnnouncementListPropertiesParams {
   /**
    * `limit` indicates the maximum number of results to be returned in the response.
    * `limit` can range between 1 and 1000 and the default is 50.
@@ -270,9 +270,9 @@ export declare namespace Announcements {
     type AnnouncementMessage as AnnouncementMessage,
     type PropertyMessage as PropertyMessage,
     type AnnouncementListResponse as AnnouncementListResponse,
-    type AnnouncementRetrievePropertiesResponse as AnnouncementRetrievePropertiesResponse,
+    type AnnouncementListPropertiesResponse as AnnouncementListPropertiesResponse,
     type AnnouncementCreateParams as AnnouncementCreateParams,
     type AnnouncementListParams as AnnouncementListParams,
-    type AnnouncementRetrievePropertiesParams as AnnouncementRetrievePropertiesParams,
+    type AnnouncementListPropertiesParams as AnnouncementListPropertiesParams,
   };
 }

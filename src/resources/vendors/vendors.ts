@@ -91,11 +91,11 @@ export class Vendors extends APIResource {
    * <span class="permissionBlock">Accounting > General Ledger Transactions</span> -
    * `View`
    */
-  retrieveTransactions(
+  listTransactions(
     vendorID: number,
-    query: VendorRetrieveTransactionsParams,
+    query: VendorListTransactionsParams,
     options?: RequestOptions,
-  ): APIPromise<VendorRetrieveTransactionsResponse> {
+  ): APIPromise<VendorListTransactionsResponse> {
     return this._client.get(path`/v1/vendors/${vendorID}/transactions`, { query, ...options });
   }
 }
@@ -280,11 +280,11 @@ export interface VendorInsuranceSave {
 
 export type VendorListResponse = Array<Vendor>;
 
-export type VendorRetrieveTransactionsResponse =
-  Array<VendorRetrieveTransactionsResponse.VendorRetrieveTransactionsResponseItem>;
+export type VendorListTransactionsResponse =
+  Array<VendorListTransactionsResponse.VendorListTransactionsResponseItem>;
 
-export namespace VendorRetrieveTransactionsResponse {
-  export interface VendorRetrieveTransactionsResponseItem {
+export namespace VendorListTransactionsResponse {
+  export interface VendorListTransactionsResponseItem {
     /**
      * Date of the transaction.
      */
@@ -617,7 +617,7 @@ export interface VendorListParams {
   website?: string;
 }
 
-export interface VendorRetrieveTransactionsParams {
+export interface VendorListTransactionsParams {
   /**
    * Filters results to any vendor transaction whose entry date that is greater than
    * or equal to the specified value. The maximum date range is 365 days.
@@ -704,11 +704,11 @@ export declare namespace Vendors {
     type Vendor as Vendor,
     type VendorInsuranceSave as VendorInsuranceSave,
     type VendorListResponse as VendorListResponse,
-    type VendorRetrieveTransactionsResponse as VendorRetrieveTransactionsResponse,
+    type VendorListTransactionsResponse as VendorListTransactionsResponse,
     type VendorCreateParams as VendorCreateParams,
     type VendorUpdateParams as VendorUpdateParams,
     type VendorListParams as VendorListParams,
-    type VendorRetrieveTransactionsParams as VendorRetrieveTransactionsParams,
+    type VendorListTransactionsParams as VendorListTransactionsParams,
   };
 
   export {

@@ -26,8 +26,8 @@ describe('resource rentersinsurance', () => {
   });
 
   // skipped: tests are disabled for the time being
-  test.skip('retrieveAll', async () => {
-    const responsePromise = client.leases.rentersinsurance.retrieveAll(0);
+  test.skip('listAll', async () => {
+    const responsePromise = client.leases.rentersinsurance.listAll(0);
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -38,10 +38,10 @@ describe('resource rentersinsurance', () => {
   });
 
   // skipped: tests are disabled for the time being
-  test.skip('retrieveAll: request options and params are passed correctly', async () => {
+  test.skip('listAll: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      client.leases.rentersinsurance.retrieveAll(
+      client.leases.rentersinsurance.listAll(
         0,
         { limit: 0, offset: 0, orderby: 'orderby' },
         { path: '/_stainless_unknown_path' },

@@ -86,8 +86,8 @@ describe('resource rent', () => {
   });
 
   // skipped: tests are disabled for the time being
-  test.skip('getSpecificRent', async () => {
-    const responsePromise = client.leases.rent.getSpecificRent(0);
+  test.skip('getByLease', async () => {
+    const responsePromise = client.leases.rent.getByLease(0);
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -98,10 +98,10 @@ describe('resource rent', () => {
   });
 
   // skipped: tests are disabled for the time being
-  test.skip('getSpecificRent: request options and params are passed correctly', async () => {
+  test.skip('getByLease: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      client.leases.rent.getSpecificRent(
+      client.leases.rent.getByLease(
         0,
         { limit: 0, offset: 0, orderby: 'orderby' },
         { path: '/_stainless_unknown_path' },
@@ -110,8 +110,8 @@ describe('resource rent', () => {
   });
 
   // skipped: tests are disabled for the time being
-  test.skip('retrieveAll', async () => {
-    const responsePromise = client.leases.rent.retrieveAll();
+  test.skip('listAll', async () => {
+    const responsePromise = client.leases.rent.listAll();
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -122,10 +122,10 @@ describe('resource rent', () => {
   });
 
   // skipped: tests are disabled for the time being
-  test.skip('retrieveAll: request options and params are passed correctly', async () => {
+  test.skip('listAll: request options and params are passed correctly', async () => {
     // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
     await expect(
-      client.leases.rent.retrieveAll(
+      client.leases.rent.listAll(
         {
           createddatetimefrom: '2019-12-27T18:11:19.117Z',
           createddatetimeto: '2019-12-27T18:11:19.117Z',

@@ -218,7 +218,7 @@ export class Ownershipaccounts extends APIResource {
    * @example
    * ```ts
    * const ownershipAccountTransaction =
-   *   await client.associations.ownershipaccounts.autoallocatedpayments(
+   *   await client.associations.ownershipaccounts.autoPayments(
    *     0,
    *     {
    *       Date: '2019-12-27',
@@ -229,9 +229,9 @@ export class Ownershipaccounts extends APIResource {
    *   );
    * ```
    */
-  autoallocatedpayments(
+  autoPayments(
     ownershipAccountID: number,
-    body: OwnershipaccountAutoallocatedpaymentsParams,
+    body: OwnershipaccountAutoPaymentsParams,
     options?: RequestOptions,
   ): APIPromise<TransactionsAPI.OwnershipAccountTransaction> {
     return this._client.post(
@@ -274,13 +274,13 @@ export class Ownershipaccounts extends APIResource {
    * @example
    * ```ts
    * const response =
-   *   await client.associations.ownershipaccounts.retrieveOutstandingbalances();
+   *   await client.associations.ownershipaccounts.getBalances();
    * ```
    */
-  retrieveOutstandingbalances(
-    query: OwnershipaccountRetrieveOutstandingbalancesParams | null | undefined = {},
+  getBalances(
+    query: OwnershipaccountGetBalancesParams | null | undefined = {},
     options?: RequestOptions,
-  ): APIPromise<OwnershipaccountRetrieveOutstandingbalancesResponse> {
+  ): APIPromise<OwnershipaccountGetBalancesResponse> {
     return this._client.get('/v1/associations/ownershipaccounts/outstandingbalances', { query, ...options });
   }
 }
@@ -337,11 +337,11 @@ export interface AssociationOwnershipAccount {
 
 export type OwnershipaccountListResponse = Array<AssociationOwnershipAccount>;
 
-export type OwnershipaccountRetrieveOutstandingbalancesResponse =
-  Array<OwnershipaccountRetrieveOutstandingbalancesResponse.OwnershipaccountRetrieveOutstandingbalancesResponseItem>;
+export type OwnershipaccountGetBalancesResponse =
+  Array<OwnershipaccountGetBalancesResponse.OwnershipaccountGetBalancesResponseItem>;
 
-export namespace OwnershipaccountRetrieveOutstandingbalancesResponse {
-  export interface OwnershipaccountRetrieveOutstandingbalancesResponseItem {
+export namespace OwnershipaccountGetBalancesResponse {
+  export interface OwnershipaccountGetBalancesResponseItem {
     /**
      * Association unique identifier .
      */
@@ -613,7 +613,7 @@ export interface OwnershipaccountListParams {
   unitorowner?: string;
 }
 
-export interface OwnershipaccountAutoallocatedpaymentsParams {
+export interface OwnershipaccountAutoPaymentsParams {
   /**
    * The date of the transaction. The date must be formatted as YYYY-MM-DD.
    */
@@ -713,7 +713,7 @@ export namespace OwnershipaccountCreditsParams {
   }
 }
 
-export interface OwnershipaccountRetrieveOutstandingbalancesParams {
+export interface OwnershipaccountGetBalancesParams {
   /**
    * Association unique identifier
    */
@@ -781,13 +781,13 @@ export declare namespace Ownershipaccounts {
   export {
     type AssociationOwnershipAccount as AssociationOwnershipAccount,
     type OwnershipaccountListResponse as OwnershipaccountListResponse,
-    type OwnershipaccountRetrieveOutstandingbalancesResponse as OwnershipaccountRetrieveOutstandingbalancesResponse,
+    type OwnershipaccountGetBalancesResponse as OwnershipaccountGetBalancesResponse,
     type OwnershipaccountCreateParams as OwnershipaccountCreateParams,
     type OwnershipaccountUpdateParams as OwnershipaccountUpdateParams,
     type OwnershipaccountListParams as OwnershipaccountListParams,
-    type OwnershipaccountAutoallocatedpaymentsParams as OwnershipaccountAutoallocatedpaymentsParams,
+    type OwnershipaccountAutoPaymentsParams as OwnershipaccountAutoPaymentsParams,
     type OwnershipaccountCreditsParams as OwnershipaccountCreditsParams,
-    type OwnershipaccountRetrieveOutstandingbalancesParams as OwnershipaccountRetrieveOutstandingbalancesParams,
+    type OwnershipaccountGetBalancesParams as OwnershipaccountGetBalancesParams,
   };
 
   export {

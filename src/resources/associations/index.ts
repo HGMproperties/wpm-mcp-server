@@ -68,13 +68,13 @@ export {
   Ownershipaccounts,
   type AssociationOwnershipAccount,
   type OwnershipaccountListResponse,
-  type OwnershipaccountRetrieveOutstandingbalancesResponse,
+  type OwnershipaccountGetBalancesResponse,
   type OwnershipaccountCreateParams,
   type OwnershipaccountUpdateParams,
   type OwnershipaccountListParams,
-  type OwnershipaccountAutoallocatedpaymentsParams,
+  type OwnershipaccountAutoPaymentsParams,
   type OwnershipaccountCreditsParams,
-  type OwnershipaccountRetrieveOutstandingbalancesParams,
+  type OwnershipaccountGetBalancesParams,
 } from './ownershipaccounts/index';
 export {
   Tenants,
