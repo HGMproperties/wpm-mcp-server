@@ -11,41 +11,19 @@ export const metadata: Metadata = {
   operation: 'read',
   tags: [],
   httpMethod: 'get',
-  httpPath: '/v1/associations/ownershipaccounts/recurringtransactions',
-  operationId:
-    'ExternalApiOwnershipAccountRecurringTransactions_GetRecurringTransactionsForAllOwnershipAccounts',
+  httpPath: '/v1/associations/ownershipaccounts/{ownershipAccountId}/recurringtransactions',
+  operationId: 'ExternalApiOwnershipAccountRecurringTransactions_GetAssociationRecurringTransaction',
 };
 
 export const tool: Tool = {
   name: 'list_ownershipaccounts_associations_recurringtransactions',
   description:
-    'Retrieves all recurring transactions for all ownership accounts.\r\n            \r\n\r\n<h4>Required permission(s):</h4><span class="permissionBlock">Associations > Ownership account transactions</span> - `View`',
+    'Retrieves all recurring transactions for an ownership account.\r\n            \r\n\r\n<h4>Required permission(s):</h4><span class="permissionBlock">Associations > Ownership account transactions</span> - `View`',
   inputSchema: {
     type: 'object',
     properties: {
-      createddatetimefrom: {
-        type: 'string',
-        description:
-          'Filters results to recurring transactions created after the specified value. The value must be formatted as YYYY-MM-DD HH:MM:SS. The maximum date range is 365 days.',
-        format: 'date-time',
-      },
-      createddatetimeto: {
-        type: 'string',
-        description:
-          'Filters results to recurring transactions created before the specified value. The value must be formatted as YYYY-MM-DD HH:MM:SS. The maximum date range is 365 days.',
-        format: 'date-time',
-      },
-      lastupdatedfrom: {
-        type: 'string',
-        description:
-          'Filters results to recurring transactions last updated after the specified value. The value must be formatted as YYYY-MM-DD HH:MM:SS. The maximum date range is 365 days.',
-        format: 'date-time',
-      },
-      lastupdatedto: {
-        type: 'string',
-        description:
-          'Filters results to recurring transactions last updated before the specified value. The value must be formatted as YYYY-MM-DD HH:MM:SS. The maximum date range is 365 days.',
-        format: 'date-time',
+      ownershipAccountId: {
+        type: 'integer',
       },
       limit: {
         type: 'integer',
@@ -62,21 +40,15 @@ export const tool: Tool = {
         description:
           '`orderby` indicates the field(s) and direction to sort the results in the response. See <a href="#section/API-Overview/Bulk-Request-Options">Bulk Request Options</a> for more information.',
       },
-      ownershipaccountids: {
-        type: 'array',
-        description:
-          'Filters results to only include records associated with the provided ownership account Ids.',
-        items: {
-          type: 'integer',
-        },
-      },
     },
   },
 };
 
 export const handler = async (client: WpmMcpServer, args: Record<string, unknown> | undefined) => {
-  const body = args as any;
-  return asTextContentResult(await client.associations.ownershipaccounts.recurringtransactions.list(body));
+  const { ownershipAccountId, ...body } = args as any;
+  return asTextContentResult(
+    await client.associations.ownershipaccounts.recurringtransactions.list(ownershipAccountId, body),
+  );
 };
 
 export default { metadata, tool, handler };

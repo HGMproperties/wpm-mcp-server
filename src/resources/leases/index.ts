@@ -106,6 +106,7 @@ export {
   Rent,
   type LeaseRentCharge,
   type LeaseRentMessage,
+  type RentRetrieveResponse,
   type RentRetrieveAllResponse,
   type RentCreateParams,
   type RentRetrieveParams,
