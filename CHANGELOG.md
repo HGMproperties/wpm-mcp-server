@@ -1,5 +1,24 @@
 # Changelog
 
+## 1.7.0 (2025-06-28)
+
+Full Changelog: [v1.6.3...v1.7.0](https://github.com/HGMproperties/wpm-mcp-server/compare/v1.6.3...v1.7.0)
+
+### Features
+
+* **mcp:** fallback for void-typed methods ([7e1dd1e](https://github.com/HGMproperties/wpm-mcp-server/commit/7e1dd1ee812cbb13bc7e09b08acc20d721c30ff6))
+
+
+### Bug Fixes
+
+* **ci:** release-doctor — report correct token name ([5b53b73](https://github.com/HGMproperties/wpm-mcp-server/commit/5b53b730f176ab5f7e6102792a4ec6f40abc6610))
+* **client:** get fetchOptions type more reliably ([4fd8733](https://github.com/HGMproperties/wpm-mcp-server/commit/4fd87332b6643f0d64790d3f9f1b4d481d0ac854))
+
+
+### Chores
+
+* **ci:** only run for pushes and fork pull requests ([2ded6f2](https://github.com/HGMproperties/wpm-mcp-server/commit/2ded6f2d89418882196b1acba2273fc1b8e0a835))
+
 ## 1.6.3 (2025-06-25)
 
 Full Changelog: [v1.6.2...v1.6.3](https://github.com/HGMproperties/wpm-mcp-server/compare/v1.6.2...v1.6.3)
