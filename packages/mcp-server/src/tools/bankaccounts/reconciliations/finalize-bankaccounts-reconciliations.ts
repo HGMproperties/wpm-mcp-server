@@ -34,8 +34,8 @@ export const tool: Tool = {
 
 export const handler = async (client: WpmMcpServer, args: Record<string, unknown> | undefined) => {
   const { reconciliationId, ...body } = args as any;
-  await client.bankaccounts.reconciliations.finalize(reconciliationId, body);
-  return asTextContentResult('Successful tool call');
+  const response = await client.bankaccounts.reconciliations.finalize(reconciliationId, body).asResponse();
+  return asTextContentResult(await response.text());
 };
 
 export default { metadata, tool, handler };

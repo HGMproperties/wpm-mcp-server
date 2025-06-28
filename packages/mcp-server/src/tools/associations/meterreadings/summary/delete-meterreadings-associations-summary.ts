@@ -42,8 +42,8 @@ export const tool: Tool = {
 
 export const handler = async (client: WpmMcpServer, args: Record<string, unknown> | undefined) => {
   const { associationId, ...body } = args as any;
-  await client.associations.meterreadings.summary.delete(associationId, body);
-  return asTextContentResult('Successful tool call');
+  const response = await client.associations.meterreadings.summary.delete(associationId, body).asResponse();
+  return asTextContentResult(await response.text());
 };
 
 export default { metadata, tool, handler };

@@ -34,8 +34,8 @@ export const tool: Tool = {
 
 export const handler = async (client: WpmMcpServer, args: Record<string, unknown> | undefined) => {
   const { imageId, ...body } = args as any;
-  await client.rentals.units.images.delete(imageId, body);
-  return asTextContentResult('Successful tool call');
+  const response = await client.rentals.units.images.delete(imageId, body).asResponse();
+  return asTextContentResult(await response.text());
 };
 
 export default { metadata, tool, handler };

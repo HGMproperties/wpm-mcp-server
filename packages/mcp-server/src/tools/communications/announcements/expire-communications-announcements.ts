@@ -31,8 +31,8 @@ export const tool: Tool = {
 
 export const handler = async (client: WpmMcpServer, args: Record<string, unknown> | undefined) => {
   const { announcementId, ...body } = args as any;
-  await client.communications.announcements.expire(announcementId);
-  return asTextContentResult('Successful tool call');
+  const response = await client.communications.announcements.expire(announcementId).asResponse();
+  return asTextContentResult(await response.text());
 };
 
 export default { metadata, tool, handler };

@@ -31,8 +31,8 @@ export const tool: Tool = {
 
 export const handler = async (client: WpmMcpServer, args: Record<string, unknown> | undefined) => {
   const { propertyId, ...body } = args as any;
-  await client.rentals.inactivate(propertyId);
-  return asTextContentResult('Successful tool call');
+  const response = await client.rentals.inactivate(propertyId).asResponse();
+  return asTextContentResult(await response.text());
 };
 
 export default { metadata, tool, handler };
